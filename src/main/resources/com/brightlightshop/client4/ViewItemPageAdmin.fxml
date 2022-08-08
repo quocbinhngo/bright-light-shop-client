@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.ViewItemPageAdminController">
+    <children>
+        <VBox prefHeight="200.0" prefWidth="100.0">
+            <children>
+                <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            </children>
+        </VBox>
+        <VBox prefHeight="400.0" prefWidth="360.0">
+            <children>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Published Year" />
+                        <TextField fx:id="publishedYearTextField" />
+                    </children>
+                </HBox>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Title" />
+                        <TextField fx:id="titleTextField" />
+                    </children>
+                </HBox>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Rental Type" />
+                        <TextField fx:id="rentalTypeTextField" />
+                    </children>
+                </HBox>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Copies Number" />
+                        <TextField fx:id="copiesNumberTextField" />
+                    </children>
+                </HBox>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Rental Fee" />
+                        <TextField fx:id="rentalFeeTextField" />
+                    </children>
+                </HBox>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Genre" />
+                        <TextField fx:id="genreTextField" />
+                    </children>
+                </HBox>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Image Url" />
+                        <TextField fx:id="imageUrlTextField" />
+                    </children>
+                </HBox>
+                <Button fx:id="submitButton" mnemonicParsing="false" onAction="#onSubmitButtonClick" text="Submit" />
+            </children>
+        </VBox>
+    </children>
+</HBox>
