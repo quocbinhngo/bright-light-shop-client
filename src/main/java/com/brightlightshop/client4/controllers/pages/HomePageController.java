@@ -147,13 +147,13 @@ public class HomePageController implements Initializable  {
     private ArrayList<Item> getRecord(){ //1030x210
         ArrayList<Item> records = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
-            Item record = new Item();
-            record.setTitle("Jurassic Park");
-            record.setRentalFee(50);
-            record.setImageUrl("/com/example/brightlightshop/image/jurassicpark.jpg");
-            records.add(record);
-        }
+//        for (int i = 0; i < 5; i++) {
+//            Item record = new Item();
+//            record.setTitle("Jurassic Park");
+//            record.setRentalFee(50);
+//            record.setImageUrl("/com/example/brightlightshop/image/jurassicpark.jpg");
+//            records.add(record);
+//        }
 
         return records;
     }
@@ -162,13 +162,13 @@ public class HomePageController implements Initializable  {
     private ArrayList<Item> getDvds(){
         ArrayList<Item> dvds = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
-            Item dvd = new Item();
-            dvd.setTitle("Jurassic Park");
-            dvd.setRentalFee(50);
-            dvd.setImageUrl("/com/example/brightlightshop/image/thebatman.png");
-            dvds.add(dvd);
-        }
+//        for (int i = 0; i < 5; i++) {
+//            Item dvd = new Item();
+//            dvd.setTitle("Jurassic Park");
+//            dvd.setRentalFee(50);
+//            dvd.setImageUrl("/com/example/brightlightshop/image/thebatman.png");
+//            dvds.add(dvd);
+//        }
 
         return dvds;
     }
@@ -177,13 +177,13 @@ public class HomePageController implements Initializable  {
     private ArrayList<Item> getGames(){
         ArrayList<Item> games = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
-            Item game = new Item();
-            game.setTitle("Jurassic Park");
-            game.setRentalFee(50);
-            game.setImageUrl("/com/example/brightlightshop/image/thebatman.png");
-            games.add(game);
-        }
+//        for (int i = 0; i < 5; i++) {
+//            Item game = new Item();
+//            game.setTitle("Jurassic Park");
+//            game.setRentalFee(50);
+//            game.setImageUrl("/com/example/brightlightshop/image/thebatman.png");
+//            games.add(game);
+//        }
 
         return games;
     }

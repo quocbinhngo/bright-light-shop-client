@@ -4,6 +4,7 @@ module com.brightlightshop.client4 {
     requires okhttp3;
     requires org.json;
     requires org.joda.time;
+    requires org.apache.commons.lang3;
 
     opens com.brightlightshop.client4 to javafx.fxml;
     exports com.brightlightshop.client4;

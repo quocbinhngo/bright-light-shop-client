@@ -1,8 +1,7 @@
 package com.brightlightshop.client4.utils;
 
-import com.brightlightshop.client4.types.Item;
-import com.brightlightshop.client4.types.Order;
-import com.brightlightshop.client4.types.OrderDetail;
+import com.brightlightshop.client4.types.*;
+import com.brightlightshop.client4.types.Record;
 import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,11 +19,20 @@ public class JsonParser {
         String title = json.getString("title");
         String rentalType = json.getString("rentalType");
         double rentalFee = json.getDouble("rentalFee");
-        String genre = !Objects.equals(json.getString("genre"), "") ? json.getString("genre") :  null;
+        String genre = json.has("genre") ? json.getString("genre") : null;
         String imageUrl = json.getString("imageUrl");
         int copiesNumber = json.getInt("copiesNumber");
         int availableNumber = json.getInt("availableNumber");
-        return new Item(_id, itemCode, publishedYear, title, rentalType, genre, imageUrl, rentalFee, copiesNumber, availableNumber);
+
+        return switch (rentalType) {
+            case "dvd" ->
+                    new Dvd(_id, itemCode, publishedYear, title, rentalType, imageUrl, rentalFee, copiesNumber, availableNumber, genre);
+            case "record" ->
+                    new Record(_id, itemCode, publishedYear, title, rentalType, imageUrl, rentalFee, copiesNumber, availableNumber, genre);
+            case "game" ->
+                    new Game(_id, itemCode, publishedYear, title, rentalType, imageUrl, rentalFee, copiesNumber, availableNumber);
+            default -> null;
+        };
     }
 
     public static Order getOrder(JSONObject json) {
@@ -55,5 +63,14 @@ public class JsonParser {
         }
 
         return orders;
+    }
+
+    public static ArrayList<Item> getItems(JSONArray json) {
+        ArrayList<Item> items = new ArrayList<>();
+        for (int i = 0; i < json.length(); i++) {
+            items.add(getItem(json.getJSONObject(i)));
+        }
+
+        return items;
     }
 }

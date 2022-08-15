@@ -6,27 +6,25 @@ import org.json.JSONObject;
 import java.util.Date;
 import java.util.Objects;
 
-public class Item {
-    private String _id;
-    private int itemCode;
-    private int publishedYear;
-    private String title;
-    private String rentalType;
-    private String genre;
-    private String imageUrl;
-    private double rentalFee;
-    private int copiesNumber;
-    private int availableNumber;
+public abstract class Item {
+    protected String _id;
+    protected int itemCode;
+    protected int publishedYear;
+    protected String title;
+    protected String rentalType;
+    protected String imageUrl;
+    protected double rentalFee;
+    protected int copiesNumber;
+    protected int availableNumber;
 
 
 
-    public Item(String _id, int itemCode, int publishedYear, String title, String rentalType, String genre, String imageUrl, double rentalFee, int copiesNumber, int availableNumber) {
+    public Item(String _id, int itemCode, int publishedYear, String title, String rentalType, String imageUrl, double rentalFee, int copiesNumber, int availableNumber) {
         this._id = _id;
         this.itemCode = itemCode;
         this.publishedYear = publishedYear;
         this.title = title;
         this.rentalType = rentalType;
-        this.genre = genre;
         this.imageUrl = imageUrl;
         this.rentalFee = rentalFee;
         this.copiesNumber = copiesNumber;
@@ -89,13 +87,6 @@ public class Item {
         this.rentalFee = rentalFee;
     }
 
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
 
     public String getImageUrl() {
         return imageUrl;
@@ -129,7 +120,6 @@ public class Item {
                 ", publishedYear=" + publishedYear +
                 ", title='" + title + '\'' +
                 ", rentalType='" + rentalType + '\'' +
-                ", genre='" + genre + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", rentalFee=" + rentalFee +
                 ", copiesNumber=" + copiesNumber +

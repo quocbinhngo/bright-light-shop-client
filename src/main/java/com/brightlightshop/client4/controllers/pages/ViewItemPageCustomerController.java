@@ -1,6 +1,9 @@
 package com.brightlightshop.client4.controllers.pages;
 
+import com.brightlightshop.client4.types.Dvd;
 import com.brightlightshop.client4.types.Item;
+import com.brightlightshop.client4.types.Record;
+import com.brightlightshop.client4.utils.JsonParser;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -16,7 +19,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class ViewItemPageCustomerController implements Initializable  {
+public class ViewItemPageCustomerController  {
+
+    private final String getItemByIdGetUrl = "http://localhost:8000/api/items";
+    private final String userId = "62ec74b4f13a1bbf8d94f560";
+    private String itemId;
+    private final OkHttpClient client = new OkHttpClient();
 
     @FXML
     private ImageView imageView;
@@ -41,33 +49,32 @@ public class ViewItemPageCustomerController implements Initializable  {
         imageView.setImage(image);
     }
 
-    private final String getItemByIdGetUrl = "http://localhost:8000/api/items";
-    private final String userId = "62ec74b4f13a1bbf8d94f560";
-    private final String itemId = "62edd857bfadc5dd4a20416b";
-    private final OkHttpClient client = new OkHttpClient();
+    private void handleError() {
 
-    private String getItemByIdGetRequest() throws Exception {
-        Request request = new Request.Builder()
-                .url(getItemByIdGetUrl + String.format("/%s", itemId))
-                .get()
-                .addHeader("user-id", userId)
-                .build();
-
-        try(Response response = client.newCall(request).execute()) {
-            return response.body().string();
-        }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    public void setData(String _id) {
         try {
-            String itemResponse = getItemByIdGetRequest();
+            itemId = _id;
+            String itemResponse = getItemByIdRequest();
+
+            if (itemResponse.equals("")) {
+                return;
+            }
+
             JSONObject itemJsonObject = new JSONObject(itemResponse);
-            Item item = Item.createItemFromJson(itemJsonObject);
+            Item item = JsonParser.getItem(itemJsonObject);
 
             setImageFromUrl(imageView, item.getImageUrl());
-            genreLabel.setText(item.getGenre());
+
+            if (item instanceof Dvd) {
+                genreLabel.setText(((Dvd) item).getGenre());
+            }
+
+            if (item instanceof Record) {
+                genreLabel.setText(((Record) item).getGenre());
+            }
+
             titleLabel.setText(item.getTitle());
             rentalTypeLabel.setText(item.getRentalType());
             rentalFeeLabel.setText(String.valueOf(item.getRentalFee()));
@@ -78,5 +85,21 @@ public class ViewItemPageCustomerController implements Initializable  {
         }
     }
 
+    private String getItemByIdRequest() throws Exception {
+        Request request = new Request.Builder()
+                .url(getItemByIdGetUrl + String.format("/%s", itemId))
+                .get()
+                .addHeader("user-id", userId)
+                .build();
+
+        try(Response response = client.newCall(request).execute()) {
+            if (String.valueOf(response.code()).charAt(0) == '4') {
+                handleError();
+                return "";
+            }
+
+            return response.body().string();
+        }
+    }
 }
 
