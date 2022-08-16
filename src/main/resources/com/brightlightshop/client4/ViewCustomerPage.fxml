@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="880.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.ViewCustomerPageController">
+    <HBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="1280.0">
+        <children>
+            <ImageView fx:id="logo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                <HBox.margin>
+                    <Insets right="150.0" />
+                </HBox.margin>
+            </ImageView>
+            <Button fx:id="naviBarShopButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Shop">
+                <HBox.margin>
+                    <Insets left="100.0" right="80.0" />
+                </HBox.margin>
+            </Button>
+            <Text fx:id="naviBarGreetingText" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello, ">
+                <HBox.margin>
+                    <Insets right="80.0" />
+                </HBox.margin>
+            </Text>
+            <Button fx:id="naviBarCartButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Cart">
+                <HBox.margin>
+                    <Insets right="80.0" />
+                </HBox.margin>
+            </Button>
+            <Button fx:id="naviBarBookingButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Booking">
+                <HBox.margin>
+                    <Insets right="80.0" />
+                </HBox.margin>
+            </Button>
+            <Button fx:id="naviBarLogOutButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Log Out">
+                <HBox.margin>
+                    <Insets right="80.0" />
+                </HBox.margin>
+            </Button>
+        </children>
+    </HBox>
+   <VBox alignment="CENTER" layoutX="-6.0" layoutY="149.0" prefHeight="781.0" prefWidth="640.0">
+      <children>
+         <ImageView fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
+      </children>
+   </VBox>
+   <VBox alignment="TOP_CENTER" layoutX="643.0" layoutY="167.0" prefHeight="781.0" prefWidth="640.0">
+      <children>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Information:">
+            <font>
+               <Font size="24.0" />
+            </font>
+            <VBox.margin>
+               <Insets bottom="25.0" top="100.0" />
+            </VBox.margin>
+         </Text>
+         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets left="80.0" right="10.0" />
+                  </HBox.margin>
+               </Text>
+               <Text fx:id="cusInfoFirstName" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Text>
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets left="80.0" right="10.0" />
+                  </HBox.margin>
+               </Text>
+               <Text fx:id="cusInfoLastName" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Text>
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
+                  <HBox.margin>
+                     <Insets left="80.0" right="10.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Text>
+               <Text fx:id="cusInfoEmail" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Text>
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets left="80.0" right="10.0" />
+                  </HBox.margin>
+               </Text>
+               <Text fx:id="cusInfoUserName" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Text>
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:">
+                  <HBox.margin>
+                     <Insets left="80.0" right="10.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Text>
+               <Text fx:id="cusInfoBalance" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Text>
+            </children>
+         </HBox>
+      </children>
+   </VBox>
+
+</AnchorPane>

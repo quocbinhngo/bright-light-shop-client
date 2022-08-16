@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="0.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.NavigationBarComponentController">
+    <children>
+        <HBox alignment="CENTER" prefHeight="99.0" prefWidth="1280.0" spacing="35.0">
+            <children>
+                <Button fx:id="logoButton" mnemonicParsing="false" onAction="#handleImgLogo">
+                    <graphic>
+                        <ImageView fitHeight="73.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/logo-social.png" />
+                            </image>
+                            <cursor>
+                                <Cursor fx:constant="CLOSED_HAND" />
+                            </cursor>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <TextField fx:id="searchBarTextField" prefHeight="15.0" prefWidth="350.0" promptText="Seach for item" />
+                <Button fx:id="shopButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="69.0" text="shop" />
+                <Button fx:id="userInformationButton" mnemonicParsing="false" prefHeight="41.0" prefWidth="117.0">
+                    <graphic>
+                        <Label fx:id="usernameNavigationBar" text="Nguyễn Anh">
+                            <graphic>
+                                <Label text="Hello," />
+                            </graphic>
+                        </Label>
+                    </graphic>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#onCartButtonClick" prefHeight="35.0" prefWidth="69.0" text="cart" />
+                <Button fx:id="bookingButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="69.0" text="booking" />
+                <Button fx:id="logOutButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="69.0" text="Logout" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
