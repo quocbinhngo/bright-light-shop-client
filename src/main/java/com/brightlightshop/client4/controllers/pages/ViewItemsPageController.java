@@ -3,6 +3,8 @@ package com.brightlightshop.client4.controllers.pages;
 import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.ItemBoxComponentController;
 import com.brightlightshop.client4.controllers.components.ItemComponentController;
+import com.brightlightshop.client4.models.CartModel;
+import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Item;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.beans.value.ChangeListener;
@@ -37,6 +39,9 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ViewItemsPageController implements Initializable {
+
+    private CartModel cartModel = new CartModel();
+    private UserModel userModel = new UserModel();
 
     @FXML
     private ScrollPane allItemContainer;
@@ -97,10 +102,7 @@ public class ViewItemsPageController implements Initializable {
 
     @FXML
     void onSearchButtonClick(ActionEvent event) throws Exception {
-        String itemsResponse = getItemsRequest();
-        System.out.println(itemsResponse);
-        items = JsonParser.getItems(new JSONArray(itemsResponse));
-        updateItemsToGrid();
+        getItems();
     }
 
     @FXML
@@ -249,13 +251,15 @@ public class ViewItemsPageController implements Initializable {
             addNavigationBar();
             setupToggleGroup();
 
-            String itemsResponse = getItemsRequest();
-            items = JsonParser.getItems(new JSONArray(itemsResponse));
-            updateItemsToGrid();
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void getItems() throws Exception {
+        String itemsResponse = getItemsRequest();
+        items = JsonParser.getItems(new JSONArray(itemsResponse));
+        updateItemsToGrid();
     }
 
     //Add navigation bar
@@ -297,12 +301,10 @@ public class ViewItemsPageController implements Initializable {
 
     public void updateItemsToGrid() throws Exception {
         girdPaneAllIteam.getChildren().clear();
-        System.out.println(girdPaneAllIteam.getChildren().size());
 
         int location = 0;
 
         try {
-            System.out.println(items.size());
             for (Item item : items) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/ItemBoxComponent.fxml"));
@@ -310,6 +312,7 @@ public class ViewItemsPageController implements Initializable {
                 AnchorPane temp = fxmlLoader.load();
                 ItemBoxComponentController itemBoxComponentController = fxmlLoader.getController();
                 itemBoxComponentController.setData(item);
+
 
                 girdPaneAllIteam.add(temp, location % 4 ,location / 4);
                 location++;
@@ -320,7 +323,8 @@ public class ViewItemsPageController implements Initializable {
         }
     }
 
-    public void addChoicesToComboBoxAllItemPage(){
-
+    public void setModel(UserModel userModel, CartModel cartModel) {
+        this.userModel = userModel;
+        this.cartModel = cartModel;
     }
 }

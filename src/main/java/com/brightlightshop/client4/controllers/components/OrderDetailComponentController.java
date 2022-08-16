@@ -27,6 +27,4 @@ public class OrderDetailComponentController {
         titleLabel.setText(orderDetail.getItem().getTitle());
         rentalFeeLabel.setText(String.valueOf(orderDetail.getItem().getRentalFee()));
     }
-
-
 }

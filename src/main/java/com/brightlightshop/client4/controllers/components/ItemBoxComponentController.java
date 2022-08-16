@@ -1,6 +1,8 @@
 package com.brightlightshop.client4.controllers.components;
 
 import com.brightlightshop.client4.controllers.pages.ViewItemPageCustomerController;
+import com.brightlightshop.client4.models.CartModel;
+import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Item;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +20,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class ItemBoxComponentController {
+
+    private CartModel cartModel;
+    private UserModel userModel;
 
     private Item item;
 
@@ -41,6 +46,7 @@ public class ItemBoxComponentController {
         String path = "/com/brightlightshop/client4/ViewItemPageCustomer.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
         Scene scene = new Scene(fxmlLoader.load());
+
         ViewItemPageCustomerController viewItemPageCustomerController = fxmlLoader.getController();
         viewItemPageCustomerController.setData(item.get_id());
 
@@ -60,4 +66,8 @@ public class ItemBoxComponentController {
         rentalFeeLabel.setText(String.valueOf(item.getRentalFee()));
         statusLabel.setText(item.getAvailableNumber() > 0 ? "Available" : "Out of stock");
     }
+
+
+
+
 }
