@@ -12,6 +12,10 @@ import java.util.Objects;
 
 public class JsonParser {
 
+    public static User getUser(JSONObject json) {
+
+    }
+
     public static Item getItem(JSONObject json) {
         String _id = json.getString("_id");
         int itemCode = json.getInt("itemCode");
@@ -73,4 +77,6 @@ public class JsonParser {
 
         return items;
     }
+
+
 }

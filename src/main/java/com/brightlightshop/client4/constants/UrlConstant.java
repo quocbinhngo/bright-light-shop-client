@@ -4,6 +4,10 @@ public class UrlConstant {
 
     private static final String endpoint = "http://localhost:8000/api";
 
+    public static String createCustomerAccount() {
+       return endpoint + "/users/customers";
+    }
+
     public static String getItems() {
         return endpoint + "/items";
     }

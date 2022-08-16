@@ -1,6 +1,8 @@
 package com.brightlightshop.client4.controllers.pages;
 
 
+import com.brightlightshop.client4.constants.UrlConstant;
+import com.brightlightshop.client4.models.UserModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -19,7 +21,7 @@ public class ViewItemPageAdminController {
     private final String userId = "62ec74b4f13a1bbf8d94f560";
     private final OkHttpClient client = new OkHttpClient();
 
-    private String getCreateItemPostJson() {
+    private RequestBody getCreateItemBody() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("publishedYear", Integer.parseInt(publishedYearTextField.getText()));
         jsonObject.put("title", titleTextField.getText());
@@ -27,15 +29,15 @@ public class ViewItemPageAdminController {
         jsonObject.put("copiesNumber", Integer.parseInt(copiesNumberTextField.getText()));
         jsonObject.put("rentalFee", Integer.parseInt(rentalFeeTextField.getText()));
         jsonObject.put("genre", genreTextField.getText());
-        return jsonObject.toString();
+        return RequestBody.create(jsonObject.toString(), JSON);
     }
 
     private String createItemPostRequest() throws IOException {
-        RequestBody body = RequestBody.create(getCreateItemPostJson(), JSON);
+        RequestBody body = getCreateItemBody();
         Request request = new Request.Builder()
-                .url(createItemPostUrl)
+                .url(UrlConstant.createItem())
                 .post(body)
-                .addHeader("user-id", userId)
+                .addHeader("user-id", UserModel.getUser().get_id())
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
