@@ -26,8 +26,6 @@ public class AuthPage {
     @FXML
     private Button signInButton;
     @FXML
-    private TextField registerEmailTextField;
-    @FXML
     private PasswordField registerPasswordField;
     @FXML
     private Button createAccountButton;
@@ -53,6 +51,18 @@ public class AuthPage {
         jsonObject.put("phone", registerPhoneNumberTextField.getText());
         jsonObject.put("password", registerPasswordField.getText());
         return jsonObject.toString();
+    }
+
+    public void clearAll(){
+        registerFirstNameTextField.clear();
+        registerLastNameTextField.clear();
+        registerUsernameTextField.clear();
+        registerAddressTextField.clear();
+        registerPhoneNumberTextField.clear();
+        registerPasswordField.clear();
+        registerConfirmPasswordField.clear();
+        signInUsernameTextField.clear();
+        signInPasswordField.clear();
     }
 
     private String createSessionPostJson(){
@@ -93,12 +103,14 @@ public class AuthPage {
             return false;
         }
         String response = createUserPostRequest();
+        clearAll();
         System.out.println(response);
         return true;
     }
 
     public boolean signIn(ActionEvent e) throws IOException{
         String response = createSessionPostRequest();
+        clearAll();
         JSONObject userInfo = new JSONObject(response);
         System.out.println(userInfo);
         UserModel.setUser(JsonParser.getUser(userInfo));
