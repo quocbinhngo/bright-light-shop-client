@@ -88,6 +88,10 @@ public class AuthPage {
     }
 
     public boolean registerAccount(ActionEvent e) throws IOException {
+        if (!registerPasswordField.getText().equals(registerConfirmPasswordField.getText())){
+            System.out.println("Please confirm your password");
+            return false;
+        }
         String response = createUserPostRequest();
         System.out.println(response);
         return true;
