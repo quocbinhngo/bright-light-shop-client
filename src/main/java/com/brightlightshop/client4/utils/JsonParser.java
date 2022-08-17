@@ -11,6 +11,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class JsonParser {
+    public static User getUser(JSONObject json){
+        String _id = json.getString("_id");
+        String firstName = json.getString("firstName");
+        String lastName = json.getString("lastName");
+        String username = json.getString("username");
+        String address = json.getString("address");
+        String phone = json.getString("phone");
+        String password = json.has("password")? json.getString("password"): null;
+        return new User(_id, firstName, lastName, username, address, phone, password);
+    }
 
     public static Item getItem(JSONObject json) {
         String _id = json.getString("_id");
