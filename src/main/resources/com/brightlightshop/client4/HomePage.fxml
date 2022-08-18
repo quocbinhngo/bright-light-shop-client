@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="880.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.HomePageController">
+    <children>
+        <BorderPane fx:id="categoryComboBox" layoutX="-1.0" layoutY="-2.0" prefHeight="880.0" prefWidth="1280.0">
+            <top>
+                <HBox fx:id="navigationBar" alignment="CENTER" prefHeight="99.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                    </children>
+                </HBox>
+            </top>
+            <center>
+                <VBox prefHeight="778.0" prefWidth="964.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ScrollPane fx:id="scrollPane" prefHeight="856.0" prefWidth="1500.0">
+                            <content>
+                                <VBox minHeight="-Infinity" prefHeight="1000.0" prefWidth="1284.0">
+                                    <children>
+                                        <HBox alignment="CENTER" prefHeight="251.0" prefWidth="1280.0">
+                                            <children>
+                                                <VBox prefHeight="245.0" prefWidth="246.0" />
+                                                <Pane prefHeight="251.0" prefWidth="766.0">
+                                                    <children>
+                                                        <AnchorPane fx:id="carouselPanel1" prefHeight="251.0" prefWidth="766.0">
+                                                            <children>
+                                                                <ImageView fitHeight="251.0" fitWidth="766.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                    <image>
+                                                                        <Image url="@images/jurassicpark.jpg" />
+                                                                    </image>
+                                                                </ImageView>
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <AnchorPane fx:id="carouselPanel2" prefHeight="251.0" prefWidth="766.0">
+                                                            <children>
+                                                                <ImageView fitHeight="251.0" fitWidth="766.0" layoutY="-7.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                    <image>
+                                                                        <Image url="@images/thebatman.png" />
+                                                                    </image>
+                                                                </ImageView>
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <AnchorPane fx:id="carouselPanel3" prefHeight="251.0" prefWidth="766.0">
+                                                            <children>
+                                                                <ImageView fitHeight="251.0" fitWidth="766.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                    <image>
+                                                                        <Image url="@images/thebatman.png" />
+                                                                    </image>
+                                                                </ImageView>
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <Button layoutY="80.5" mnemonicParsing="false" onAction="#backBanner" prefHeight="90.0" prefWidth="39.0" style="-fx-background-color: WHITE;" text="&lt;" />
+                                                        <Button layoutX="727.0" layoutY="80.5" mnemonicParsing="false" onAction="#nextBanner" prefHeight="90.0" prefWidth="39.0" style="-fx-background-color: WHITE;" text="&gt;" />
+                                                        <Label fx:id="bannerNumberCarousel" layoutX="360.0" layoutY="223.0" prefHeight="30.0" prefWidth="46.0" text="1 / 3" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="System Bold" size="20.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </Pane>
+                                                <VBox prefHeight="251.0" prefWidth="268.0">
+                                                    <children>
+                                                        <Pane prefHeight="272.0" prefWidth="268.0" style="-fx-background-color: #f4f4f4;" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                        <HBox minHeight="-Infinity" prefHeight="527.0" prefWidth="1280.0">
+                                            <children>
+                                                <VBox prefHeight="550.0" prefWidth="1292.0">
+                                                    <children>
+                                                        <Label prefHeight="27.0" prefWidth="62.0" text="Record">
+                                                            <font>
+                                                                <Font size="18.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets />
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <ScrollPane minHeight="-Infinity" minViewportHeight="200.0" minViewportWidth="1032.0" minWidth="-Infinity" prefHeight="210.0" prefWidth="1032.0">
+                                                            <opaqueInsets>
+                                                                <Insets />
+                                                            </opaqueInsets>
+                                                            <content>
+                                                                <HBox fx:id="recordComponentContainer" prefHeight="182.0" prefWidth="1042.0" spacing="10.0" />
+                                                            </content>
+                                                        </ScrollPane>
+                                                        <Label prefHeight="27.0" prefWidth="42.0" text="DvD">
+                                                            <font>
+                                                                <Font size="18.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets />
+                                                            </VBox.margin>
+                                                            <opaqueInsets>
+                                                                <Insets />
+                                                            </opaqueInsets>
+                                                        </Label>
+                                                        <ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="1032.0">
+                                                            <opaqueInsets>
+                                                                <Insets />
+                                                            </opaqueInsets>
+                                                            <content>
+                                                                <HBox fx:id="dvdComponentContainer" prefHeight="185.0" prefWidth="1041.0" spacing="10.0" />
+                                                            </content>
+                                                        </ScrollPane>
+                                                        <Label prefHeight="27.0" prefWidth="48.0" text="Game">
+                                                            <font>
+                                                                <Font size="18.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets />
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <ScrollPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="1033.0">
+                                                            <opaqueInsets>
+                                                                <Insets />
+                                                            </opaqueInsets>
+                                                            <content>
+                                                                <HBox fx:id="gameComponentContainer" prefHeight="100.0" prefWidth="200.0" spacing="10.0" />
+                                                            </content>
+                                                        </ScrollPane>
+                                                    </children>
+                                                    <opaqueInsets>
+                                                        <Insets />
+                                                    </opaqueInsets>
+                                                    <padding>
+                                                        <Insets left="110.0" right="110.0" />
+                                                    </padding>
+                                                </VBox>
+                                            </children>
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                            <VBox.margin>
+                                                <Insets top="15.0" />
+                                            </VBox.margin>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>
