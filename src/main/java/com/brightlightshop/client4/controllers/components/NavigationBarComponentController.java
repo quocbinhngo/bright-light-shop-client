@@ -59,16 +59,13 @@ public class NavigationBarComponentController {
 
     @FXML
     void onCartButtonClick(ActionEvent event) throws IOException {
-//        String path = "/com/brightlightshop/client4/CheckoutPage.fxml";
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
-//        Scene scene = new Scene(fxmlLoader.load());
-//
-//        CheckoutPageController checkoutPageController = fxmlLoader.getController();
-//        checkoutPageController.setModel(userModel, cartModel);
-//
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        stage.setScene(scene);
-//        stage.show();
+        String path = "/com/brightlightshop/client4/CheckoutPage.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void setModel(UserModel userModel, CartModel cartModel) {
