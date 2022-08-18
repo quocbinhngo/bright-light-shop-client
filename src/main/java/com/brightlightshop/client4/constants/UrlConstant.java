@@ -8,11 +8,11 @@ public class UrlConstant {
        return endpoint + "/users/customers";
     }
 
+    public static String createItem() {
+        return endpoint + "/items";
+    }
     public static String getItems() {
         return endpoint + "/items";
     }
 
-    public static String createItem() {
-        return endpoint + "/items";
-    }
 }

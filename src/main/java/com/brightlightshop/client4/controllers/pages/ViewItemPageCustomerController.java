@@ -17,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -30,6 +32,7 @@ import java.util.ResourceBundle;
 
 
 public class ViewItemPageCustomerController implements Initializable  {
+    public HBox navigationBar;
     private CartModel cartModel;
     private UserModel userModel;
 
@@ -88,7 +91,6 @@ public class ViewItemPageCustomerController implements Initializable  {
         Scene scene = new Scene(fxmlLoader.load());
 
         ViewItemsPageController viewItemsPageController = fxmlLoader.getController();
-        viewItemsPageController.setModel(userModel, cartModel);
         viewItemsPageController.getItems();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -157,6 +159,21 @@ public class ViewItemPageCustomerController implements Initializable  {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Component.numericTextField(quantityTextField);
+        addNavigationBar();
+    }
+
+    //Add navigation bar
+    public void addNavigationBar(){
+        try{
+            FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
+            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarComponent.fxml"));
+            AnchorPane hbox = navigationBarFXMLLoader.load();
+
+            //put navigation bar into navigationbar container at homepage
+            navigationBar.getChildren().add(hbox);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

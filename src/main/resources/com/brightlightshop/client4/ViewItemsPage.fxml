@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -17,86 +18,99 @@
    <children>
       <BorderPane fx:id="categoryComboBox" layoutX="-1.0" layoutY="-2.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="1280.0">
          <top>
-            <HBox fx:id="navigationBar" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <HBox fx:id="navigationBar" alignment="CENTER" prefHeight="99.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0" />
                </children>
             </HBox>
          </top>
          <center>
-            <ScrollPane fx:id="allItemContainer" minHeight="-Infinity" minWidth="-Infinity" prefHeight="802.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
-               <content>
-                  <HBox prefHeight="801.0" prefWidth="1251.0">
-                     <children>
-                        <VBox prefHeight="801.0" prefWidth="309.0">
+            <Pane prefHeight="725.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fx:id="allItemContainer" prefHeight="785.0" prefWidth="1280.0">
+                     <content>
+                        <HBox alignment="CENTER" prefHeight="787.0" prefWidth="1282.0">
                            <children>
-                              <Label fx:id="genreType" prefHeight="66.0" prefWidth="391.0" text="All of the item">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <VBox prefHeight="122.0" prefWidth="309.0" spacing="5.0">
+                              <VBox minWidth="-Infinity" prefHeight="624.0" prefWidth="198.0">
                                  <children>
-                                    <Label prefHeight="45.0" prefWidth="309.0" text="Rental Type">
+                                    <Label fx:id="genreType" prefHeight="66.0" prefWidth="391.0" text="All of the item">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <RadioButton fx:id="dvdRentalTypeRadioButton" mnemonicParsing="false" text="DVD" />
-                                    <RadioButton fx:id="gameRentalTypeRadioButton" mnemonicParsing="false" text="Game" />
-                                    <RadioButton fx:id="recordRentalTypeRadioButton" mnemonicParsing="false" text="Record" />
+                                    <VBox prefHeight="122.0" prefWidth="309.0" spacing="5.0">
+                                       <children>
+                                          <Label prefHeight="45.0" prefWidth="309.0" text="Rental Type">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <RadioButton fx:id="dvdRentalTypeRadioButton" mnemonicParsing="false" text="DVD" />
+                                          <RadioButton fx:id="gameRentalTypeRadioButton" mnemonicParsing="false" text="Game" />
+                                          <RadioButton fx:id="recordRentalTypeRadioButton" mnemonicParsing="false" text="Record" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="91.0" prefWidth="309.0" spacing="5.0">
+                                       <children>
+                                          <Label prefHeight="45.0" prefWidth="309.0" text="Status">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <RadioButton fx:id="availableStatusRadioButton" mnemonicParsing="false" text="Available" />
+                                          <RadioButton fx:id="nonAvaiableStatusRadioButton" mnemonicParsing="false" text="Out-of-stock" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="135.0" prefWidth="193.0" spacing="5.0">
+                                       <children>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="280.0" text="Sort by">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <RadioButton fx:id="idAscendingSortByRadioButton" mnemonicParsing="false" text="ID asceding" />
+                                          <RadioButton fx:id="idDescendingSortByRadioButton" mnemonicParsing="false" text="ID descending" />
+                                          <RadioButton fx:id="titleAscendingRadioButton" mnemonicParsing="false" text="Title ascending" />
+                                          <RadioButton fx:id="titleDescendingRadioButton" mnemonicParsing="false" text="Title descending" />
+                                       </children>
+                                    </VBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="280.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="clearButton" alignment="CENTER" mnemonicParsing="false" onAction="#onClearButtonClick" text="Clear" />
+                                          <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSearchButtonClick" text="Search" />
+                                       </children>
+                                    </HBox>
                                  </children>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="30.0" />
+                                 </padding>
                               </VBox>
-                              <VBox prefHeight="91.0" prefWidth="309.0" spacing="5.0">
+                              <VBox prefHeight="800.0" prefWidth="941.0">
                                  <children>
-                                    <Label prefHeight="45.0" prefWidth="309.0" text="Status">
+                                    <Label fx:id="genreType1" prefHeight="128.0" prefWidth="149.0" text="Result:">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
+                                       <VBox.margin>
+                                          <Insets left="30.0" />
+                                       </VBox.margin>
                                     </Label>
-                                    <RadioButton fx:id="availableStatusRadioButton" mnemonicParsing="false" text="Available" />
-                                    <RadioButton fx:id="nonAvaiableStatusRadioButton" mnemonicParsing="false" text="Out-of-stock" />
+                                    <GridPane fx:id="girdPaneAllIteam" prefHeight="800.0" prefWidth="941.0">
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                       </rowConstraints>
+                                    </GridPane>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="91.0" prefWidth="309.0" spacing="5.0">
-                                 <children>
-                                    <Label prefHeight="45.0" prefWidth="309.0" text="Sort by">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <RadioButton fx:id="idAscendingSortByRadioButton" mnemonicParsing="false" text="ID asceding" />
-                                    <RadioButton fx:id="idDescendingSortByRadioButton" mnemonicParsing="false" text="ID descending" />
-                                    <RadioButton fx:id="titleAscendingRadioButton" mnemonicParsing="false" text="Title ascending" />
-                                    <RadioButton fx:id="titleDescendingRadioButton" mnemonicParsing="false" text="Title descending" />
-                                 </children>
-                              </VBox>
-                              <HBox>
-                                 <children>
-                                    <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClearButtonClick" text="Clear" />
-                                    <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onSearchButtonClick" text="Search" />
-                                 </children>
-                              </HBox>
                            </children>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <padding>
-                              <Insets left="30.0" />
-                           </padding>
-                        </VBox>
-                        <GridPane fx:id="girdPaneAllIteam" prefHeight="801.0" prefWidth="940.0">
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                           </rowConstraints>
-                        </GridPane>
-                     </children>
-                  </HBox>
-               </content>
-               <BorderPane.margin>
-                  <Insets top="30.0" />
-               </BorderPane.margin>
-            </ScrollPane>
+                        </HBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </Pane>
          </center>
       </BorderPane>
    </children>
