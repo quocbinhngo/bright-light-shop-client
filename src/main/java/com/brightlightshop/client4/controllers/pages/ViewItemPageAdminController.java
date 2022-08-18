@@ -80,12 +80,5 @@ public class ViewItemPageAdminController {
 
         String response = createItemPostRequest();
         System.out.println(response);
-
-
     }
-
-
-
-
-
 }

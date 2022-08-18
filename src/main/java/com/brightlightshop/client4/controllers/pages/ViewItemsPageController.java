@@ -302,7 +302,8 @@ public class ViewItemsPageController implements Initializable {
     public void updateItemsToGrid() throws Exception {
         girdPaneAllIteam.getChildren().clear();
 
-        int location = 0;
+        int column = 0;
+        int row =1;
 
         try {
             for (Item item : items) {
@@ -313,13 +314,18 @@ public class ViewItemsPageController implements Initializable {
                 ItemBoxComponentController itemBoxComponentController = fxmlLoader.getController();
                 itemBoxComponentController.setData(item);
 
+                if (column == 1){
+                    column =0;
+                    row++;
+                }
 
-                girdPaneAllIteam.add(temp, location % 4 ,location / 4);
-                location++;
-                GridPane.setMargin(temp, new Insets(5));
+
+                girdPaneAllIteam.add(temp, column++ ,row);
+                GridPane.setMargin(temp, new Insets(1));
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
