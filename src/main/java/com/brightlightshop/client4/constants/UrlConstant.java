@@ -8,6 +8,12 @@ public class UrlConstant {
        return endpoint + "/users/customers";
     }
 
+<<<<<<< HEAD
+=======
+    public static String createItem() {
+        return endpoint + "/items";
+    }
+>>>>>>> 36a3b9e (help na)
     public static String getItems() {
         return endpoint + "/items";
     }
