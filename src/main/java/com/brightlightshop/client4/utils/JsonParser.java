@@ -13,11 +13,7 @@ import java.util.Objects;
 public class JsonParser {
 
     public static User getUser(JSONObject json) {
-<<<<<<< HEAD
-
-=======
         return null;
->>>>>>> 36a3b9e (help na)
     }
 
     public static Item getItem(JSONObject json) {
