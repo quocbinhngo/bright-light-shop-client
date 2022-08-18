@@ -37,7 +37,7 @@ public class ViewItemPageAdminController {
         Request request = new Request.Builder()
                 .url(UrlConstant.createItem())
                 .post(body)
-                .addHeader("user-id", UserModel.getUser().get_id())
+                .addHeader("user-id", userId)
                 .build();
 
         try (Response response = client.newCall(request).execute()) {

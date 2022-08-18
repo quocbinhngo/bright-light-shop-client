@@ -11,4 +11,8 @@ public class UrlConstant {
     public static String getItems() {
         return endpoint + "/items";
     }
+
+    public static String createItem() {
+        return endpoint + "/items";
+    }
 }
