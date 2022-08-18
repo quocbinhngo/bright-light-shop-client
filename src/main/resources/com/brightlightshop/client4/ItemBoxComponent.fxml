@@ -24,12 +24,12 @@
                      <children>
                         <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="29.0" prefWidth="502.0">
                            <children>
-                              <Label fx:id="rentalTypeLabel" prefHeight="18.0" prefWidth="103.0" text="QWERTYADFSDFHASDHJFGASDF">
+                              <Label fx:id="rentalTypeLabel" prefHeight="30.0" prefWidth="92.0" text="QWERTYADFSDFHASDHJFGASDF">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="titleLabel" prefHeight="18.0" prefWidth="103.0" text="QWERTYADFSDFHASDHJFGASDF">
+                              <Label fx:id="titleLabel" prefHeight="30.0" prefWidth="564.0" text="QWERTYADFSDFHASDHJFGASDF">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
