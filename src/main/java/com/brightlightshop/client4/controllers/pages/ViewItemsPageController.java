@@ -39,10 +39,6 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ViewItemsPageController implements Initializable {
-
-    private CartModel cartModel = new CartModel();
-    private UserModel userModel = new UserModel();
-
     @FXML
     private ScrollPane allItemContainer;
 
@@ -321,10 +317,5 @@ public class ViewItemsPageController implements Initializable {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    public void setModel(UserModel userModel, CartModel cartModel) {
-        this.userModel = userModel;
-        this.cartModel = cartModel;
     }
 }

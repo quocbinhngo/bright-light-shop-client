@@ -9,5 +9,7 @@ public class UserModel {
         currentUser = user;
     }
 
-
+    public static User getCurrentUser() {
+        return currentUser;
+    }
 }
