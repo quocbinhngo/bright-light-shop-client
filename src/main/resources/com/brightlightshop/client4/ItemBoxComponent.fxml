@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -20,30 +21,43 @@
                         <Insets />
                      </HBox.margin>
                   </ImageView>
-                  <VBox prefHeight="220.0" prefWidth="666.0" spacing="5.0">
+                  <VBox prefHeight="220.0" prefWidth="666.0" spacing="5.0" stylesheets="@style/style.css">
                      <children>
-                        <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="29.0" prefWidth="502.0">
+                        <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="56.0" prefWidth="651.0">
                            <children>
-                              <Label fx:id="rentalTypeLabel" prefHeight="30.0" prefWidth="92.0" text="QWERTYADFSDFHASDHJFGASDF">
+                              <Label fx:id="rentalTypeLabel" prefHeight="30.0" prefWidth="142.0" text="QWERTYADFSDFHASDHJFGASDF">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="titleLabel" prefHeight="30.0" prefWidth="564.0" text="QWERTYADFSDFHASDHJFGASDF">
+                              <Label fx:id="titleLabel" prefHeight="56.0" prefWidth="542.0" text="QWERTYADFSDFHASDHJFGASDF" textFill="WHITE">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="36.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
+                        <Pane prefHeight="26.0" prefWidth="651.0" />
                         <HBox prefHeight="38.0" prefWidth="300.0">
                            <children>
-                              <Label fx:id="rentalFeeLabel" text="Label" />
+                              <Label text="\$">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="rentalFeeLabel" text="Label">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font></Label>
                            </children>
                         </HBox>
+                        <Pane prefHeight="39.0" prefWidth="651.0" />
                         <HBox prefHeight="38.0" prefWidth="300.0">
                            <children>
-                              <Label fx:id="statusLabel" text="Label" />
+                              <Label fx:id="statusLabel" text="Label">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font></Label>
                            </children>
                         </HBox>
                      </children>
