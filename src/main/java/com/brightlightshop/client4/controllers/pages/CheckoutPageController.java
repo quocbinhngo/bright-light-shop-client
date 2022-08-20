@@ -1,17 +1,28 @@
 package com.brightlightshop.client4.controllers.pages;
 
+import com.brightlightshop.client4.constants.OrderConstant;
+import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.OrderDetailCheckoutComponentController;
 import com.brightlightshop.client4.controllers.components.OrderDetailComponentController;
 import com.brightlightshop.client4.models.CartModel;
-import com.brightlightshop.client4.types.OrderDetail;
+import com.brightlightshop.client4.models.UserModel;
+import com.brightlightshop.client4.types.*;
 import com.brightlightshop.client4.utils.FXMLPath;
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.binding.NumberBinding;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import okhttp3.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,45 +30,192 @@ import java.util.ResourceBundle;
 
 public class CheckoutPageController implements Initializable {
 
+    private int rentalDurationValue;
+    private final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+    private final OkHttpClient client = new OkHttpClient();
+
+    @FXML
+    private Label balanceLabel;
+
+    @FXML
+    private Label messageLabel;
+
     @FXML
     private VBox orderDetailContainer;
 
     @FXML
-    private Button returnButton;
+    private Button rentWithRewardPointButton;
+
+    @FXML
+    private ToggleGroup rentalDurationToggleGroup;
+
+    @FXML
+    private Label rewardPointLabel;
+
+    @FXML
+    private HBox rewardPointLabelContainer;
+
+    @FXML
+    private RadioButton sevenDayRadioButton;
 
     @FXML
     private Label totalValueLabel;
 
-    private void setTotalValueLabel() {
-        double totalValue = 0;
-        for (OrderDetail orderDetail: CartModel.getOrderDetails()) {
-            totalValue += orderDetail.getItem().getRentalFee() * orderDetail.getQuantity();
+    @FXML
+    private RadioButton twoDayRadioButton;
+
+    @FXML
+    void onRentButtonClick(ActionEvent event) throws IOException {
+        // Create request for order
+        String message = createOrderRequest();
+
+        // Notify subscriber
+        notifySubscriber(message);
+    }
+
+    @FXML
+    void onRentWithRewardPointButtonClick(ActionEvent event) {
+
+    }
+
+    private void notifySubscriber(String message) throws IOException {
+        // Set the message label
+        messageLabel.setVisible(true);
+        messageLabel.setText(message);
+
+        System.out.println(message);
+        System.out.println(messageLabel.isVisible());
+
+        // Update the current user
+        UserModel.update();
+
+        // Update label
+        setupLabel();
+    }
+
+    private String createOrderRequest() {
+        RequestBody body = getCreateOrderBody();
+        Request request = new Request.Builder()
+                .url(UrlConstant.createOrder())
+                .post(body)
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            return response.body().string();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        totalValueLabel.setText(String.valueOf(totalValue));
+    }
+
+    private RequestBody getCreateOrderBody() {
+        JSONObject json = new JSONObject();
+        json.put("rentalDuration", rentalDurationValue);
+
+        // Get the order details
+        JSONArray orderDetails = new JSONArray();
+        for (OrderDetail orderDetail: CartModel.getOrderDetails()) {
+            JSONObject orderDetailObj = new JSONObject();
+            orderDetailObj.put("itemId", orderDetail.getItem().get_id());
+            orderDetailObj.put("quantity", orderDetail.getQuantity());
+            orderDetails.put(orderDetailObj);
+        }
+
+        json.put("orderDetails", orderDetails);
+        return RequestBody.create(json.toString(), JSON);
     }
 
 
+    private void setTotalValueLabel() {
+        double totalValue = 0;
+        for (OrderDetail orderDetail: CartModel.getOrderDetails()) {
+            totalValue += orderDetail.getQuantity() * orderDetail.getItem().getRentalFee();
+        }
+
+        totalValueLabel.setText(String.valueOf(totalValue));
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            for (OrderDetail orderDetail: CartModel.getOrderDetails()) {
-                String path = FXMLPath.getOrderDetailCheckoutComponentPath();
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
-                System.out.println(getClass().getResource(path));
-                HBox hbox = fxmlLoader.load();
-
-                OrderDetailCheckoutComponentController orderDetailComponentController = fxmlLoader.getController();
-                orderDetailComponentController.setData(orderDetail);
-
-                orderDetailContainer.getChildren().add(hbox);
-            }
-
-            setTotalValueLabel();
+            setupToggleGroup();
+            setupLabel();
+            setupButton();
+            update();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    private void setupToggleGroup() {
+        twoDayRadioButton.setToggleGroup(rentalDurationToggleGroup);
+        sevenDayRadioButton.setToggleGroup(rentalDurationToggleGroup);
+        rentalDurationValue = OrderConstant.getDefaultRentalDuration();
+        rentalDurationToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>()  {
+            public void changed(ObservableValue<? extends Toggle> ob,
+                                Toggle o, Toggle n) {
 
+                RadioButton rb = (RadioButton)rentalDurationToggleGroup.getSelectedToggle();
+
+                if (rb != null) {
+                    // Get the first value of the text
+                     rentalDurationValue = Integer.parseInt(String.valueOf(rb.getText().toLowerCase().charAt(0)));
+                     setTotalValueLabel();
+                }
+            }
+        });
+    }
+
+    private void setupLabel() {
+        // invisible the messageLabel
+        messageLabel.setVisible(false);
+
+        // Not Vip - not have the reward point label
+        if (!(UserModel.getCurrentUser() instanceof Vip)) {
+            rewardPointLabelContainer.setVisible(false);
+        }
+
+        // Guest user
+        if (UserModel.getCurrentUser() instanceof Guest) {
+            balanceLabel.setText(String.valueOf(((Guest) UserModel.getCurrentUser()).getBalance()));
+            return;
+        }
+
+        // Regular user
+        if (UserModel.getCurrentUser() instanceof Regular) {
+            balanceLabel.setText(String.valueOf(((Regular) UserModel.getCurrentUser()).getBalance()));
+            return;
+        }
+
+        // Vip user - have the reward point label
+        balanceLabel.setText(String.valueOf(((Vip) UserModel.getCurrentUser()).getBalance()));
+        rewardPointLabel.setText(String.valueOf(((Vip) UserModel.getCurrentUser()).getRewardPoint()));
+    }
+
+    private void setupButton() {
+        if (!(UserModel.getCurrentUser() instanceof  Vip)) {
+            rentWithRewardPointButton.setDisable(true);
+        }
+    }
+
+    public void update() throws IOException {
+        // Clear all components
+        orderDetailContainer.getChildren().clear();
+
+        // Render the order detail list
+        for (OrderDetail orderDetail: CartModel.getOrderDetails()) {
+            String path = FXMLPath.getOrderDetailCheckoutComponentPath();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
+            HBox hbox = fxmlLoader.load();
+
+            OrderDetailCheckoutComponentController orderDetailComponentController = fxmlLoader.getController();
+            orderDetailComponentController.setData(orderDetail);
+            orderDetailComponentController.setSubscriber(this);
+
+            orderDetailContainer.getChildren().add(hbox);
+        }
+
+        // Change the total value label
+        setTotalValueLabel();
     }
 }

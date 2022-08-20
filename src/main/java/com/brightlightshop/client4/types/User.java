@@ -1,14 +1,14 @@
 package com.brightlightshop.client4.types;
 
-public class User {
+public abstract class User {
 
-    private String _id;
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String address;
-    private String phone;
-    private String password;
+    protected String _id;
+    protected String firstName;
+    protected String lastName;
+    protected String username;
+    protected String address;
+    protected String phone;
+    protected String password;
 
     public User(String _id, String firstName, String lastName, String username, String address, String phone, String password) {
         this._id = _id;

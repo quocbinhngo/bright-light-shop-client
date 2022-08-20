@@ -1,5 +1,9 @@
 package com.brightlightshop.client4.types;
 
+import javafx.beans.property.SimpleIntegerProperty;
+
+import java.util.Objects;
+
 public class OrderDetail {
     private Item item;
     private int quantity;

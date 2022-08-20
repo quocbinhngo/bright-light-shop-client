@@ -19,7 +19,29 @@ public class JsonParser {
         String address = json.getString("address");
         String phone = json.getString("phone");
         String password = json.has("password") ? json.getString("password") : null;
-        return new User(_id, firstName, lastName, username, address, phone, password);
+        String accountType = json.getString("accountType");
+
+        switch (accountType) {
+            case "admin" -> {
+                return new Admin(_id, firstName, lastName, username, address, phone, password);
+            }
+            case "guest" -> {
+                double balance = json.getDouble("balance");
+                return new Guest(_id, firstName, lastName, username, address, phone, password, balance);
+            }
+            case "regular" -> {
+                double balance = json.getDouble("balance");
+                return new Regular(_id, firstName, lastName, username, address, phone, password, balance);
+            }
+            case "vip" -> {
+                double balance = json.getDouble("balance");
+                int rewardPoint = json.getInt("rewardPoint");
+                return new Vip(_id, firstName, lastName, username, address, phone, password, balance, rewardPoint);
+            }
+            default -> {
+                return null;
+            }
+        }
     }
 
 

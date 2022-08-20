@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -10,12 +13,46 @@
       <VBox BorderPane.alignment="CENTER">
          <children>
             <VBox fx:id="orderDetailContainer" />
+            <HBox>
+               <children>
+                  <Label text="Rental duration" />
+                  <RadioButton fx:id="twoDayRadioButton" mnemonicParsing="false" text="2-day">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="rentalDurationToggleGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="sevenDayRadioButton" mnemonicParsing="false" selected="true" text="7-day" toggleGroup="$rentalDurationToggleGroup" />
+               </children>
+            </HBox>
             <HBox alignment="CENTER_RIGHT">
                <children>
                   <Label text="Total" />
                   <Label fx:id="totalValueLabel" alignment="CENTER_RIGHT" text="Label" />
                </children>
             </HBox>
+            <VBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="Your balance" />
+                        <Label fx:id="balanceLabel" text="Label" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="rewardPointLabelContainer">
+                     <children>
+                        <Label text="Your reward point" />
+                        <Label fx:id="rewardPointLabel" text="Label" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Label fx:id="messageLabel" text="Label" />
+                  <Button fx:id="rentWithRewardPointButton" mnemonicParsing="false" onAction="#onRentWithRewardPointButtonClick" text="Rent with reward point" />
+                  <Button mnemonicParsing="false" onAction="#onRentButtonClick" text="Rent with cash" />
+               </children>
+            </VBox>
          </children>
       </VBox>
    </center>

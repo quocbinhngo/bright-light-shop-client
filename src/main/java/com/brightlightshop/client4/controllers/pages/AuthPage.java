@@ -2,15 +2,20 @@ package com.brightlightshop.client4.controllers.pages;
 
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.User;
+import com.brightlightshop.client4.utils.FXMLPath;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import okhttp3.*;
 import org.json.*;
 
@@ -143,6 +148,7 @@ public class AuthPage {
             System.out.println("Please confirm your password");
             return false;
         }
+
         String response = createUserPostRequest();
         clearAll();
         System.out.println(response);
@@ -153,9 +159,17 @@ public class AuthPage {
         String response = createSessionPostRequest();
         clearAll();
         JSONObject userInfo = new JSONObject(response);
-        System.out.println(userInfo);
-        UserModel.setUser(JsonParser.getUser(userInfo));
-        System.out.println(UserModel.getCurrentUser().toString());
+        UserModel.setCurrentUser(JsonParser.getUser(userInfo));
+        moveToViewItemsPage(e);
         return true;
+    }
+
+    private void moveToViewItemsPage(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewItemsPagePath()));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }

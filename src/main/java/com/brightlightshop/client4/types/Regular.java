@@ -1,15 +1,15 @@
 package com.brightlightshop.client4.types;
 
-public class Admin extends User {
-
-    public Admin(String _id, String firstName, String lastName, String username, String address, String phone, String password) {
-        super(_id, firstName, lastName, username, address, phone, password);
+public class Regular extends Customer {
+    public Regular(String _id, String firstName, String lastName, String username, String address, String phone, String password, double balance) {
+        super(_id, firstName, lastName, username, address, phone, password, balance);
     }
 
     @Override
     public String toString() {
-        return "Admin{" +
-                "_id='" + _id + '\'' +
+        return "Regular{" +
+                "balance=" + balance +
+                ", _id='" + _id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +

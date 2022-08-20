@@ -143,7 +143,7 @@ public class ViewItemPageCustomerController implements Initializable  {
         Request request = new Request.Builder()
                 .url(getItemByIdGetUrl + String.format("/%s", itemId))
                 .get()
-                .addHeader("user-id", userId)
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();
 
         try(Response response = client.newCall(request).execute()) {
