@@ -37,7 +37,7 @@
                     </graphic>
                 </Button>
                 <Button mnemonicParsing="false" onAction="#onCartButtonClick" prefHeight="35.0" prefWidth="69.0" text="cart" />
-                <Button fx:id="bookingButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="69.0" text="booking" />
+                <Button mnemonicParsing="false" onAction="#onOrderButtonClick" prefHeight="35.0" prefWidth="69.0" text="order" />
                 <Button fx:id="logOutButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="69.0" text="Logout" />
             </children>
         </HBox>

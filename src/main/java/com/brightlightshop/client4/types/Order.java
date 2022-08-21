@@ -77,6 +77,10 @@ public class Order {
         return totalValue;
     }
 
+    public boolean isLateReturned() {
+        return createdAt.getMillis() + (long) rentalDuration * 24 * 60 * 60 * 1000 < System.currentTimeMillis();
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -91,7 +95,7 @@ public class Order {
     public static final String COMPLETED = "Completed";
     public static final String RENTING = "Renting";
 
-    public static String getOrderStatus(boolean returned) {
+    public String getOrderStatus() {
         if (!returned) {
             return RENTING;
         }

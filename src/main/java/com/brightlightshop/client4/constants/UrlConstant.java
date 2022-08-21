@@ -25,4 +25,8 @@ public class UrlConstant {
         return endpoint + "/orders";
     }
 
+    public static String returnOrder(String id) {
+        return endpoint + "/orders/" + id;
+    }
+
 }

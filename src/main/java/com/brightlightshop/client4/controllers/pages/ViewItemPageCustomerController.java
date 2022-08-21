@@ -33,11 +33,8 @@ import java.util.ResourceBundle;
 
 public class ViewItemPageCustomerController implements Initializable  {
     public HBox navigationBar;
-    private CartModel cartModel;
-    private UserModel userModel;
 
     private final String getItemByIdGetUrl = "http://localhost:8000/api/items";
-    private final String userId = "62ec74b4f13a1bbf8d94f560";
     private String itemId;
     private final OkHttpClient client = new OkHttpClient();
     private Item item;

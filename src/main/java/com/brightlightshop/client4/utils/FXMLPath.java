@@ -8,7 +8,19 @@ public class FXMLPath {
         return root + "OrderDetailCheckoutComponent.fxml";
     }
 
+    public static String getOrderDetailComponentPath() {
+        return root + "OrderDetailComponent.fxml";
+    }
+
     public static String getViewItemsPagePath() {
         return root + "ViewItemsPage.fxml";
+    }
+
+    public static String getViewOrdersPagePath() {
+        return root + "ViewOrdersPage.fxml";
+    }
+
+    public static String getViewOrderPagePath() {
+        return root + "ViewOrderPage.fxml";
     }
 }

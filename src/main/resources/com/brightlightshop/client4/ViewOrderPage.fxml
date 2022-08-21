@@ -6,19 +6,38 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.ViewOrderPageController"
->
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.ViewOrderPageController">
    <children>
       <VBox fx:id="orderDetailContainer" prefHeight="200.0" prefWidth="100.0" />
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
          <children>
+            <Label text="Account Type" />
+            <Label fx:id="accountTypeLabel" text="Label">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label text="Balance" />
+            <Label fx:id="balanceLabel" text="Label">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="messageLabel" text="Label" />
             <Label fx:id="totalValueLabel" text="Label">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
-            <Button fx:id="returnButton" mnemonicParsing="false" text="Return" />
+            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#onReturnButtonClick" text="Return" />
          </children>
       </HBox>
    </children>

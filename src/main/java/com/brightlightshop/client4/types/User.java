@@ -9,8 +9,9 @@ public abstract class User {
     protected String address;
     protected String phone;
     protected String password;
+    protected String accountType;
 
-    public User(String _id, String firstName, String lastName, String username, String address, String phone, String password) {
+    public User(String _id, String firstName, String lastName, String username, String address, String phone, String password, String accountType) {
         this._id = _id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -18,6 +19,7 @@ public abstract class User {
         this.address = address;
         this.phone = phone;
         this.password = password;
+        this.accountType = accountType;
     }
 
     public String get_id() {
@@ -46,6 +48,14 @@ public abstract class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 
     @Override

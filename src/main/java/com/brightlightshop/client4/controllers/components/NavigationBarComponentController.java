@@ -4,6 +4,7 @@ import com.brightlightshop.client4.controllers.pages.CheckoutPageController;
 import com.brightlightshop.client4.controllers.pages.ViewItemPageCustomerController;
 import com.brightlightshop.client4.models.CartModel;
 import com.brightlightshop.client4.models.UserModel;
+import com.brightlightshop.client4.utils.FXMLPath;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,9 +69,15 @@ public class NavigationBarComponentController {
         stage.show();
     }
 
-    public void setModel(UserModel userModel, CartModel cartModel) {
-//        this.userModel = userModel;
-//        this.cartModel = cartModel;
+    // Change to view order page
+    @FXML
+    void onOrderButtonClick(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewOrdersPagePath()));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

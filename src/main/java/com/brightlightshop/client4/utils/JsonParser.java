@@ -2,6 +2,7 @@ package com.brightlightshop.client4.utils;
 
 import com.brightlightshop.client4.types.*;
 import com.brightlightshop.client4.types.Record;
+import okhttp3.MediaType;
 import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,6 +12,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class JsonParser {
+    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+
     public static User getUser(JSONObject json) {
         String _id = json.getString("_id");
         String firstName = json.getString("firstName");
@@ -23,20 +26,20 @@ public class JsonParser {
 
         switch (accountType) {
             case "admin" -> {
-                return new Admin(_id, firstName, lastName, username, address, phone, password);
+                return new Admin(_id, firstName, lastName, username, address, phone, password, accountType);
             }
             case "guest" -> {
                 double balance = json.getDouble("balance");
-                return new Guest(_id, firstName, lastName, username, address, phone, password, balance);
+                return new Guest(_id, firstName, lastName, username, address, phone, password, accountType, balance);
             }
             case "regular" -> {
                 double balance = json.getDouble("balance");
-                return new Regular(_id, firstName, lastName, username, address, phone, password, balance);
+                return new Regular(_id, firstName, lastName, username, address, phone, password, accountType, balance);
             }
             case "vip" -> {
                 double balance = json.getDouble("balance");
                 int rewardPoint = json.getInt("rewardPoint");
-                return new Vip(_id, firstName, lastName, username, address, phone, password, balance, rewardPoint);
+                return new Vip(_id, firstName, lastName, username, address, phone, password, accountType, balance,rewardPoint);
             }
             default -> {
                 return null;
