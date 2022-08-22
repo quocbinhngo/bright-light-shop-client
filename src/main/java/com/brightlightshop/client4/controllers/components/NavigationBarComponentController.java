@@ -29,9 +29,6 @@ public class NavigationBarComponentController {
     private Button bookingButton;
 
     @FXML
-    private Button goToCartButton;
-
-    @FXML
     private Button logOutButton;
 
     @FXML
@@ -48,6 +45,18 @@ public class NavigationBarComponentController {
 
     @FXML
     private Label usernameNavigationBar;
+
+
+    @FXML
+    void onBookingButtonClick(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewOrdersPagePath()));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     @FXML
     void handleImgLogo(ActionEvent event) throws IOException {

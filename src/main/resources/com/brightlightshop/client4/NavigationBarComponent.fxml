@@ -82,7 +82,7 @@
                         <Font size="15.0" />
                     </font>
                 </Button>
-                <Button fx:id="bookingButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="82.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css" text="Booking" textFill="WHITE">
+                <Button fx:id="bookingButton" mnemonicParsing="false" onAction="#onBookingButtonClick" prefHeight="46.0" prefWidth="82.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css" text="Booking" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>

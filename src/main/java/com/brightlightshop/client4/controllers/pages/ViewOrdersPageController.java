@@ -2,6 +2,7 @@ package com.brightlightshop.client4.controllers.pages;
 
 import com.brightlightshop.client4.controllers.components.OrderComponentController;
 import com.brightlightshop.client4.controllers.components.OrderDetailComponentController;
+import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Order;
 import com.brightlightshop.client4.types.OrderDetail;
 import com.brightlightshop.client4.utils.JsonParser;
@@ -24,7 +25,6 @@ public class ViewOrdersPageController implements Initializable {
     private VBox orderContainer;
 
     private final String getOrdersUrl = "http://localhost:8000/api/orders";
-    private final String userId = "62ef701fd98f0db4bbc3b0b0";
 
     private final OkHttpClient client = new OkHttpClient();
 
@@ -38,7 +38,7 @@ public class ViewOrdersPageController implements Initializable {
         Request request = new Request.Builder()
                 .url(getOrdersUrl)
                 .get()
-                .addHeader("user-id", userId)
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();
         try(Response response = client.newCall(request).execute()) {
             return response.body().string();
