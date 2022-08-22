@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
@@ -10,56 +11,51 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="238.0" prefWidth="912.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.ItemBoxComponentController">
+<AnchorPane prefHeight="132.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.ItemBoxComponentController">
    <children>
-      <Button mnemonicParsing="false" onAction="#onItemBoxClick" prefHeight="234.0" prefWidth="762.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <Button mnemonicParsing="false" onAction="#onItemBoxClick" prefHeight="234.0" prefWidth="762.0" style="-fx-background-color: #dbdbdb; -fx-background-radius: 5;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <graphic>
-            <HBox alignment="CENTER" prefHeight="236.0" prefWidth="746.0">
+            <HBox alignment="CENTER" prefHeight="150.0" prefWidth="736.0" style="-fx-background-radius: 10;">
                <children>
-                  <ImageView fx:id="imageView" fitHeight="220.0" fitWidth="220.0" pickOnBounds="true">
+                  <ImageView fx:id="imageView" fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" style=": 10;">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </ImageView>
-                  <VBox prefHeight="220.0" prefWidth="666.0" spacing="5.0" stylesheets="@style/style.css">
+                  <VBox prefHeight="209.0" prefWidth="538.0" spacing="5.0" stylesheets="@style/style.css">
                      <children>
-                        <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="56.0" prefWidth="651.0">
+                        <Label fx:id="titleLabel" prefHeight="42.0" prefWidth="626.0" text="Product title">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="rentalTypeLabel" prefHeight="24.0" prefWidth="142.0" text="product type">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="46.0" prefWidth="651.0">
                            <children>
-                              <Label fx:id="rentalTypeLabel" prefHeight="30.0" prefWidth="142.0" text="QWERTYADFSDFHASDHJFGASDF">
+                              <Label layoutY="-3.0" prefHeight="35.0" prefWidth="24.0" text="\$">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="titleLabel" prefHeight="56.0" prefWidth="542.0" text="QWERTYADFSDFHASDHJFGASDF" textFill="WHITE">
+                              <Label fx:id="rentalFeeLabel" layoutX="8.0" layoutY="-7.0" prefHeight="53.0" prefWidth="98.0" text="11price">
                                  <font>
-                                    <Font size="36.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <Pane prefHeight="26.0" prefWidth="651.0" />
-                        <HBox prefHeight="38.0" prefWidth="300.0">
-                           <children>
-                              <Label text="\$">
-                                 <font>
-                                    <Font size="36.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="rentalFeeLabel" text="Label">
-                                 <font>
-                                    <Font size="36.0" />
+                                    <Font size="28.0" />
                                  </font></Label>
                            </children>
-                        </HBox>
-                        <Pane prefHeight="39.0" prefWidth="651.0" />
-                        <HBox prefHeight="38.0" prefWidth="300.0">
+                        </Pane>
+                        <Pane prefHeight="22.0" prefWidth="651.0">
                            <children>
-                              <Label fx:id="statusLabel" text="Label">
+                              <Label fx:id="statusLabel" text="condition">
                                  <font>
-                                    <Font size="36.0" />
-                                 </font></Label>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
                            </children>
-                        </HBox>
+                        </Pane>
                      </children>
                      <HBox.margin>
                         <Insets />
@@ -71,6 +67,9 @@
                </children>
             </HBox>
          </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>

@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -72,16 +73,20 @@ public class ViewItemPageCustomerController implements Initializable  {
 
         if (rentalQuantity == 0) {
             messageLabel.setText("Your rental quantity must be larger than 0");
+            messageLabel.setTextFill(Color.RED);
             return;
         }
 
         if (!CartModel.addToCart(item, rentalQuantity)) {
             messageLabel.setText("Your rental quantity is larger than available number");
+            messageLabel.setTextFill(Color.RED);
             return;
         }
 
         System.out.println(CartModel.getOrderDetails().size());
         messageLabel.setText("Add to cart successfully");
+        messageLabel.setTextFill(Color.GREEN);
+
     }
 
     @FXML
