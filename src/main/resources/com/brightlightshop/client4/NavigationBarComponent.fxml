@@ -15,11 +15,11 @@
     <children>
         <HBox alignment="CENTER" layoutY="-1.0" prefHeight="99.0" prefWidth="1280.0" spacing="8.0">
             <children>
-                <Button fx:id="logoButton" mnemonicParsing="false" onAction="#handleImgLogo" style="-fx-background-color: #131921;">
+                <Button fx:id="logoButton" mnemonicParsing="false" onAction="#handleImgLogo" prefHeight="103.0" prefWidth="151.0" style="-fx-background-color: #131921;">
                     <graphic>
-                        <ImageView fitHeight="83.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="80.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/logo-social.png" />
+                                <Image url="@images/logo_shop_blackback_ver(2).png" />
                             </image>
                             <cursor>
                                 <Cursor fx:constant="CLOSED_HAND" />
