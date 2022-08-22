@@ -69,6 +69,8 @@ public class NavigationBarComponentController {
         stage.show();
     }
 
+
+
     // Change to view order page
     @FXML
     void onOrderButtonClick(ActionEvent event) throws IOException {
