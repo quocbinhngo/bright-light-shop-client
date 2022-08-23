@@ -186,7 +186,7 @@ public class ViewCustomersPageController implements Initializable {
         HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlConstant.getCustomers()).newBuilder();
 
         if (customerTypeValue != null) {
-            urlBuilder.addQueryParameter("customerType", customerTypeValue);
+            urlBuilder.addQueryParameter("accountType", customerTypeValue);
         }
 
         if (sortByValue != null) {
