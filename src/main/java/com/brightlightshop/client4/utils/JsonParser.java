@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +17,7 @@ public class JsonParser {
 
     public static User getUser(JSONObject json) {
         String _id = json.getString("_id");
+        Integer customerCode = json.has("customerCode") ? json.getInt("customerCode") : null;
         String firstName = json.getString("firstName");
         String lastName = json.getString("lastName");
         String username = json.getString("username");
@@ -30,16 +32,16 @@ public class JsonParser {
             }
             case "guest" -> {
                 double balance = json.getDouble("balance");
-                return new Guest(_id, firstName, lastName, username, address, phone, password, accountType, balance);
+                return new Guest(_id, firstName, lastName, username, address, phone, password, accountType, balance, customerCode);
             }
             case "regular" -> {
                 double balance = json.getDouble("balance");
-                return new Regular(_id, firstName, lastName, username, address, phone, password, accountType, balance);
+                return new Regular(_id, firstName, lastName, username, address, phone, password, accountType, balance, customerCode);
             }
             case "vip" -> {
                 double balance = json.getDouble("balance");
                 int rewardPoint = json.getInt("rewardPoint");
-                return new Vip(_id, firstName, lastName, username, address, phone, password, accountType, balance,rewardPoint);
+                return new Vip(_id, firstName, lastName, username, address, phone, password, accountType, balance,rewardPoint, customerCode);
             }
             default -> {
                 return null;
@@ -108,6 +110,15 @@ public class JsonParser {
         }
 
         return items;
+    }
+
+    public static ArrayList<Customer> getCustomers(JSONArray json){
+        ArrayList<Customer> customers = new ArrayList<>();
+        for (int i = 0; i < json.length(); i++){
+            customers.add((Customer)getUser(json.getJSONObject(i)));
+        }
+
+        return customers;
     }
 
 
