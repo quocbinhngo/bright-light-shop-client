@@ -8,6 +8,8 @@ public class UrlConstant {
         return endpoint + "/users";
     }
 
+    public static String getCustomers(){ return endpoint + "/users/customers";}
+
     public static String createCustomerAccount() {
        return endpoint + "/users/customers";
     }

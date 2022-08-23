@@ -33,7 +33,7 @@ public class CustomerBoxComponentController {
 
     @FXML
     void onCustomerBoxClick(ActionEvent event) throws IOException {
-        String path = "/com/brightlightshop/client4/ViewCustomersPage.fxml";
+        String path = "/com/brightlightshop/client4/ViewCustomerPage.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
         Scene scene = new Scene(fxmlLoader.load());
 

@@ -96,7 +96,7 @@ public class ViewCustomersPageController implements Initializable {
 
     private final OkHttpClient client = new OkHttpClient();
 
-    private String userId = "62f0b052ee88e366757bc752";
+    private String userId = "62ec74b4f13a1bbf8d94f560";
 
     public void handleImgLogo(ActionEvent event) throws IOException {
         String path ="/com/brightlightshop/client4/images/logo-social.png";
@@ -183,7 +183,7 @@ public class ViewCustomersPageController implements Initializable {
     }
 
     private String getUrl() {
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlConstant.getItems()).newBuilder();
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlConstant.getCustomers()).newBuilder();
 
         if (customerTypeValue != null) {
             urlBuilder.addQueryParameter("customerType", customerTypeValue);

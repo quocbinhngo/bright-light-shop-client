@@ -1,5 +1,6 @@
 package com.brightlightshop.client4;
 
+import com.brightlightshop.client4.models.UserModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
