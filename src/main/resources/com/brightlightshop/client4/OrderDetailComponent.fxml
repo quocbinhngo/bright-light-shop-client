@@ -7,37 +7,59 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.OrderDetailComponentController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="193.0" prefWidth="849.0" style="-fx-border-color: c3c3c3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.OrderDetailComponentController">
    <children>
-      <VBox prefHeight="198.0" prefWidth="201.0">
+      <VBox alignment="CENTER" prefHeight="185.0" prefWidth="191.0">
          <children>
-            <ImageView fx:id="imageView" fitHeight="162.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
+            <ImageView fx:id="imageView" fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
-      <VBox prefHeight="185.0" prefWidth="447.0">
+      <VBox prefHeight="182.0" prefWidth="658.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+            <HBox prefHeight="185.0" prefWidth="658.0" spacing="30.0">
                <children>
-                  <HBox HBox.hgrow="ALWAYS">
+                  <Pane prefHeight="155.0" prefWidth="658.0">
                      <children>
-                        <Label fx:id="titleLabel" text="Label">
+                        <Label fx:id="titleLabel" layoutX="14.0" layoutY="80.0" prefHeight="27.0" prefWidth="175.0" text="Tile">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="quantityLabel" text="Label">
+                        <HBox alignment="CENTER_RIGHT" layoutX="178.0" layoutY="44.0" prefHeight="100.0" prefWidth="96.0">
+                           <children>
+                              <Label text="\$">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="rentalFeeLabel" prefHeight="27.0" prefWidth="47.0" text="Price">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label fx:id="quantityLabel" layoutX="384.0" layoutY="79.0" text="Quantity">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
+                        <HBox alignment="CENTER_RIGHT" layoutX="548.0" layoutY="43.0" prefHeight="100.0" prefWidth="96.0">
+                           <children>
+                              <Label text="\$">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="40.0" text="Price">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <Label fx:id="rentalFeeLabel" text="Label">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
+                  </Pane>
                </children>
             </HBox>
          </children>

@@ -9,6 +9,7 @@ import com.brightlightshop.client4.utils.JsonParser;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import okhttp3.OkHttpClient;
@@ -16,6 +17,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -23,6 +25,9 @@ import java.util.ResourceBundle;
 public class ViewOrdersPageController implements Initializable {
     @FXML
     private VBox orderContainer;
+
+    @FXML
+    private HBox navigationBar;
 
     private final String getOrdersUrl = "http://localhost:8000/api/orders";
 
@@ -49,7 +54,7 @@ public class ViewOrdersPageController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             setOrdersFromJson(new JSONArray(getOrdersRequest()));
-
+            addNavigationBar();
             for (Order order: orders) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/OrderComponent.fxml"));
@@ -63,6 +68,19 @@ public class ViewOrdersPageController implements Initializable {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    //Add navigation bar
+    public void addNavigationBar(){
+        try{
+            FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
+            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarComponent.fxml"));
+            AnchorPane hbox = navigationBarFXMLLoader.load();
+            //put navigation bar into navigationbar container
+            navigationBar.getChildren().add(hbox);
+        }catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

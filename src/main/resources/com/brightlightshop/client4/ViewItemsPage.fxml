@@ -131,12 +131,12 @@
                               </VBox>
                               <VBox prefHeight="787.0" prefWidth="740.0">
                                  <children>
-                                    <Label fx:id="genreType1" prefHeight="71.0" prefWidth="740.0" text="Results">
+                                    <Label fx:id="genreType1" prefHeight="10.0" prefWidth="730.0" text="Results">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets left="10.0" />
+                                          <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Label>
                                     <GridPane fx:id="girdPaneAllIteam" prefHeight="718.0" prefWidth="690.0">

@@ -1,59 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.CheckoutPageController">
+<BorderPane prefHeight="880.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.CheckoutPageController">
    <center>
-      <VBox BorderPane.alignment="CENTER">
-         <children>
-            <VBox fx:id="orderDetailContainer" />
-            <HBox>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <HBox alignment="TOP_CENTER" prefHeight="781.0" prefWidth="1280.0" spacing="10.0">
                <children>
-                  <Label text="Rental duration" />
-                  <RadioButton fx:id="twoDayRadioButton" mnemonicParsing="false" text="2-day">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="rentalDurationToggleGroup" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="sevenDayRadioButton" mnemonicParsing="false" selected="true" text="7-day" toggleGroup="$rentalDurationToggleGroup" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT">
-               <children>
-                  <Label text="Total" />
-                  <Label fx:id="totalValueLabel" alignment="CENTER_RIGHT" text="Label" />
-               </children>
-            </HBox>
-            <VBox>
-               <children>
-                  <HBox>
+                  <VBox fx:id="orderDetailContainer" alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="781.0" prefWidth="704.0" spacing="10.0" />
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="374.0" prefWidth="374.0" style="-fx-border-color: c3c3c3; -fx-border-width: 1;">
                      <children>
-                        <Label text="Your balance" />
-                        <Label fx:id="balanceLabel" text="Label" />
+                        <HBox layoutX="20.0" layoutY="14.0" prefHeight="27.0" prefWidth="346.0" spacing="30.0">
+                           <children>
+                              <Label prefHeight="27.0" prefWidth="135.0" text="Rental duration">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <RadioButton fx:id="twoDayRadioButton" mnemonicParsing="false" text="2-day">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="rentalDurationToggleGroup" />
+                                 </toggleGroup>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </RadioButton>
+                              <RadioButton fx:id="sevenDayRadioButton" mnemonicParsing="false" selected="true" text="7-day" toggleGroup="$rentalDurationToggleGroup">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                        <Pane layoutY="232.0" prefHeight="147.0" prefWidth="375.0">
+                           <children>
+                              <Button fx:id="rentWithRewardPointButton" layoutX="17.0" layoutY="14.0" mnemonicParsing="false" onAction="#onRentWithRewardPointButtonClick" prefHeight="36.0" prefWidth="341.0" text="Rent with reward point">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="17.0" layoutY="55.0" mnemonicParsing="false" onAction="#onRentButtonClick" prefHeight="36.0" prefWidth="341.0" text="Rent with cash">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Label fx:id="messageLabel" layoutX="18.0" layoutY="99.0" prefHeight="27.0" prefWidth="340.0" text="message">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Label layoutX="24.0" layoutY="76.0" prefHeight="27.0" prefWidth="373.0" text="Payment">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Pane layoutX="24.0" layoutY="108.0" prefHeight="36.0" prefWidth="344.0">
+                           <children>
+                              <Label layoutX="-1.0" layoutY="5.0" text="Total: ">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="TOP_RIGHT" layoutX="255.0" layoutY="5.0" prefHeight="26.0" prefWidth="78.0">
+                                 <children>
+                                    <Label text="\$" textOverrun="CLIP" />
+                                    <Label fx:id="totalValueLabel" alignment="CENTER_RIGHT" text="Price">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </Pane>
+                        <Line endX="233.0" layoutX="124.0" layoutY="144.0" startX="-100.0" strokeWidth="0.3" />
+                        <Pane fx:id="rewardPointLabelContainer" layoutX="16.0" layoutY="189.0" prefHeight="29.0" prefWidth="352.0">
+                           <children>
+                              <Label layoutX="6.0" layoutY="2.0" text="Your reward point">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="rewardPointLabel" alignment="CENTER_RIGHT" layoutX="304.0" layoutY="1.0" text="Label">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="8.0" layoutY="158.0" prefHeight="31.0" prefWidth="362.0">
+                           <children>
+                              <Label layoutX="14.0" layoutY="5.0" text="Current balance">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="TOP_RIGHT" layoutX="210.0" layoutY="4.0" prefHeight="25.0" prefWidth="140.0">
+                                 <children>
+                                    <Label text="\$" textOverrun="CLIP" />
+                                    <Label fx:id="balanceLabel" alignment="CENTER_RIGHT" text="Label">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </Pane>
                      </children>
-                  </HBox>
-                  <HBox fx:id="rewardPointLabelContainer">
-                     <children>
-                        <Label text="Your reward point" />
-                        <Label fx:id="rewardPointLabel" text="Label" />
-                     </children>
-                  </HBox>
+                  </Pane>
                </children>
-            </VBox>
-            <VBox>
-               <children>
-                  <Label fx:id="messageLabel" text="Label" />
-                  <Button fx:id="rentWithRewardPointButton" mnemonicParsing="false" onAction="#onRentWithRewardPointButtonClick" text="Rent with reward point" />
-                  <Button mnemonicParsing="false" onAction="#onRentButtonClick" text="Rent with cash" />
-               </children>
-            </VBox>
-         </children>
-      </VBox>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+         </content>
+      </ScrollPane>
    </center>
+   <top>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="navigationBar" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </HBox>
+   </top>
 </BorderPane>

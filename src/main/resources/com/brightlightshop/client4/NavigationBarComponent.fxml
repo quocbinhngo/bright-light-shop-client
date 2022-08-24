@@ -17,9 +17,9 @@
             <children>
                 <Button fx:id="logoButton" mnemonicParsing="false" onAction="#handleImgLogo" prefHeight="76.0" prefWidth="214.0" style="-fx-background-color: #131921;">
                     <graphic>
-                        <ImageView fitHeight="63.0" fitWidth="325.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="88.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/logo_shop_blackback_ver(2).png" />
+                                <Image url="@images/navigationBarLogo.png" />
                             </image>
                             <cursor>
                                 <Cursor fx:constant="CLOSED_HAND" />
@@ -32,7 +32,7 @@
                 </Button>
                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="36.0" prefWidth="477.0" style="-fx-background-radius: 5 5 5 5;" styleClass="search_box" stylesheets="@style/style.css">
                     <children>
-                        <TextField fx:id="searchBarTextField" prefHeight="34.0" prefWidth="437.0" promptText="Seach for item" style="-fx-background-radius: 5 0 0 5;" styleClass="search_box">
+                        <TextField fx:id="searchBarTextField" prefHeight="34.0" prefWidth="437.0" promptText="Seach for item" style="-fx-background-radius: 5 0 0 5; -fx-background-color: White;" styleClass="search_box">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
@@ -54,7 +54,7 @@
                         <Insets />
                     </HBox.margin>
                 </HBox>
-                <Button fx:id="shopButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="58.0" style="-fx-background-color: #121920;" styleClass="hbox" text="Shop" textFill="WHITE">
+                <Button fx:id="shopButton" mnemonicParsing="false" onAction="#onShopButtonClick" prefHeight="46.0" prefWidth="58.0" style="-fx-background-color: #121920;" styleClass="hbox" text="Shop" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>

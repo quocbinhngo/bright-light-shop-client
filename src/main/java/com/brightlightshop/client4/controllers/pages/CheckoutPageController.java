@@ -18,7 +18,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import okhttp3.*;
 import org.json.JSONArray;
@@ -50,10 +52,13 @@ public class CheckoutPageController implements Initializable {
     private ToggleGroup rentalDurationToggleGroup;
 
     @FXML
+    private HBox navigationBar;
+
+    @FXML
     private Label rewardPointLabel;
 
     @FXML
-    private HBox rewardPointLabelContainer;
+    private Pane rewardPointLabelContainer;
 
     @FXML
     private RadioButton sevenDayRadioButton;
@@ -138,10 +143,12 @@ public class CheckoutPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            addNavigationBar();
             setupToggleGroup();
             setupLabel();
             setupButton();
             update();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -217,5 +224,19 @@ public class CheckoutPageController implements Initializable {
 
         // Change the total value label
         setTotalValueLabel();
+    }
+
+    //Add navigation bar
+    public void addNavigationBar(){
+        try{
+            FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
+            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarComponent.fxml"));
+            AnchorPane hbox = navigationBarFXMLLoader.load();
+
+            //put navigation bar into navigationbar container at homepage
+            navigationBar.getChildren().add(hbox);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

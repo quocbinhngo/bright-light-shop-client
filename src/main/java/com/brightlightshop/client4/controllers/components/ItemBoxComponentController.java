@@ -74,8 +74,8 @@ public class ItemBoxComponentController {
         clip.setWidth(175.0f);
         clip.setHeight(175.0f);
 
-        clip.setArcHeight(20);
-        clip.setArcWidth(20);
+        clip.setArcHeight(10);
+        clip.setArcWidth(10);
         clip.setStroke(Color.BLACK);
         imageView.setClip(clip);
         SnapshotParameters parameters = new SnapshotParameters();

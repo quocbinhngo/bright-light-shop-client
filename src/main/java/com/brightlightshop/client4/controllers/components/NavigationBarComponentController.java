@@ -60,7 +60,8 @@ public class NavigationBarComponentController {
 
     @FXML
     void handleImgLogo(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("com/brightlightshop/client4/images/logo-social.png")));
+        String path ="/com/brightlightshop/client4/HomePage.fxml";
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root, 1280, 880);
         stage.setScene(scene);
@@ -78,6 +79,17 @@ public class NavigationBarComponentController {
         stage.show();
     }
 
+    //change scene to ViewItemsPage
+    @FXML
+    void onShopButtonClick(ActionEvent event) throws IOException {
+        String path = "/com/brightlightshop/client4/ViewItemsPage.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
     // Change to view order page

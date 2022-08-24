@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import okhttp3.OkHttpClient;
@@ -43,6 +44,9 @@ public class ViewOrderPageController {
 
     @FXML
     private Label totalValueLabel;
+
+    @FXML
+    private HBox navigationBar;
 
 
     @FXML
@@ -109,7 +113,6 @@ public class ViewOrderPageController {
     }
 
 
-
     public double getTotalValue() {
         // Check whether this is late return, if yes, add $10 for fine fee
         if (order.isLateReturned()) {
@@ -138,5 +141,19 @@ public class ViewOrderPageController {
         JSONObject jsonObject = new JSONObject();
         return RequestBody.create(jsonObject.toString(), JsonParser.JSON);
     }
+
+    //Add navigation bar
+    public void addNavigationBar(){
+        try{
+            FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
+            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarComponent.fxml"));
+            AnchorPane hbox = navigationBarFXMLLoader.load();
+            //put navigation bar into navigationbar container
+            navigationBar.getChildren().add(hbox);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
 

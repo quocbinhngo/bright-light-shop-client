@@ -36,6 +36,7 @@ public class OrderComponentController implements Initializable {
     @FXML
     private Button viewInDetailButton;
 
+
     @FXML
     private void onViewInDetailButtonClick(ActionEvent actionEvent) {
         try {
