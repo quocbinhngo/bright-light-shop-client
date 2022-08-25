@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="132.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.CustomerBoxComponentController">
+   <children>
+      <Button mnemonicParsing="false" onAction="#onCustomerBoxClick" prefHeight="234.0" prefWidth="762.0" style="-fx-background-color: #dbdbdb; -fx-background-radius: 5;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <graphic>
+            <HBox alignment="CENTER" prefHeight="150.0" prefWidth="736.0" style="-fx-background-radius: 10;">
+               <children>
+                  <ImageView fx:id="imageView" fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" style=": 10;">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox prefHeight="209.0" prefWidth="538.0" spacing="5.0" stylesheets="@style/style.css">
+                     <children>
+                        <Label fx:id="nameLabel" prefHeight="42.0" prefWidth="626.0" text="Customer Name">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="46.0" prefWidth="651.0">
+                           <children>
+                              <Label fx:id="customerTypeLabel" layoutX="14.0" layoutY="15.0" text="Customer Type" />
+                              <Label fx:id="customerIdLabel" layoutX="14.0" layoutY="38.0" text="Customer Id" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="22.0" prefWidth="651.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="15.0" top="15.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

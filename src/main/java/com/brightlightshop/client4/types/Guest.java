@@ -2,8 +2,8 @@ package com.brightlightshop.client4.types;
 
 public class Guest extends Customer {
 
-    public Guest(String _id, String firstName, String lastName, String username, String address, String phone, String password, String accountType, double balance) {
-        super(_id, firstName, lastName, username, address, phone, password, accountType, balance);
+    public Guest(String _id, String firstName, String lastName, String username, String address, String phone, String password, String accountType, double balance, int customerCode) {
+        super(_id, firstName, lastName, username, address, phone, password, accountType, balance, customerCode);
     }
 
     @Override

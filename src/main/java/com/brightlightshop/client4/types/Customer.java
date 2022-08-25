@@ -4,9 +4,10 @@ public abstract class Customer extends User {
     protected double balance;
     protected int customerCode;
 
-    public Customer(String _id, String firstName, String lastName, String username, String address, String phone, String password, String accountType, double balance) {
+    public Customer(String _id, String firstName, String lastName, String username, String address, String phone, String password, String accountType, double balance, int customerCode) {
         super(_id, firstName, lastName, username, address, phone, password, accountType);
         this.balance = balance;
+        this.customerCode = customerCode;
     }
 
     public double getBalance() {
@@ -21,6 +22,7 @@ public abstract class Customer extends User {
     public String toString() {
         return "Customer{" +
                 "balance=" + balance +
+                ", customerCode=" + customerCode +
                 ", _id='" + _id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -28,6 +30,7 @@ public abstract class Customer extends User {
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", password='" + password + '\'' +
+                ", accountType='" + accountType + '\'' +
                 '}';
     }
 }
