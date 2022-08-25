@@ -20,7 +20,51 @@
          <content>
             <HBox alignment="TOP_CENTER" prefHeight="781.0" prefWidth="1280.0" spacing="10.0" style="-fx-background-color: #f5f5f5;">
                <children>
-                  <VBox fx:id="orderDetailContainer" alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="781.0" prefWidth="704.0" spacing="10.0" style="-fx-background-color: #f5f5f5;" />
+                  <VBox prefHeight="771.0" prefWidth="834.0">
+                     <children>
+                        <Pane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="789.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #c3c3c3; -fx-border-width: 1;">
+                           <children>
+                              <Label layoutX="46.0" layoutY="15.0" text="Product">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="215.0" layoutY="12.0" text="Title">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="341.0" layoutY="13.0" text="Unit Price">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="492.0" layoutY="13.0" text="Quantity">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="603.0" layoutY="14.0" text="Total Price">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="726.0" layoutY="14.0" text="Action">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" />
+                           </VBox.margin>
+                        </Pane>
+                        <VBox fx:id="orderDetailContainer" alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="702.0" prefWidth="830.0" spacing="10.0" style="-fx-background-color: #f5f5f5;" />
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
                   <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="374.0" prefWidth="374.0" style="-fx-border-color: c3c3c3; -fx-border-width: 1; -fx-background-color: #FFFFFF;">
                      <children>
                         <HBox layoutX="20.0" layoutY="14.0" prefHeight="27.0" prefWidth="346.0" spacing="30.0">
@@ -135,6 +179,9 @@
                            </children>
                         </Pane>
                      </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </Pane>
                </children>
                <padding>
