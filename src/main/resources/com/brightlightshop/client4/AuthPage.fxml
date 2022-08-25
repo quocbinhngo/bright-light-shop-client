@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -39,10 +40,13 @@
                                         <Image url="@images/password_icon.png" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="signInButton" layoutX="242.0" layoutY="459.0" mnemonicParsing="false" onAction="#signIn" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #ffbd73;" text="Sign In">
+                                <Button fx:id="signInButton" layoutX="242.0" layoutY="459.0" mnemonicParsing="false" onAction="#signIn" onMouseEntered="#signInButtonEnteredAuthPage" onMouseExited="#signInButtonExitedAuthPage" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #ffbd73;" text="Sign In">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                                 </Button>
                                 <ImageView fitHeight="122.0" fitWidth="305.0" layoutX="124.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -93,13 +97,16 @@
                         <PasswordField fx:id="registerPasswordField" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-width: 0px 0px 2px 0px;" />
                         <Pane prefHeight="38.0" prefWidth="519.0" />
                         <PasswordField fx:id="registerConfirmPasswordField" promptText="Confirm Password" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-width: 0px 0px 2px 0px;" />
-                        <Button fx:id="createAccountButton" mnemonicParsing="false" onAction="#registerAccount" style="-fx-background-color: #ffbd73;" text="Create Account">
+                        <Button fx:id="createAccountButton" mnemonicParsing="false" onAction="#registerAccount" onMouseEntered="#createAccountButtonEnteredAuthPage" onMouseExited="#createAccountButtonExitedAuthPage" style="-fx-background-color: #ffbd73;" text="Create Account">
                             <VBox.margin>
                                 <Insets top="30.0" />
                             </VBox.margin>
                             <font>
                                 <Font size="14.0" />
                             </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                         </Button>
                     </children>
                     <padding>

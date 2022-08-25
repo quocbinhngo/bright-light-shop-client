@@ -32,7 +32,7 @@
             </ImageView>
                 <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                     <children>
-                  <Button mnemonicParsing="false" onAction="#onBackButtonClick" prefHeight="27.0" prefWidth="110.0" style="-fx-background-radius: 5; -fx-background-color: #ffbd73;" text="&lt; Back to results">
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButtonClick" onMouseEntered="#backButtonEnteredViewPageCus" onMouseExited="#backButtonExitedViewPageCus" prefHeight="27.0" prefWidth="110.0" style="-fx-background-radius: 5; -fx-background-color: #ffbd73;" text="&lt; Back to results">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -121,7 +121,7 @@
                                     <Font size="16.0" />
                                  </font></Label>
                               <TextField fx:id="quantityTextField" prefHeight="35.0" prefWidth="29.0" />
-                              <Button mnemonicParsing="false" onAction="#onAddToCartButtonClick" prefHeight="34.0" prefWidth="236.0" style="-fx-background-color: #ffbd73;" styleClass="buy_button" text="ADD TO CART">
+                              <Button fx:id="addToCartButton" mnemonicParsing="false" onAction="#onAddToCartButtonClick" onMouseEntered="#addToCartButtonEnteredViewItemPageCus" onMouseExited="#addToCartButtonExitedViewItemPageCus" prefHeight="34.0" prefWidth="236.0" style="-fx-background-color: #ffbd73;" styleClass="buy_button" text="ADD TO CART">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>

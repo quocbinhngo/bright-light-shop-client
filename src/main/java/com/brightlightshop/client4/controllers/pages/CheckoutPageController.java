@@ -70,6 +70,9 @@ public class CheckoutPageController implements Initializable {
     private RadioButton twoDayRadioButton;
 
     @FXML
+    private Button rentWithCashButton;
+
+    @FXML
     void onRentButtonClick(ActionEvent event) throws IOException {
         // Create request for order
         String message = createOrderRequest();
@@ -238,5 +241,25 @@ public class CheckoutPageController implements Initializable {
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    protected void rentWithCashButtonOnEnteredCheckOutPage() {
+        rentWithCashButton.setStyle("-fx-background-color: #e08e35");
+    }
+
+    @FXML
+    protected void rentWithCashButtonOnExitedCheckOutPage() {
+        rentWithCashButton.setStyle("-fx-background-color:  #f1ab2c");
+    }
+
+    @FXML
+    protected void rentWithRewardPointButtonEnteredCheckoutPage() {
+        rentWithRewardPointButton.setStyle("-fx-background-color:  #f3d74b");
+    }
+
+    @FXML
+    protected void rentWithRewardPointButtonExitedCheckoutPage() {
+        rentWithRewardPointButton.setStyle("-fx-background-color: #f3d74b");
     }
 }

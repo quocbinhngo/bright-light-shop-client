@@ -38,10 +38,16 @@ public class NavigationBarComponentController {
     private TextField searchBarTextField;
 
     @FXML
+    private Button searchButton;
+
+    @FXML
     private Button shopButton;
 
     @FXML
     private Button userInformationButton;
+
+    @FXML
+    private Button cartButton;
 
     @FXML
     private Label usernameNavigationBar;
@@ -102,5 +108,68 @@ public class NavigationBarComponentController {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    protected void onShopButtonEnteredNavBar() {
+        shopButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+    }
+
+    @FXML
+    protected void onShopButtonExitedNavBar() {
+        shopButton.setStyle("-fx-border-color: #151920; -fx-background-color: transparent");
+    }
+
+    @FXML
+    protected void usernameButtonEnteredNavigationBar() {
+        userInformationButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+    }
+
+    @FXML
+    protected void usernameButtonExitedNavigationBar() {
+        userInformationButton.setStyle("-fx-border-color: transparent;-fx-background-color: transparent");
+    }
+
+    @FXML
+    protected void bookingButtonEnteredNavBar() {
+        bookingButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+    }
+
+    @FXML
+    protected void bookingButtonExitedNavBar() {
+        bookingButton.setStyle("-fx-border-color: transparent;-fx-background-color: transparent");
+    }
+
+
+    @FXML
+    protected void cartButtonEnteredNavBar() {
+        cartButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+    }
+
+    @FXML
+    protected void cartButtonExitedNavBar() {
+        cartButton.setStyle("-fx-border-color: transparent;-fx-background-color: transparent");
+    }
+
+    @FXML
+    protected void logOutButtonEnteredNavBar() {
+        logOutButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+    }
+
+    @FXML
+    protected void logOutButtonExitedNavBar() {
+        logOutButton.setStyle("-fx-border-color: transparent;-fx-background-color: transparent");
+    }
+
+
+    @FXML
+    protected void searchButtonEnteredNavBar() {
+        searchButton.setStyle("-fx-background-color: #f3d74b; -fx-background-radius: 0 5 5 0");
+    }
+
+    @FXML
+    protected void searchButtonExitedNavBar() {
+        searchButton.setStyle("-fx-background-color: #f1ab2c; -fx-background-radius: 0 5 5 0");
+    }
+
 
 }
