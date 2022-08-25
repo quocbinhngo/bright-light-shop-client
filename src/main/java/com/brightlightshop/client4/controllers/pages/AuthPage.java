@@ -114,16 +114,20 @@ public class AuthPage {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
+            if (String.valueOf(response.code()).charAt(0) == '4') {
+                handleRegisterError(response.body().string());
+            }
+
             return response.body().string();
         }
     }
 
     private void handleLoginError(String error) {
-
+        loginMessageLabel.setText(error);
     }
 
     private void handleRegisterError(String error) {
-
+        registerMessageLabel.setText(error);
     }
 
     private String createSessionPostRequest() throws IOException {
@@ -145,12 +149,13 @@ public class AuthPage {
 
     public boolean registerAccount(ActionEvent e) throws IOException {
         if (!registerPasswordField.getText().equals(registerConfirmPasswordField.getText())){
-            System.out.println("Please confirm your password");
+            registerMessageLabel.setText("Please confirm your password");
             return false;
         }
 
         String response = createUserPostRequest();
         clearAll();
+        registerMessageLabel.setText("Successfully registered!");
         System.out.println(response);
         return true;
     }
