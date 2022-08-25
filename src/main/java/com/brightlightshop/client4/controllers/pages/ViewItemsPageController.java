@@ -315,7 +315,6 @@ public class ViewItemsPageController implements Initializable {
                     row++;
                 }
 
-
                 girdPaneAllIteam.add(temp, column++ ,row);
                 GridPane.setMargin(temp, new Insets(1));
             }
