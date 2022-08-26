@@ -232,17 +232,15 @@ public class ViewCustomersPageController implements Initializable {
                 CustomerBoxComponentController customerBoxComponentController = fxmlLoader.getController();
                 customerBoxComponentController.setData(customer);
 
-                if (column == 1){
+                if (column == 3){
                     column =0;
                     row++;
                 }
-
 
                 gridPaneAllCustomer.add(temp, column++ ,row);
                 GridPane.setMargin(temp, new Insets(1));
             }
         } catch (Exception e) {
-//            System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }

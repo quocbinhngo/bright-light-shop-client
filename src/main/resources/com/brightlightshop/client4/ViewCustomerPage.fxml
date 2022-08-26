@@ -1,135 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="880.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.ViewCustomerPageController">
-    <HBox fx:id="navigationBar" alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="1280.0" />
-   <VBox alignment="TOP_CENTER" layoutY="167.0" prefHeight="782.0" prefWidth="1283.0">
-      <children>
-         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Information:">
-            <font>
-               <Font size="24.0" />
-            </font>
-            <VBox.margin>
-               <Insets bottom="25.0" top="100.0" />
-            </VBox.margin>
-         </Text>
-         <HBox prefHeight="100.0" prefWidth="641.0">
-            <children>
-               <VBox alignment="CENTER_LEFT" prefHeight="350.0" prefWidth="640.0">
-                  <children>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                        <VBox.margin>
-                           <Insets />
-                        </VBox.margin>
-                     </Text>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                        <VBox.margin>
-                           <Insets />
-                        </VBox.margin>
-                     </Text>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone:">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                        <VBox.margin>
-                           <Insets />
-                        </VBox.margin>
-                     </Text>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                        <VBox.margin>
-                           <Insets />
-                        </VBox.margin>
-                     </Text>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                        <VBox.margin>
-                           <Insets />
-                        </VBox.margin>
-                     </Text>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                        <VBox.margin>
-                           <Insets />
-                        </VBox.margin>
-                     </Text>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Account Type:">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                        <VBox.margin>
-                           <Insets />
-                        </VBox.margin>
-                     </Text>
-                  </children>
-               </VBox>
-               <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="640.0">
-                  <children>
-                     <Label fx:id="cusInfoFirstName" text="firstName">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                     </Label>
-                     <Label fx:id="cusInfoLastName" text="lastName">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                     </Label>
-                     <Label fx:id="cusInfoPhone" text="phone">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                     </Label>
-                     <Label fx:id="cusInfoAddress" text="address">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                     </Label>
-                     <Label fx:id="cusInfoUsername" text="username">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                     </Label>
-                     <Label fx:id="cusInfoBalance" text="balance">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                     </Label>
-                     <Label fx:id="cusInfoAccountType" text="accountType">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                     </Label>
-                  </children>
-               </VBox>
-            </children>
-         </HBox>
-         <ScrollPane prefHeight="200.0" prefWidth="200.0">
+   <BorderPane prefHeight="880.0" prefWidth="1280.0">
+      <center>
+         <ScrollPane prefHeight="781.0" prefWidth="735.0" BorderPane.alignment="CENTER">
             <content>
-               <VBox fx:id="purchaseHistory" prefHeight="433.0" prefWidth="1283.0" />
+               <HBox alignment="CENTER" prefHeight="782.0" prefWidth="1280.0">
+                  <children>
+                     <VBox prefHeight="772.0" prefWidth="818.0" spacing="20.0">
+                        <children>
+                           <Button mnemonicParsing="false" text="&lt; Back to customer list" />
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer information">
+                              <font>
+                                 <Font size="24.0" />
+                              </font>
+                              <VBox.margin>
+                                 <Insets top="-5.0" />
+                              </VBox.margin>
+                           </Text>
+                           <Line endX="750.0" startX="-100.0" stroke="#c3c3c3" />
+                           <HBox prefHeight="243.0" prefWidth="851.0" spacing="20.0">
+                              <children>
+                                 <VBox alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="219.0" prefWidth="173.0" spacing="5.0">
+                                    <children>
+                                       <Label fx:id="cusInfoFirstName1" text="First Name">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                       <Label fx:id="cusInfoLastName1" text="Last Name">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                       <Label fx:id="cusInfoPhone1" text="Phone">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                       <Label fx:id="cusInfoAddress1" text="Address">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                       <Label fx:id="cusInfoUsername1" text="Username">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                       <Label fx:id="cusInfoBalance1" text="Balance">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                       <Label fx:id="cusInfoAccountType1" text="AccountType">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </VBox>
+                                 <VBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="219.0" prefWidth="554.0" spacing="5.0">
+                                    <children>
+                                       <Label fx:id="cusInfoFirstName" text="firstName">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                       <Label fx:id="cusInfoLastName" text="lastName">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                       <Label fx:id="cusInfoPhone" text="phone">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                       <Label fx:id="cusInfoAddress" text="address">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                       <Label fx:id="cusInfoUsername" text="username">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                       <HBox prefHeight="100.0" prefWidth="200.0">
+                                          <children>
+                                             <Label alignment="BOTTOM_CENTER" prefHeight="20.0" prefWidth="5.0" text="\$">
+                                                <font>
+                                                   <Font size="13.0" />
+                                                </font>
+                                             </Label>
+                                             <Label fx:id="cusInfoBalance" prefHeight="27.0" prefWidth="226.0" text="balance">
+                                                <font>
+                                                   <Font size="18.0" />
+                                                </font>
+                                             </Label>
+                                          </children>
+                                       </HBox>
+                                       <Label fx:id="cusInfoAccountType" text="accountType">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </HBox>
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer history">
+                              <font>
+                                 <Font size="24.0" />
+                              </font>
+                              <VBox.margin>
+                                 <Insets top="20.0" />
+                              </VBox.margin>
+                           </Text>
+                           <Line endX="750.0" startX="-100.0" stroke="#c3c3c3" />
+                           <VBox fx:id="purchaseHistory" alignment="CENTER" prefHeight="490.0" prefWidth="818.0" spacing="10.0" />
+                        </children>
+                        <padding>
+                           <Insets left="10.0" right="10.0" />
+                        </padding>
+                        <HBox.margin>
+                           <Insets top="10.0" />
+                        </HBox.margin>
+                     </VBox>
+                  </children>
+               </HBox>
             </content>
          </ScrollPane>
-      </children>
-   </VBox>
+      </center>
+      <top>
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox fx:id="navigationBar" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="219.0" />
+            </children>
+         </HBox>
+      </top>
+   </BorderPane>
 
 </AnchorPane>
