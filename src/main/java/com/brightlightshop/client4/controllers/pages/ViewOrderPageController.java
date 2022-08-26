@@ -77,12 +77,14 @@ public class ViewOrderPageController {
 
     private void setIsReturnedUI() throws IOException {
         setOrderDetailUI();
+        addNavigationBar();
         accountTypeLabel.setVisible(false);
         returnButton.setVisible(false);
         messageLabel.setVisible(false);
     }
 
     public void setUI() throws IOException {
+        addNavigationBar();
         totalValueLabel.setText(String.valueOf(getTotalValue()));
         setOrderDetailUI();
         switch (UserModel.getCurrentUser().getAccountType()) {
@@ -153,6 +155,16 @@ public class ViewOrderPageController {
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    protected void returnButtonEnteredViewOrderPage() {
+        returnButton.setStyle("-fx-background-color: #e08e35");
+    }
+
+    @FXML
+    protected void returnButtonExitedViewOrderPage() {
+        returnButton.setStyle("-fx-background-color: #f1ab2c");
     }
 }
 

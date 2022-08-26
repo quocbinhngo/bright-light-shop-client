@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="132.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.ItemBoxComponentController">
    <children>
-      <Button mnemonicParsing="false" onAction="#onItemBoxClick" prefHeight="234.0" prefWidth="762.0" style="-fx-background-color: #dbdbdb; -fx-background-radius: 3;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <Button fx:id="itemBoxClick" mnemonicParsing="false" onAction="#onItemBoxClick" onMouseEntered="#itemBoxClickEntered" onMouseExited="#itemBoxClickExited" prefHeight="234.0" prefWidth="762.0" style="-fx-background-color: #dbdbdb; -fx-background-radius: 3;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <graphic>
             <HBox alignment="CENTER" prefHeight="150.0" prefWidth="736.0" style="-fx-background-radius: 10;">
                <children>

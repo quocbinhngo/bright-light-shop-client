@@ -20,7 +20,7 @@
                <children>
                   <Pane prefHeight="155.0" prefWidth="658.0">
                      <children>
-                        <Label fx:id="titleLabel" layoutX="14.0" layoutY="80.0" prefHeight="27.0" prefWidth="175.0" text="Tile">
+                        <Label fx:id="titleLabel" layoutX="14.0" layoutY="80.0" prefHeight="27.0" prefWidth="175.0" text="Title">
                            <font>
                               <Font size="18.0" />
                            </font>
