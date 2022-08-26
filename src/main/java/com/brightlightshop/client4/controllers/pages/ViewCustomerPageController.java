@@ -1,5 +1,7 @@
 package com.brightlightshop.client4.controllers.pages;
 
+import com.brightlightshop.client4.controllers.components.OrderComponentController;
+import com.brightlightshop.client4.controllers.components.OrderComponentNoDetailController;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.*;
 import com.brightlightshop.client4.types.Record;
@@ -11,20 +13,25 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ViewCustomerPageController implements Initializable {
 
     private String userId;
     private final String getCustomerByIdGetUrl = "http://localhost:8000/api/users/customers";
+
+    private final String getOrdersUrl = "http://localhost:8000/api/orders";
     private final OkHttpClient client = new OkHttpClient();
     private Customer customer;
 
@@ -52,6 +59,10 @@ public class ViewCustomerPageController implements Initializable {
     @FXML
     private HBox navigationBar;
 
+    @FXML
+    private VBox purchaseHistory;
+
+    private ArrayList<Order> orders;
 
     public void handleError(){
 
@@ -73,6 +84,22 @@ public class ViewCustomerPageController implements Initializable {
             return response.body().string();
         }
     }
+
+    private String getOrdersRequest(String userId) throws Exception {
+        Request request = new Request.Builder()
+                .url(getOrdersUrl)
+                .get()
+                .addHeader("user-id", userId)
+                .build();
+        try(Response response = client.newCall(request).execute()) {
+            return response.body().string();
+        }
+    }
+
+    private void setOrdersFromJson(JSONArray ordersJson) {
+        orders = JsonParser.getOrders(ordersJson);
+    }
+
     public void setData(String _id) {
         try {
             userId = _id;
@@ -86,6 +113,7 @@ public class ViewCustomerPageController implements Initializable {
             customer = (Customer)JsonParser.getUser(customerJsonObject);
 
             setLabel();
+            setPurchaseHistory();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -111,6 +139,20 @@ public class ViewCustomerPageController implements Initializable {
         }
     }
 
+    public void setPurchaseHistory() throws Exception {
+        setOrdersFromJson(new JSONArray(getOrdersRequest(userId)));
+        for (Order order: orders) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/OrderComponentNoDetail.fxml"));
+
+            VBox vBox = fxmlLoader.load();
+            OrderComponentNoDetailController orderComponentNoDetailController = fxmlLoader.getController();
+            orderComponentNoDetailController.setData(order);
+            purchaseHistory.getChildren().add(vBox);
+
+        }
+    }
+
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
@@ -126,7 +168,11 @@ public class ViewCustomerPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addNavigationBar();
+        try {
+            addNavigationBar();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
 
