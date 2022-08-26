@@ -2,16 +2,16 @@ package com.brightlightshop.client4.controllers.components;
 
 import com.brightlightshop.client4.controllers.pages.CheckoutPageController;
 import com.brightlightshop.client4.models.CartModel;
-import com.brightlightshop.client4.types.Order;
 import com.brightlightshop.client4.types.OrderDetail;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Objects;
 
 public class OrderDetailCheckoutComponentController {
@@ -32,6 +32,10 @@ public class OrderDetailCheckoutComponentController {
     private Label titleLabel;
 
     @FXML
+    private Button removeButton;
+
+
+    @FXML
     void onAddButtonClick(ActionEvent event) throws IOException {
         orderDetail.setQuantity(orderDetail.getQuantity() + 1);
         notifySubscriber();
@@ -48,6 +52,16 @@ public class OrderDetailCheckoutComponentController {
         notifySubscriber();
     }
 
+
+    @FXML
+    protected void removeButtonOnEnteredCheckOutPage() {
+        removeButton.setStyle("-fx-border-color: RED;-fx-background-color: transparent;-fx-text-fill: RED");
+    }
+    @FXML
+    void removeButtonOnExitedCheckOutPage() {
+        removeButton.setStyle("-fx-border-color: #c3c3c3;-fx-background-color: transparent;-fx-text-fill: BLACK");
+    }
+
     @FXML
     void onRemoveButtonClick(ActionEvent event) throws IOException {
         removeOrderDetail();
@@ -57,6 +71,7 @@ public class OrderDetailCheckoutComponentController {
     public void setData(OrderDetail orderDetail) {
         this.orderDetail = orderDetail;
         setFXML();
+
     }
 
     public void setFXML() {
@@ -65,6 +80,7 @@ public class OrderDetailCheckoutComponentController {
         quantityLabel.setText(String.valueOf(orderDetail.getQuantity()));
         titleLabel.setText(orderDetail.getItem().getTitle());
         rentalFeeLabel.setText(String.valueOf(orderDetail.getItem().getRentalFee()));
+
     }
 
     public void setSubscriber(CheckoutPageController checkoutPageController) {

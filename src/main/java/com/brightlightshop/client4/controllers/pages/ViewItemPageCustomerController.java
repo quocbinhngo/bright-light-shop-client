@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -63,6 +64,12 @@ public class ViewItemPageCustomerController implements Initializable  {
 
     @FXML
     private Label titleLabel;
+
+    @FXML
+    private Button addToCartButton;
+
+    @FXML
+    private Button backButton;
 
     @FXML
     void onAddToCartButtonClick(ActionEvent event) {
@@ -176,6 +183,26 @@ public class ViewItemPageCustomerController implements Initializable  {
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    protected void addToCartButtonEnteredViewItemPageCus() {
+        addToCartButton.setStyle("-fx-background-color: #e08e35");
+    }
+
+    @FXML
+    protected void addToCartButtonExitedViewItemPageCus() {
+        addToCartButton.setStyle("-fx-background-color: #ffbd73");
+    }
+
+    @FXML
+    protected void backButtonEnteredViewPageCus() {
+        backButton.setStyle("-fx-background-color: #e08e35");
+    }
+
+    @FXML
+    protected void backButtonExitedViewPageCus() {
+        backButton.setStyle("-fx-background-color: #ffbd73");
     }
 }
 

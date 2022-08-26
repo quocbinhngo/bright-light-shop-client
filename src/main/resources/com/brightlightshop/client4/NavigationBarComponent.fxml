@@ -17,9 +17,9 @@
             <children>
                 <Button fx:id="logoButton" mnemonicParsing="false" onAction="#handleImgLogo" prefHeight="76.0" prefWidth="214.0" style="-fx-background-color: #131921;">
                     <graphic>
-                        <ImageView fitHeight="63.0" fitWidth="325.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="88.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/logo_shop_blackback_ver(2).png" />
+                                <Image url="@images/navigationBarLogo.png" />
                             </image>
                             <cursor>
                                 <Cursor fx:constant="CLOSED_HAND" />
@@ -32,12 +32,12 @@
                 </Button>
                 <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="36.0" prefWidth="477.0" style="-fx-background-radius: 5 5 5 5;" styleClass="search_box" stylesheets="@style/style.css">
                     <children>
-                        <TextField fx:id="searchBarTextField" prefHeight="34.0" prefWidth="437.0" promptText="Seach for item" style="-fx-background-radius: 5 0 0 5;" styleClass="search_box">
+                        <TextField fx:id="searchBarTextField" prefHeight="34.0" prefWidth="437.0" promptText="Seach for item" style="-fx-background-radius: 5 0 0 5; -fx-background-color: White;" styleClass="search_box">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="45.0" style="-fx-background-radius: 0 5 5 0; -fx-background-color: #ffbd73;" styleClass="search_button">
+                        <Button fx:id="searchButton" mnemonicParsing="false" onMouseEntered="#searchButtonEnteredNavBar" onMouseExited="#searchButtonExitedNavBar" prefHeight="33.0" prefWidth="45.0" style="-fx-background-radius: 0 5 5 0; -fx-background-color: #f1ab2c;" styleClass="search_button">
                             <graphic>
                                 <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -54,16 +54,16 @@
                         <Insets />
                     </HBox.margin>
                 </HBox>
-                <Button fx:id="shopButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="58.0" style="-fx-background-color: #121920;" styleClass="hbox" text="Shop" textFill="WHITE">
+                <Button fx:id="shopButton" mnemonicParsing="false" onAction="#onShopButtonClick" onMouseEntered="#onShopButtonEnteredNavBar" onMouseExited="#onShopButtonExitedNavBar" prefHeight="46.0" prefWidth="58.0" style="-fx-background-color: #121920;" styleClass="hbox" text="Shop" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor></Button>
-                <Button fx:id="userInformationButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="155.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css">
+                <Button fx:id="userInformationButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="174.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css">
                     <graphic>
-                        <Label fx:id="usernameNavigationBar" text="Nguyễn Anh" textFill="WHITE">
+                        <Label fx:id="usernameNavigationBar" onMouseEntered="#usernameButtonEnteredNavigationBar" onMouseExited="#usernameButtonExitedNavigationBar" text="Nguyễn Anh" textFill="WHITE">
                             <graphic>
                                 <Label text="Hello," textFill="WHITE">
                                     <font>
@@ -81,15 +81,21 @@
                     <font>
                         <Font size="15.0" />
                     </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
                 </Button>
-                <Button fx:id="bookingButton" mnemonicParsing="false" onAction="#onBookingButtonClick" prefHeight="46.0" prefWidth="82.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css" text="Booking" textFill="WHITE">
+                <Button fx:id="bookingButton" mnemonicParsing="false" onAction="#onBookingButtonClick" onMouseEntered="#bookingButtonEnteredNavBar" onMouseExited="#bookingButtonExitedNavBar" prefHeight="46.0" prefWidth="82.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css" text="Booking" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
                     <cursor>
                         <Cursor fx:constant="HAND" />
-                    </cursor></Button>
-                <Button mnemonicParsing="false" onAction="#onCartButtonClick" prefHeight="46.0" prefWidth="83.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css" text="Cart" textFill="WHITE">
+                    </cursor>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin></Button>
+                <Button fx:id="cartButton" mnemonicParsing="false" onAction="#onCartButtonClick" onMouseEntered="#cartButtonEnteredNavBar" onMouseExited="#cartButtonExitedNavBar" prefHeight="46.0" prefWidth="83.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css" text="Cart" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
@@ -106,7 +112,7 @@
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor></Button>
-                <Button fx:id="logOutButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="102.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css" text="Logout" textFill="WHITE">
+                <Button fx:id="logOutButton" mnemonicParsing="false" onMouseEntered="#logOutButtonEnteredNavBar" onMouseExited="#logOutButtonExitedNavBar" prefHeight="46.0" prefWidth="102.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css" text="Logout" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                             <image>

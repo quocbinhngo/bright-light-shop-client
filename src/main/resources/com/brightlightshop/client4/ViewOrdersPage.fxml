@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox fx:id="orderContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1000.0" spacing="50.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.ViewOrdersPageController" />
+<BorderPane prefHeight="880.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.ViewOrdersPageController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="99.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="navigationBar" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <ScrollPane prefHeight="1000.0" prefWidth="748.0" BorderPane.alignment="CENTER">
+         <content>
+            <HBox alignment="CENTER" prefHeight="781.0" prefWidth="1280.0">
+               <children>
+                  <VBox fx:id="orderContainer" alignment="CENTER" prefHeight="781.0" prefWidth="849.0" spacing="30.0">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/hello_icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

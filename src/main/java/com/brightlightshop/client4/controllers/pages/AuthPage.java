@@ -177,4 +177,24 @@ public class AuthPage {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    protected void signInButtonEnteredAuthPage() {
+        signInButton.setStyle("-fx-background-color: #e08e35");
+    }
+
+    @FXML
+    protected void signInButtonExitedAuthPage() {
+        signInButton.setStyle("-fx-background-color: #ffbd73");
+    }
+
+    @FXML
+    protected void createAccountButtonEnteredAuthPage() {
+        createAccountButton.setStyle("-fx-background-color: #e08e35");
+    }
+
+    @FXML
+    protected void createAccountButtonExitedAuthPage() {
+        createAccountButton.setStyle("-fx-background-color: #ffbd73");
+    }
 }

@@ -36,6 +36,7 @@ public class OrderComponentController implements Initializable {
     @FXML
     private Button viewInDetailButton;
 
+
     @FXML
     private void onViewInDetailButtonClick(ActionEvent actionEvent) {
         try {
@@ -77,5 +78,15 @@ public class OrderComponentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
+
+    @FXML
+    protected void viewInDetailButtonEnteredOrderComponentPage() {
+        viewInDetailButton.setStyle("-fx-background-color: #e08e35");
+    }
+
+    @FXML
+    protected void viewInDetailButtonExitedOrderComponentPage() {
+        viewInDetailButton.setStyle("-fx-background-color:  #f1ab2c");
     }
 }
