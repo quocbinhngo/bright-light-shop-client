@@ -9,6 +9,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -96,7 +98,14 @@
                                                                 <Insets />
                                                             </opaqueInsets>
                                                             <content>
-                                                                <HBox fx:id="recordComponentContainer" prefHeight="182.0" prefWidth="1042.0" spacing="10.0" />
+                                                                <HBox fx:id="recordComponentContainer" prefHeight="182.0" prefWidth="1042.0" spacing="10.0">
+                                                   <children>
+                                                      <GridPane fx:id="gridPaneRecord">
+                                                        <columnConstraints>
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        </columnConstraints>
+                                                      </GridPane>
+                                                   </children></HBox>
                                                             </content>
                                                         </ScrollPane>
                                                         <Label prefHeight="27.0" prefWidth="42.0" text="DvD">
@@ -115,7 +124,14 @@
                                                                 <Insets />
                                                             </opaqueInsets>
                                                             <content>
-                                                                <HBox fx:id="dvdComponentContainer" prefHeight="185.0" prefWidth="1041.0" spacing="10.0" />
+                                                                <HBox fx:id="dvdComponentContainer" prefHeight="185.0" prefWidth="1041.0" spacing="10.0">
+                                                   <children>
+                                                      <GridPane fx:id="gridPaneDvd">
+                                                        <columnConstraints>
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        </columnConstraints>
+                                                      </GridPane>
+                                                   </children></HBox>
                                                             </content>
                                                         </ScrollPane>
                                                         <Label prefHeight="27.0" prefWidth="48.0" text="Game">
@@ -131,7 +147,14 @@
                                                                 <Insets />
                                                             </opaqueInsets>
                                                             <content>
-                                                                <HBox fx:id="gameComponentContainer" prefHeight="100.0" prefWidth="200.0" spacing="10.0" />
+                                                                <HBox fx:id="gameComponentContainer" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                                   <children>
+                                                      <GridPane fx:id="gridPaneGame">
+                                                        <columnConstraints>
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        </columnConstraints>
+                                                      </GridPane>
+                                                   </children></HBox>
                                                             </content>
                                                         </ScrollPane>
                                                     </children>
