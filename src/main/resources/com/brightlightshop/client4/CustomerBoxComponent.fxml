@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="345.0" prefWidth="270.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.CustomerBoxComponentController">
    <children>
-      <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onCustomerBoxClick" prefHeight="327.0" prefWidth="262.0" style="-fx-background-color: #dbdbdb; -fx-background-radius: 5;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <Button fx:id="customerBoxClick" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onCustomerBoxClick" onMouseEntered="#customerBoxClickEnteredCustomerBoxComponentPage" onMouseExited="#customerBoxClickExitedCustomerBoxComponentPage" prefHeight="327.0" prefWidth="262.0" style="-fx-background-color: #dbdbdb; -fx-background-radius: 5;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -30,7 +30,7 @@
                   </ImageView>
                   <Label fx:id="nameLabel" prefHeight="63.0" prefWidth="215.0" text="Customer Name" wrapText="true">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                   <Pane prefHeight="40.0" prefWidth="231.0">
