@@ -5,6 +5,9 @@ module com.brightlightshop.client4 {
     requires org.json;
     requires org.joda.time;
     requires org.apache.commons.lang3;
+    requires cloudinary.http44;
+    requires cloudinary.core;
+    requires jnanoid;
 
     opens com.brightlightshop.client4 to javafx.fxml;
     exports com.brightlightshop.client4;

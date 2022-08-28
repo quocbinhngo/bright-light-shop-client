@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.ViewItemPageAdminController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.AddItemPageAdminController">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0">
             <children>
@@ -31,7 +32,13 @@
                 <HBox prefWidth="200.0">
                     <children>
                         <Label text="Rental Type" />
-                        <TextField fx:id="rentalTypeTextField" />
+                  <ChoiceBox fx:id="rentalTypeChoiceBox" prefWidth="150.0" />
+                    </children>
+                </HBox>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Genre" />
+                  <ChoiceBox fx:id="genreChoiceBox" prefWidth="150.0" />
                     </children>
                 </HBox>
                 <HBox prefWidth="200.0">
@@ -48,17 +55,12 @@
                 </HBox>
                 <HBox prefWidth="200.0">
                     <children>
-                        <Label text="Genre" />
-                        <TextField fx:id="genreTextField" />
-                    </children>
-                </HBox>
-                <HBox prefWidth="200.0">
-                    <children>
-                        <Label text="Image Url" />
-                        <TextField fx:id="imageUrlTextField" />
+                        <Label text="Image " />
+                  <Button mnemonicParsing="false" onAction="#onUploadButtonClick" text="Upload" />
                     </children>
                 </HBox>
                 <Button fx:id="submitButton" mnemonicParsing="false" onAction="#onSubmitButtonClick" text="Submit" />
+            <Label fx:id="messageLabel" text="Label" />
             </children>
         </VBox>
     </children>

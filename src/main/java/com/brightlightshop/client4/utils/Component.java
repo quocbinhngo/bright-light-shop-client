@@ -2,6 +2,8 @@ package com.brightlightshop.client4.utils;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 
@@ -42,6 +44,16 @@ public class Component {
                 return null;
             }
         }));
+    }
+
+    public static void setDisableChoiceBox(ChoiceBox<String> choiceBox) {
+        choiceBox.setDisable(true);
+        choiceBox.setValue(null);
+    }
+
+    public static void setEnableChoiceBox(ChoiceBox<String> choiceBox) {
+        choiceBox.setDisable(false);
+        choiceBox.setValue(null);
     }
 
 }

@@ -11,7 +11,7 @@ import java.io.IOException;
 public class BrightLightShopApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ViewCustomersPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddItemPageAdmin.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Bright Light Shop - Buy in brilliant way");
         stage.setScene(scene);
