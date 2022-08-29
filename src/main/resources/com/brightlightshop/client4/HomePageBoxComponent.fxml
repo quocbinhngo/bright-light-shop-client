@@ -16,17 +16,17 @@
                   <ImageView fx:id="itemImage" fitHeight="158.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="itemName" layoutY="173.0" text="itemName">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="itemPrice" layoutX="126.0" layoutY="173.0" text="itemPrice">
+                  <Label fx:id="itemPrice" layoutX="142.0" layoutY="173.0" text="itemPrice">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="116.0" layoutY="173.0" text="\$">
+                  <Label layoutX="134.0" layoutY="173.0" text="\$">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
                </children>
