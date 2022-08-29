@@ -4,12 +4,17 @@ package com.brightlightshop.client4.controllers.pages;
 import com.brightlightshop.client4.constants.ItemConstant;
 import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.types.Item;
-import com.brightlightshop.client4.utils.CloudinaryUploader;
-import com.brightlightshop.client4.utils.Component;
-import com.brightlightshop.client4.utils.Generator;
+import com.brightlightshop.client4.utils.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -17,19 +22,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import okhttp3.*;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 
-public class AddItemPageAdminController implements Initializable {
+public class CreateItemPageController implements Initializable {
 
     private final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private final String createItemPostUrl = "http://localhost:8000/api/items";
@@ -39,7 +47,8 @@ public class AddItemPageAdminController implements Initializable {
     private CloudinaryUploader cloudinaryUploader = new CloudinaryUploader();
 
     private File imageFile;
-
+    private String imageUrl;
+    private Item item;
 
     @FXML
     private TextField copiesNumberTextField;
@@ -69,24 +78,27 @@ public class AddItemPageAdminController implements Initializable {
     private TextField titleTextField;
 
     @FXML
-    void onSubmitButtonClick(ActionEvent event) throws IOException {
+    private Button uploadButton;
+
+    @FXML
+    void onSubmitButtonClick(ActionEvent event) throws Exception {
         // Validation
         if (!validateInput()) {
             return;
         }
 
         // Upload image to cloudinary
-        setLoading(true);
-        System.out.println("Uploading");
-        String url = cloudinaryUploader.uploadImage(imageFile, "item/" + getRentalTypeValue() + "/" + Generator.id());
+        System.out.println(rentalTypeChoiceBox.getValue());
+
+        setMessageLabel("Adding item");
+        imageUrl = cloudinaryUploader.uploadImage(imageFile, "item/" + getRentalTypeValue() + "/" + Generator.id());
 
         String response = createItemPostRequest();
-        setLoading(false);
+        item = JsonParser.getItem(new JSONObject(response));
 
-        clearInput();
+        moveToUpdateItemPageAdmin(event);
+
     }
-
-
 
     @FXML
     void onUploadButtonClick(ActionEvent event) {
@@ -105,6 +117,9 @@ public class AddItemPageAdminController implements Initializable {
 
         // Update the image view
         setImageFile(tempImageFile);
+
+
+        System.out.println(rentalTypeChoiceBox.getValue());
     }
 
     private String getRentalTypeValue() {
@@ -162,11 +177,9 @@ public class AddItemPageAdminController implements Initializable {
         jsonObject.put("rentalType", rentalTypeValue);
         jsonObject.put("copiesNumber", Integer.parseInt(copiesNumberTextField.getText()));
         jsonObject.put("rentalFee", Integer.parseInt(rentalFeeTextField.getText()));
-
-        System.out.println(rentalTypeValue);
+        jsonObject.put("imageUrl", imageUrl);
 
         if (!(rentalTypeValue.equals("game"))) {
-            System.out.println("Get genre");
             jsonObject.put("genre", getGenreValue());
         }
 
@@ -218,6 +231,7 @@ public class AddItemPageAdminController implements Initializable {
     private void setupTextField() {
         Component.numericTextField(copiesNumberTextField);
         Component.numericTextField(rentalFeeTextField);
+        Component.numericTextField(publishedYearTextField);
         copiesNumberTextField.setText(String.valueOf(0));
         rentalFeeTextField.setText(String.valueOf(0));
     }
@@ -225,26 +239,70 @@ public class AddItemPageAdminController implements Initializable {
     private void setupChoiceBox() {
         rentalTypeChoiceBox.getItems().addAll(ItemConstant.rentalTypes);
         genreChoiceBox.getItems().addAll(ItemConstant.genres);
-        rentalTypeChoiceBox.setOnAction(this::onRentalTypeChoiceBoxClick);
+
+        // Set the usable of genre choice box based on rental type choice box
+        rentalTypeChoiceBox.getSelectionModel()
+                .selectedItemProperty()
+                .addListener( (ObservableValue<? extends String> observable, String oldValue, String rentalTypeValue) -> {
+                    rentalTypeValue = rentalTypeValue.toLowerCase();
+
+                    // Divisible the genreChoiceBox
+                    if (rentalTypeValue.equals(ItemConstant.game())) {
+                        Component.setDisableChoiceBox(genreChoiceBox);
+                        return;
+                    }
+
+                    // Enable choice box to choose genre
+                    Component.setEnableChoiceBox(genreChoiceBox);
+                } );
     }
 
-    private void onRentalTypeChoiceBoxClick(ActionEvent event) {
-        String rentalTypeValue = rentalTypeChoiceBox.getValue().toLowerCase();
+    private void moveToUpdateItemPageAdmin(ActionEvent event) throws Exception {
+        setMessageLabel("Create item successfully");
+        disableInput();
 
-        // Divisible the genreChoiceBox
-        if (rentalTypeValue.equals(ItemConstant.game())) {
-            Component.setDisableChoiceBox(genreChoiceBox);
-            return;
-        }
+        // Wait for 2 conds before move to the next page
+        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getUpdateItemPagePath()));
+                Scene scene = null;
+                try {
+                    scene = new Scene(fxmlLoader.load());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
-        // Enable choice box to choose genre
-        Component.setEnableChoiceBox(genreChoiceBox);
+                UpdateItemPageController controller = fxmlLoader.getController();
+                try {
+                    controller.setData(item.get_id());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+
+                System.out.println("Change scene success");
+            }
+        }) , new KeyFrame(Duration.seconds(2)));
+
+        timeline.playFromStart();
     }
 
-    private void setLoading(Boolean loading) {
-        if (loading) {
-            setMessageLabel("Adding item...");
-        }
+    private void disableInput() throws InterruptedException {
+        // Disable two button
+        uploadButton.setDisable(true);
+        submitButton.setDisable(true);
+
+        // Disable all text fields and others
+        publishedYearTextField.setDisable(true);
+        titleTextField.setDisable(true);
+        rentalTypeChoiceBox.setDisable(true);
+        genreChoiceBox.setDisable(true);
+        copiesNumberTextField.setDisable(true);
+        rentalFeeTextField.setDisable(true);
     }
 
 
@@ -254,4 +312,6 @@ public class AddItemPageAdminController implements Initializable {
         setupTextField();
         setupChoiceBox();
     }
+
+
 }

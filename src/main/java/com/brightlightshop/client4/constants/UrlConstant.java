@@ -1,5 +1,7 @@
 package com.brightlightshop.client4.constants;
 
+import okhttp3.HttpUrl;
+
 public class UrlConstant {
 
     private static final String endpoint = "http://localhost:8000/api";
@@ -22,6 +24,12 @@ public class UrlConstant {
     public static String getItems() {
         return endpoint + "/items";
     }
+
+    public static String getItemById(String itemId) {
+        return endpoint + "/items/" + itemId;
+    }
+
+
 
     public static String createOrder() {
         return endpoint + "/orders";

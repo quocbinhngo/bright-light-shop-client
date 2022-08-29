@@ -23,4 +23,8 @@ public class FXMLPath {
     public static String getViewOrderPagePath() {
         return root + "ViewOrderPage.fxml";
     }
+
+    public static String getUpdateItemPagePath() {
+        return root + "UpdateItemPage.fxml";
+    }
 }
