@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -30,6 +31,9 @@ public class CustomerBoxComponentController {
 
     @FXML
     private Label customerIdLabel;
+
+    @FXML
+    private Button customerBoxClick;
 
     @FXML
     void onCustomerBoxClick(ActionEvent event) throws IOException {
@@ -55,7 +59,15 @@ public class CustomerBoxComponentController {
 
     }
 
+    @FXML
+    protected void customerBoxClickEnteredCustomerBoxComponentPage() {
+        customerBoxClick.setStyle("-fx-text-fill: RED");
+    }
 
+    @FXML
+    protected void customerBoxClickExitedCustomerBoxComponentPage() {
+        customerBoxClick.setStyle("-fx-text-fill: BLACK");
+    }
 
 
 }
