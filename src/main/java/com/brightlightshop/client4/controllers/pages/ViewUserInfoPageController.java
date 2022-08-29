@@ -61,6 +61,9 @@ public class ViewUserInfoPageController implements Initializable {
     @FXML
     private Button addBalanceButton;
 
+    @FXML
+    private Label addBalanceLabel;
+
     public void handleError(){
 
     }
@@ -121,6 +124,7 @@ public class ViewUserInfoPageController implements Initializable {
     public void onAddBalanceButtonClick() throws Exception {
         addBalanceRequest();
         addBalanceTextField.clear();
+        addBalanceLabel.setText("Add balance successful!");
     }
 
     @Override
