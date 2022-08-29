@@ -1,20 +1,32 @@
 package com.brightlightshop.client4.controllers.pages;
 
+import com.brightlightshop.client4.constants.UrlConstant;
+import com.brightlightshop.client4.controllers.components.HomePageBoxComponentController;
+import com.brightlightshop.client4.controllers.components.ItemBoxComponentController;
 import com.brightlightshop.client4.controllers.components.ItemComponentController;
+import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Item;
+import com.brightlightshop.client4.utils.JsonParser;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.json.JSONArray;
 
 import java.io.IOException;
 import java.net.URL;
@@ -53,10 +65,19 @@ public class HomePageController implements Initializable  {
     @FXML
     private HBox navigationBar;
 
+    @FXML
+    private GridPane gridPaneRecord;
+    @FXML
+    private GridPane gridPaneDvd;
+    @FXML
+    private GridPane gridPaneGame;
+
 
     ArrayList <Item> records;
     ArrayList <Item> dvds;
     ArrayList<Item> games;
+
+    private final OkHttpClient client = new OkHttpClient();
 
     public HomePageController() {
     }
@@ -73,46 +94,76 @@ public class HomePageController implements Initializable  {
         translateAnimation(0.5,carouselPanel3,1200);
 
         //Records, DVDs
-        records = new ArrayList<>(getRecord());
-        dvds = new ArrayList<>(getDvds());
-        games = new ArrayList<>(getGames());
+
+
 
         try{
+            getItems();
             addNavigationBar();
+            updateItemsToGrid();
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void updateItemsToGrid(){
+        gridPaneDvd.getChildren().clear();
+        gridPaneRecord.getChildren().clear();
+        gridPaneGame.getChildren().clear();
+
+        try {
+            int column = 1;
+            int row = 0;
 
             //add records to homepage
             for (Item record: records){
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/com/example/brightlightshop/component.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/HomePageBoxComponent.fxml"));
 
                 AnchorPane temp = fxmlLoader.load();
-                ItemComponentController itemController = fxmlLoader.getController();
+                HomePageBoxComponentController itemController = fxmlLoader.getController();
                 itemController.setData(record);
-                recordComponentContainer.getChildren().add(temp);
+                if (row == 1){
+                    row = 0;
+                    column++;
+                }
+                gridPaneRecord.add(temp, column ,row++);
+                GridPane.setMargin(temp, new Insets(1));
             }
 
             //add dvds to homepage
             for (Item dvd: dvds){
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/com/example/brightlightshop/component.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/HomePageBoxComponent.fxml"));
 
                 AnchorPane temp = fxmlLoader.load();
-                ItemComponentController itemController = fxmlLoader.getController();
+                HomePageBoxComponentController itemController = fxmlLoader.getController();
                 itemController.setData(dvd);
-                dvdComponentContainer.getChildren().add(temp);
+                if (row == 1){
+                    row = 0;
+                    column++;
+                }
+                gridPaneDvd.add(temp, column ,row++);
+                GridPane.setMargin(temp, new Insets(1));
             }
 
             //add games to homepage
             for (Item game: games){
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/com/example/brightlightshop/component.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/HomePageBoxComponent.fxml"));
 
-                AnchorPane vBox = fxmlLoader.load();
-                ItemComponentController itemController = fxmlLoader.getController();
+                AnchorPane temp = fxmlLoader.load();
+                HomePageBoxComponentController itemController = fxmlLoader.getController();
                 itemController.setData(game);
-                gameComponentContainer.getChildren().add(vBox);
+                if (row == 1){
+                    row = 0;
+                    column++;
+                }
+                gridPaneRecord.add(temp, column ,row++);
+                GridPane.setMargin(temp, new Insets(1));
             }
-        } catch (IOException e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -143,49 +194,55 @@ public class HomePageController implements Initializable  {
         }
     }
 
+    private String getUrl(String rentalType){
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlConstant.getItems()).newBuilder();
+        urlBuilder.addQueryParameter("rentalType", rentalType);
+        return urlBuilder.build().toString();
+    }
 
-    private ArrayList<Item> getRecord(){ //1030x210
-        ArrayList<Item> records = new ArrayList<>();
+    private String getItemsRequest(String rentalType) throws IOException {
+        Request request = new Request.Builder()
+                .url(getUrl(rentalType))
+                .get()
+                .addHeader("user-id", "62f0b052ee88e366757bc752")
+                .build();
 
-//        for (int i = 0; i < 5; i++) {
-//            Item record = new Item();
-//            record.setTitle("Jurassic Park");
-//            record.setRentalFee(50);
-//            record.setImageUrl("/com/example/brightlightshop/image/jurassicpark.jpg");
-//            records.add(record);
-//        }
+        try(Response response = client.newCall(request).execute()) {
 
-        return records;
+            if (String.valueOf(response.code()).charAt(0) == '4') {
+                handleError();
+                return "";
+            }
+
+            return response.body().string();
+        }
+    }
+
+    private void handleError() {
+    }
+
+
+    private void  getRecords() throws IOException { //1030x210
+        String itemsResponse = getItemsRequest("record");
+        records = JsonParser.getItems(new JSONArray(itemsResponse));
     }
 
     // DvDs
-    private ArrayList<Item> getDvds(){
-        ArrayList<Item> dvds = new ArrayList<>();
-
-//        for (int i = 0; i < 5; i++) {
-//            Item dvd = new Item();
-//            dvd.setTitle("Jurassic Park");
-//            dvd.setRentalFee(50);
-//            dvd.setImageUrl("/com/example/brightlightshop/image/thebatman.png");
-//            dvds.add(dvd);
-//        }
-
-        return dvds;
+    private void getDvds() throws IOException {
+        String itemsResponse = getItemsRequest("dvd");
+        dvds = JsonParser.getItems(new JSONArray(itemsResponse));
     }
 
     //Games
-    private ArrayList<Item> getGames(){
-        ArrayList<Item> games = new ArrayList<>();
+    private void getGames() throws IOException {
+        String itemsResponse = getItemsRequest("game");
+        games = JsonParser.getItems(new JSONArray(itemsResponse));
+    }
 
-//        for (int i = 0; i < 5; i++) {
-//            Item game = new Item();
-//            game.setTitle("Jurassic Park");
-//            game.setRentalFee(50);
-//            game.setImageUrl("/com/example/brightlightshop/image/thebatman.png");
-//            games.add(game);
-//        }
-
-        return games;
+    private void getItems() throws IOException {
+        getDvds();
+        getRecords();
+        getGames();
     }
 
     //Add navigation bar

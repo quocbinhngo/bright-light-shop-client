@@ -1,30 +1,42 @@
 package com.brightlightshop.client4.controllers.pages;
 
+import com.brightlightshop.client4.controllers.components.OrderComponentController;
+import com.brightlightshop.client4.controllers.components.OrderComponentNoDetailController;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.*;
 import com.brightlightshop.client4.types.Record;
 import com.brightlightshop.client4.utils.JsonParser;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ViewCustomerPageController implements Initializable {
 
     private String userId;
     private final String getCustomerByIdGetUrl = "http://localhost:8000/api/users/customers";
+
+    private final String getOrdersUrl = "http://localhost:8000/api/orders";
     private final OkHttpClient client = new OkHttpClient();
     private Customer customer;
 
@@ -52,6 +64,13 @@ public class ViewCustomerPageController implements Initializable {
     @FXML
     private HBox navigationBar;
 
+    @FXML
+    private VBox purchaseHistory;
+
+    @FXML
+    private Button backCustomerListButton;
+
+    private ArrayList<Order> orders;
 
     public void handleError(){
 
@@ -73,6 +92,22 @@ public class ViewCustomerPageController implements Initializable {
             return response.body().string();
         }
     }
+
+    private String getOrdersRequest(String userId) throws Exception {
+        Request request = new Request.Builder()
+                .url(getOrdersUrl)
+                .get()
+                .addHeader("user-id", userId)
+                .build();
+        try(Response response = client.newCall(request).execute()) {
+            return response.body().string();
+        }
+    }
+
+    private void setOrdersFromJson(JSONArray ordersJson) {
+        orders = JsonParser.getOrders(ordersJson);
+    }
+
     public void setData(String _id) {
         try {
             userId = _id;
@@ -86,6 +121,7 @@ public class ViewCustomerPageController implements Initializable {
             customer = (Customer)JsonParser.getUser(customerJsonObject);
 
             setLabel();
+            setPurchaseHistory();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -111,6 +147,20 @@ public class ViewCustomerPageController implements Initializable {
         }
     }
 
+    public void setPurchaseHistory() throws Exception {
+        setOrdersFromJson(new JSONArray(getOrdersRequest(userId)));
+        for (Order order: orders) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/OrderComponentNoDetail.fxml"));
+
+            VBox vBox = fxmlLoader.load();
+            OrderComponentNoDetailController orderComponentNoDetailController = fxmlLoader.getController();
+            orderComponentNoDetailController.setData(order);
+            purchaseHistory.getChildren().add(vBox);
+
+        }
+    }
+
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
@@ -126,7 +176,37 @@ public class ViewCustomerPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addNavigationBar();
+        try {
+            addNavigationBar();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    protected void backCustomerListButtonEnteredViewCustomerPage() {
+        backCustomerListButton.setStyle("-fx-background-color: #e08e35");
+    }
+
+    @FXML
+    protected void backCustomerListButtonExitedViewCustomerPage() {
+        backCustomerListButton.setStyle("-fx-background-color: #ffbd73");
+    }
+
+
+
+    @FXML
+    void onBackButtonClick(ActionEvent event) throws Exception {
+        String path = "/com/brightlightshop/client4/ViewCustomersPage.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        ViewCustomersPageController viewCustomersPageController = fxmlLoader.getController();
+        viewCustomersPageController.getCustomers();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }
 

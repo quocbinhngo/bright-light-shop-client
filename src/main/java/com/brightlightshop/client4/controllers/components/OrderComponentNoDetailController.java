@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class OrderComponentController implements Initializable {
+public class OrderComponentNoDetailController implements Initializable {
     private Order order;
 
     @FXML
@@ -32,28 +32,6 @@ public class OrderComponentController implements Initializable {
 
     @FXML
     private Label totalValueLabel;
-
-    @FXML
-    private Button viewInDetailButton;
-
-
-    @FXML
-    private void onViewInDetailButtonClick(ActionEvent actionEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewOrderPagePath()));
-            Scene scene = new Scene(fxmlLoader.load());
-
-            ViewOrderPageController controller = fxmlLoader.getController();
-            controller.setData(order);
-
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException error) {
-            System.out.println(error.getMessage());
-        }
-
-    }
 
     public void setData(Order order) throws IOException {
         this.order = order;
@@ -80,13 +58,4 @@ public class OrderComponentController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
-    @FXML
-    protected void viewInDetailButtonEnteredOrderComponentPage() {
-        viewInDetailButton.setStyle("-fx-background-color: #e08e35");
-    }
-
-    @FXML
-    protected void viewInDetailButtonExitedOrderComponentPage() {
-        viewInDetailButton.setStyle("-fx-background-color:  #f1ab2c");
-    }
 }
