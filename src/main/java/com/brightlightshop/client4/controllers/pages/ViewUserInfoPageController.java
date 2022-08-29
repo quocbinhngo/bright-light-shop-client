@@ -24,14 +24,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ViewUserInfoPageController implements Initializable {
-
-    private String userId;
     private final String getCustomerByIdGetUrl = "http://localhost:8000/api/users/customers";
 
     private final String addBalanceUrl = "http://localhost:8000/api//users/customers/balance";
     private final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private final OkHttpClient client = new OkHttpClient();
-    private Customer customer;
+    private Customer customer = (Customer) UserModel.getCurrentUser();
 
     @FXML
     private Label cusInfoAccountType;
@@ -67,23 +65,6 @@ public class ViewUserInfoPageController implements Initializable {
 
     }
 
-    private String getUserByIdRequest() throws Exception {
-        Request request = new Request.Builder()
-                .url(getCustomerByIdGetUrl + String.format("/%s", userId))
-                .get()
-                .addHeader("user-id", UserModel.getCurrentUser().get_id())// switch to current user id
-                .build();
-
-        try(Response response = client.newCall(request).execute()) {
-            if (String.valueOf(response.code()).charAt(0) == '4') {
-                handleError();
-                return "";
-            }
-
-            return response.body().string();
-        }
-    }
-
     private String addBalanceRequest() throws Exception {
         RequestBody body = RequestBody.create(createAddBalanceJson(), JSON);
         Request request = new Request.Builder()
@@ -98,27 +79,6 @@ public class ViewUserInfoPageController implements Initializable {
             }
 
             return response.body().string();
-        }
-    }
-
-
-
-    public void setData(String _id) {
-        try {
-            userId = _id;
-            String customerResponse = getUserByIdRequest();
-
-            if (customerResponse.equals("")) {
-                return;
-            }
-
-            JSONObject customerJsonObject = new JSONObject(customerResponse);
-            customer = (Customer)JsonParser.getUser(customerJsonObject);
-
-            setLabel();
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
         }
     }
     public void setLabel() {
@@ -154,7 +114,7 @@ public class ViewUserInfoPageController implements Initializable {
 
     public String createAddBalanceJson(){
         JSONObject addBalance = new JSONObject();
-        addBalance.put("amount", addBalanceTextField.getText());
+        addBalance.put("amount", Integer.parseInt(addBalanceTextField.getText()));
         return addBalance.toString();
     }
 
@@ -167,6 +127,7 @@ public class ViewUserInfoPageController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             addNavigationBar();
+            setLabel();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
