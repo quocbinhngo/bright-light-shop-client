@@ -87,9 +87,6 @@ public class CreateItemPageController implements Initializable {
             return;
         }
 
-        // Upload image to cloudinary
-        System.out.println(rentalTypeChoiceBox.getValue());
-
         setMessageLabel("Adding item");
         imageUrl = cloudinaryUploader.uploadImage(imageFile, "item/" + getRentalTypeValue() + "/" + Generator.id());
 
@@ -117,9 +114,6 @@ public class CreateItemPageController implements Initializable {
 
         // Update the image view
         setImageFile(tempImageFile);
-
-
-        System.out.println(rentalTypeChoiceBox.getValue());
     }
 
     private String getRentalTypeValue() {

@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -46,6 +47,9 @@ public class ItemBoxComponentController {
 
     @FXML
     private Label titleLabel;
+
+    @FXML
+    private Button itemBoxClick;
 
     @FXML
     void onItemBoxClick(ActionEvent event) throws IOException {
@@ -100,5 +104,14 @@ public class ItemBoxComponentController {
         }
     }
 
+    @FXML
+    protected void itemBoxClickEntered() {
+        itemBoxClick.setStyle("-fx-text-fill: BLACK");
+    }
+
+    @FXML
+    protected void itemBoxClickExited() {
+        itemBoxClick.setStyle("-fx-text-fill: #b05c22");
+    }
 
 }

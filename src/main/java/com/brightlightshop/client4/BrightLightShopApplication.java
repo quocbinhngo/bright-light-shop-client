@@ -14,7 +14,7 @@ public class BrightLightShopApplication extends Application {
     @Override
     //ViewCustomersPage
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AuthPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CreateItemPage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
 //        UpdateItemPageController controller = fxmlLoader.getController();
