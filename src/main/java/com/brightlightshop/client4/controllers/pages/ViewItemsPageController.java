@@ -2,15 +2,10 @@ package com.brightlightshop.client4.controllers.pages;
 
 import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.ItemBoxComponentController;
-import com.brightlightshop.client4.controllers.components.ItemComponentController;
-import com.brightlightshop.client4.models.CartModel;
-import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Item;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +29,6 @@ import org.json.JSONArray;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -232,7 +226,7 @@ public class ViewItemsPageController implements Initializable {
 
         try(Response response = client.newCall(request).execute()) {
 
-            if (String.valueOf(response.code()).charAt(0) == '4') {
+            if (String.valueOf(response.code()).charAt(0) != '2') {
                 handleError();
                 return "";
             }
@@ -258,11 +252,16 @@ public class ViewItemsPageController implements Initializable {
         updateItemsToGrid();
     }
 
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
+        updateItemsToGrid();
+    }
+
     //Add navigation bar
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
-            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarComponent.fxml"));
+            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
             AnchorPane hbox = navigationBarFXMLLoader.load();
 
             //put navigation bar into navigationbar container at homepage
@@ -295,7 +294,7 @@ public class ViewItemsPageController implements Initializable {
     }
 
 
-    public void updateItemsToGrid() throws Exception {
+    public void updateItemsToGrid() {
         girdPaneAllIteam.getChildren().clear();
 
         int column = 0;

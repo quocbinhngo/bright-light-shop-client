@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="99.0" prefWidth="1280.0" style="-fx-background-color: #151920;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.NavigationBarComponentController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="99.0" prefWidth="1280.0" style="-fx-background-color: #151920;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.NavigationBarCustomerComponentController">
     <children>
         <HBox alignment="CENTER" layoutY="-1.0" prefHeight="99.0" prefWidth="1280.0" spacing="8.0">
             <children>
@@ -37,7 +37,7 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </TextField>
-                        <Button fx:id="searchButton" mnemonicParsing="false" onMouseEntered="#searchButtonEnteredNavBar" onMouseExited="#searchButtonExitedNavBar" prefHeight="33.0" prefWidth="45.0" style="-fx-background-radius: 0 5 5 0; -fx-background-color: #f1ab2c;" styleClass="search_button">
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onSearchButtonClick" onMouseEntered="#searchButtonEnteredNavBar" onMouseExited="#searchButtonExitedNavBar" prefHeight="33.0" prefWidth="45.0" style="-fx-background-radius: 0 5 5 0; -fx-background-color: #f1ab2c;" styleClass="search_button">
                             <graphic>
                                 <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>

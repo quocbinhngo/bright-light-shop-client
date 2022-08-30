@@ -25,6 +25,10 @@ public class UrlConstant {
         return endpoint + "/items";
     }
 
+    public static String searchItems() {
+        return String.format("%s/items/searches", endpoint);
+    }
+
     public static String getItemById(String itemId) {
         return endpoint + "/items/" + itemId;
     }

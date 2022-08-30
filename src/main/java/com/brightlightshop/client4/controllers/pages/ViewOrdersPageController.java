@@ -1,10 +1,8 @@
 package com.brightlightshop.client4.controllers.pages;
 
 import com.brightlightshop.client4.controllers.components.OrderComponentController;
-import com.brightlightshop.client4.controllers.components.OrderDetailComponentController;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Order;
-import com.brightlightshop.client4.types.OrderDetail;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -75,7 +73,7 @@ public class ViewOrdersPageController implements Initializable {
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
-            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarComponent.fxml"));
+            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
             AnchorPane hbox = navigationBarFXMLLoader.load();
             //put navigation bar into navigationbar container
             navigationBar.getChildren().add(hbox);

@@ -1,10 +1,7 @@
 package com.brightlightshop.client4.controllers.pages;
 
-import com.brightlightshop.client4.controllers.components.OrderComponentNoDetailController;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.*;
-import com.brightlightshop.client4.utils.JsonParser;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,14 +10,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import okhttp3.*;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ViewUserInfoPageController implements Initializable {
@@ -105,7 +99,7 @@ public class ViewUserInfoPageController implements Initializable {
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
-            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarComponent.fxml"));
+            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
             AnchorPane hbox = navigationBarFXMLLoader.load();
 
             //put navigation bar into navigationbar container at homepage

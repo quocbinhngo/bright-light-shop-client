@@ -1,10 +1,11 @@
 package com.brightlightshop.client4.controllers.components;
 
-import com.brightlightshop.client4.controllers.pages.CheckoutPageController;
-import com.brightlightshop.client4.controllers.pages.ViewItemPageCustomerController;
-import com.brightlightshop.client4.models.CartModel;
+import com.brightlightshop.client4.constants.UrlConstant;
+import com.brightlightshop.client4.controllers.pages.ViewItemsPageController;
 import com.brightlightshop.client4.models.UserModel;
+import com.brightlightshop.client4.types.Item;
 import com.brightlightshop.client4.utils.FXMLPath;
+import com.brightlightshop.client4.utils.JsonParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,15 +16,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.json.JSONArray;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
-public class NavigationBarComponentController {
+public class NavigationBarCustomerComponentController {
 
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    private final OkHttpClient client = new OkHttpClient();
 
     @FXML
     private Button bookingButton;
@@ -87,16 +96,9 @@ public class NavigationBarComponentController {
 
     //change scene to ViewItemsPage
     @FXML
-    void onShopButtonClick(ActionEvent event) throws IOException {
-        String path = "/com/brightlightshop/client4/ViewItemsPage.fxml";
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
-        Scene scene = new Scene(fxmlLoader.load());
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+    void onShopButtonClick(ActionEvent event) throws Exception {
+        moveViewItemsPage(event, null);
     }
-
 
     // Change to view order page
     @FXML
@@ -108,6 +110,75 @@ public class NavigationBarComponentController {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    private void onSearchButtonClick(ActionEvent event) throws Exception {
+        String response = searchItemRequest();
+        if (response.equals("")) {
+            handleError();
+        }
+
+        // Get the item
+        ArrayList<Item> items = JsonParser.getItems(new JSONArray(response));
+
+        // move to view items page
+        moveViewItemsPage(event, items);
+    }
+
+    private void moveViewItemsPage(ActionEvent event, ArrayList<Item> items) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewItemsPagePath()));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        ViewItemsPageController controller = fxmlLoader.getController();
+
+        if (items != null) {
+            controller.setItems(items);
+        } else {
+            controller.getItems();
+        }
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private String searchItemRequest() throws IOException {
+        Request request = new Request.Builder()
+                .url(getUrl())
+                .get()
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
+                .build();
+
+        try(Response response = client.newCall(request).execute()) {
+
+            if (String.valueOf(response.code()).charAt(0) != '2') {
+                return "";
+            }
+
+            return response.body().string();
+        }
+    }
+
+    private void handleError() {
+
+    }
+
+    private String getUrl() {
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlConstant.searchItems()).newBuilder();
+
+        if (searchBarTextField.getText() == null) {
+            urlBuilder.addQueryParameter("search", "");
+        } else {
+            urlBuilder.addQueryParameter("search", searchBarTextField.getText());
+        }
+
+        return urlBuilder.build().toString();
+    }
+
+
+
+
+
 
     @FXML
     protected void onShopButtonEnteredNavBar() {
@@ -170,6 +241,7 @@ public class NavigationBarComponentController {
     protected void searchButtonExitedNavBar() {
         searchButton.setStyle("-fx-background-color: #f1ab2c; -fx-background-radius: 0 5 5 0");
     }
+
 
 
 }

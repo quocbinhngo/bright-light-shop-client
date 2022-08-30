@@ -254,7 +254,7 @@ public class ViewCustomersPageController implements Initializable {
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
-            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarComponent.fxml"));
+            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
             AnchorPane hbox = navigationBarFXMLLoader.load();
 
             //put navigation bar into navigationbar container at homepage

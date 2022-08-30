@@ -3,14 +3,10 @@ package com.brightlightshop.client4.controllers.pages;
 import com.brightlightshop.client4.constants.OrderConstant;
 import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.OrderDetailCheckoutComponentController;
-import com.brightlightshop.client4.controllers.components.OrderDetailComponentController;
 import com.brightlightshop.client4.models.CartModel;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.*;
 import com.brightlightshop.client4.utils.FXMLPath;
-import javafx.beans.binding.DoubleBinding;
-import javafx.beans.binding.NumberBinding;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -233,7 +229,7 @@ public class CheckoutPageController implements Initializable {
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
-            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarComponent.fxml"));
+            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
             AnchorPane hbox = navigationBarFXMLLoader.load();
 
             //put navigation bar into navigationbar container at homepage
