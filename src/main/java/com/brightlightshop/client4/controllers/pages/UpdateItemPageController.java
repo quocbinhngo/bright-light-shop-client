@@ -8,10 +8,14 @@ import com.brightlightshop.client4.types.Item;
 import com.brightlightshop.client4.types.Record;
 import com.brightlightshop.client4.utils.Component;
 import com.brightlightshop.client4.utils.JsonParser;
+import com.cloudinary.Url;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -19,12 +23,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.HttpCookie;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -69,15 +76,40 @@ public class UpdateItemPageController implements Initializable {
     private Label titleLabel;
 
     @FXML
-    void onAddMoreItemButtonClick(ActionEvent event) {
+    void onAddMoreItemButtonClick(ActionEvent event) throws IOException {
+        if (!validation()) {
+            setMessageLabel("Quantity is invalid");
+            return;
+        }
 
+        setMessageLabel("Adding more item...");
+        String response = addItemQuantityRequest();
+        if (response.equals("")) {
+            return;
+        }
+
+        item = JsonParser.getItem(new JSONObject(response));
+        updateUI();
+        setMessageLabel("Add more item successfully");
     }
 
     @FXML
-    void onBackButtonClick(ActionEvent event) {
+    void onBackButtonClick(ActionEvent event) throws Exception {
+        String path = "/com/brightlightshop/client4/ViewItemsPage.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
+        Scene scene = new Scene(fxmlLoader.load());
 
+        ViewItemsPageController viewItemsPageController = fxmlLoader.getController();
+        viewItemsPageController.getItems();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
+    private boolean validation() {
+        return (quantityTextField.getText() != null && !quantityTextField.getText().equals(""));
+    }
 
     private String getItemByIdRequest() throws Exception {
         Request request = new Request.Builder()
@@ -96,12 +128,46 @@ public class UpdateItemPageController implements Initializable {
         }
     }
 
+    private RequestBody getAddItemQuantityBody() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("quantity", Integer.parseInt(quantityTextField.getText()));
+        return RequestBody.create(jsonObject.toString(), JsonParser.JSON);
+    }
+
+    private String addItemQuantityRequest() throws IOException {
+        Request request = new Request.Builder()
+                .url(UrlConstant.addItemQuantity(item.get_id()))
+                .post(getAddItemQuantityBody())
+                .addHeader("user-id", "62ec74b4f13a1bbf8d94f560")
+                .build();
+
+        try(Response response = client.newCall(request).execute()) {
+            if (String.valueOf(response.code()).charAt(0) != '2') {
+                handleError();
+                return "";
+            }
+
+            return response.body().string();
+        }
+
+    }
+
     private void handleError() {
 
     }
 
     private void setItemId(String itemId) {
         this.itemId = itemId;
+    }
+
+    private void setMessageLabel(String message) {
+        if (message == null) {
+            messageLabel.setVisible(false);
+            return;
+        }
+
+        messageLabel.setVisible(true);
+        messageLabel.setText(message);
     }
 
     private void updateUI() {
@@ -139,5 +205,6 @@ public class UpdateItemPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setupTextField();
+        setMessageLabel(null);
     }
 }

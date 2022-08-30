@@ -29,7 +29,9 @@ public class UrlConstant {
         return endpoint + "/items/" + itemId;
     }
 
-
+    public static String addItemQuantity(String itemId) {
+        return String.format("%s/items/%s/quantity", endpoint, itemId);
+    }
 
     public static String createOrder() {
         return endpoint + "/orders";
