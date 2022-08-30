@@ -71,15 +71,18 @@ public class CheckoutPageController implements Initializable {
     @FXML
     void onRentButtonClick(ActionEvent event) throws IOException {
         // Create request for order
-        String message = createOrderRequest();
+        String response = createOrderRequest();
 
         // Notify subscriber
-        notifySubscriber(message);
+        notifySubscriber(response);
     }
 
     @FXML
-    void onRentWithRewardPointButtonClick(ActionEvent event) {
+    void onRentWithRewardPointButtonClick(ActionEvent event) throws IOException {
+        String response = createOrderWithRewardPointRequest();
 
+        // Notify subscriber
+        notifySubscriber(response);
     }
 
     private void notifySubscriber(String message) throws IOException {
@@ -87,14 +90,11 @@ public class CheckoutPageController implements Initializable {
         messageLabel.setVisible(true);
         messageLabel.setText(message);
 
-        System.out.println(message);
-        System.out.println(messageLabel.isVisible());
-
         // Update the current user
         UserModel.update();
 
         // Update label
-        setupLabel();
+        setupLabel(true);
     }
 
     private String createOrderRequest() {
@@ -102,6 +102,20 @@ public class CheckoutPageController implements Initializable {
         Request request = new Request.Builder()
                 .url(UrlConstant.createOrder())
                 .post(body)
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            return response.body().string();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String createOrderWithRewardPointRequest() {
+        Request request = new Request.Builder()
+                .url(UrlConstant.createOrderWithRewardPoint())
+                .post(getCreateOrderBody())
                 .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();
 
@@ -144,7 +158,7 @@ public class CheckoutPageController implements Initializable {
         try {
             addNavigationBar();
             setupToggleGroup();
-            setupLabel();
+            setupLabel(false);
             setupButton();
             update();
 
@@ -172,9 +186,9 @@ public class CheckoutPageController implements Initializable {
         });
     }
 
-    private void setupLabel() {
+    private void setupLabel(boolean showMessageLabel) {
         // invisible the messageLabel
-        messageLabel.setVisible(false);
+        messageLabel.setVisible(showMessageLabel);
 
         // Not Vip - not have the reward point label
         if (!(UserModel.getCurrentUser() instanceof Vip)) {

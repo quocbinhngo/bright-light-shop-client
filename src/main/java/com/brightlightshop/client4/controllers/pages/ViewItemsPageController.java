@@ -2,6 +2,7 @@ package com.brightlightshop.client4.controllers.pages;
 
 import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.ItemBoxComponentController;
+import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Item;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.beans.value.ChangeListener;
@@ -221,13 +222,14 @@ public class ViewItemsPageController implements Initializable {
         Request request = new Request.Builder()
                 .url(getUrl())
                 .get()
-                .addHeader("user-id", userId)
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();
 
         try(Response response = client.newCall(request).execute()) {
 
             if (String.valueOf(response.code()).charAt(0) != '2') {
                 handleError();
+                System.out.println(response.code());
                 return "";
             }
 
@@ -248,6 +250,7 @@ public class ViewItemsPageController implements Initializable {
 
     public void getItems() throws Exception {
         String itemsResponse = getItemsRequest();
+        System.out.println("Item res: " + itemsResponse);
         items = JsonParser.getItems(new JSONArray(itemsResponse));
         updateItemsToGrid();
     }

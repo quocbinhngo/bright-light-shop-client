@@ -13,7 +13,7 @@ import java.io.IOException;
 public class BrightLightShopApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewCustomersPagePath()));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getAuthPagePath()));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Bright Light Shop - Buy in brilliant way");
         stage.setScene(scene);

@@ -41,6 +41,10 @@ public class UrlConstant {
         return endpoint + "/orders";
     }
 
+    public static String createOrderWithRewardPoint() {
+        return endpoint + "/orders/reward";
+    }
+
     public static String returnOrder(String id) {
         return endpoint + "/orders/" + id;
     }

@@ -61,7 +61,6 @@ public class ViewOrdersPageController implements Initializable {
                 OrderComponentController orderComponentController = fxmlLoader.getController();
                 orderComponentController.setData(order);
                 orderContainer.getChildren().add(vBox);
-
             }
 
         } catch (Exception e) {

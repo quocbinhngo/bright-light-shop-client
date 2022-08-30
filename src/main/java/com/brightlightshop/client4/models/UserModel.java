@@ -28,7 +28,7 @@ public class UserModel {
         setCurrentUser(JsonParser.getUser(new JSONObject(response)));
     }
 
-    public static String getUserRequest() throws IOException {
+    private static String getUserRequest() throws IOException {
         Request request = new Request.Builder()
                 .url(UrlConstant.getUser())
                 .get()

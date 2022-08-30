@@ -57,7 +57,7 @@ public class ViewOrderPageController {
         messageLabel.setText(response);
 
         // Update user and announce them their current account type
-        UserModel.getUserRequest();
+        UserModel.update();
         accountTypeLabel.setText(UserModel.getCurrentUser().getAccountType());
 
         // Update the is returned UI

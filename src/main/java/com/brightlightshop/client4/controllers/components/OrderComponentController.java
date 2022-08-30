@@ -58,7 +58,6 @@ public class OrderComponentController implements Initializable {
     public void setData(Order order) throws IOException {
         this.order = order;
         double totalValue = order.getTotalValue();
-        System.out.println(totalValue);
 
         totalValueLabel.setText(String.valueOf(totalValue));
         statusLabel.setText(order.getOrderStatus());
