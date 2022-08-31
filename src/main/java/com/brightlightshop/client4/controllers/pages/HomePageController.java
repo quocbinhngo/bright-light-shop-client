@@ -2,6 +2,7 @@ package com.brightlightshop.client4.controllers.pages;
 
 import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.HomePageBoxComponentController;
+import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Item;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.animation.TranslateTransition;
@@ -201,7 +202,7 @@ public class HomePageController implements Initializable  {
         Request request = new Request.Builder()
                 .url(getUrl(rentalType))
                 .get()
-                .addHeader("user-id", "62f0b052ee88e366757bc752")
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();
 
         try(Response response = client.newCall(request).execute()) {
