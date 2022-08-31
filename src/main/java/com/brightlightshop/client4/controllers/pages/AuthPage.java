@@ -15,6 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import okhttp3.*;
 import org.json.*;
@@ -124,6 +125,7 @@ public class AuthPage {
 
     private void handleLoginError(String error) {
         loginMessageLabel.setText(error);
+        loginMessageLabel.setTextFill(Color.RED);
     }
 
     private void handleRegisterError(String error) {
@@ -150,12 +152,14 @@ public class AuthPage {
     public boolean registerAccount(ActionEvent e) throws IOException {
         if (!registerPasswordField.getText().equals(registerConfirmPasswordField.getText())){
             registerMessageLabel.setText("Please confirm your password");
+            registerMessageLabel.setTextFill(Color.RED);
             return false;
         }
 
         String response = createUserPostRequest();
         clearAll();
         registerMessageLabel.setText("Successfully registered!");
+        registerMessageLabel.setTextFill(Color.GREEN);
         System.out.println(response);
         return true;
     }

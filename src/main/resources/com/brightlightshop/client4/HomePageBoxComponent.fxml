@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="100.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.HomePageBoxComponentController">
+<AnchorPane minHeight="-Infinity" prefHeight="272.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.HomePageBoxComponentController">
    <children>
-      <Button mnemonicParsing="false" onAction="#onItemBoxClick">
+      <Button fx:id="homepageComponentButton" mnemonicParsing="false" onAction="#onItemBoxClick" onMouseEntered="#itemBoxClickEntered" onMouseExited="#itemBoxClickExited" prefHeight="272.0" prefWidth="207.0" style="-fx-background-color: #dbdbdb;">
          <graphic>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <Pane minWidth="-Infinity" prefHeight="264.0" prefWidth="224.0">
                <children>
-                  <ImageView fx:id="itemImage" fitHeight="158.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="itemName" layoutY="173.0" text="itemName">
+                  <ImageView fx:id="itemImage" fitHeight="179.0" fitWidth="240.0" layoutX="-8.0" layoutY="-3.0" pickOnBounds="true" />
+                  <Label fx:id="itemName" alignment="TOP_LEFT" layoutX="13.0" layoutY="179.0" prefHeight="45.0" prefWidth="200.0" text="itemName" wrapText="true">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="itemPrice" layoutX="142.0" layoutY="173.0" text="itemPrice">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="134.0" layoutY="173.0" text="\$">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <HBox layoutX="11.0" layoutY="229.0" prefHeight="22.0" prefWidth="100.0">
+                     <children>
+                        <Label prefHeight="10.0" prefWidth="0.0" text="\$" />
+                        <Label fx:id="itemPrice" prefHeight="21.0" prefWidth="97.0" text="itemPrice">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </Pane>
          </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>

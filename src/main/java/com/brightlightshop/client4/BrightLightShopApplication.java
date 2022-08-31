@@ -17,7 +17,7 @@ public class BrightLightShopApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Bright Light Shop - Buy in brilliant way");
         stage.setScene(scene);
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.show();
     }
 
