@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -114,7 +115,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </VBox>
-                              <VBox prefHeight="787.0" prefWidth="850.0">
+                              <VBox alignment="CENTER" prefHeight="787.0" prefWidth="850.0">
                                  <children>
                                     <Label fx:id="genreType1" prefHeight="16.0" prefWidth="740.0" text="Dm Binh ">
                                        <font>
@@ -124,6 +125,8 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Label>
+                                    <TextField fx:id="searchCustomerTextField" prefHeight="26.0" prefWidth="732.0" promptText="Search Customer" />
+                                    <Button fx:id="searchCustomerButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSearchCustomerButtonClick" text="Search Customer" />
                                     <GridPane fx:id="gridPaneAllCustomer" prefHeight="708.0" prefWidth="771.0">
                                        <rowConstraints>
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" />

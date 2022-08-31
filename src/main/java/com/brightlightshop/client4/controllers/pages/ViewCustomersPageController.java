@@ -82,6 +82,12 @@ public class ViewCustomersPageController implements Initializable {
     @FXML
     private RadioButton nameDescendingRadioButton;
 
+    @FXML
+    private TextField searchCustomerTextField;
+
+    @FXML
+    private Button searchCustomerButton;
+
     private ToggleGroup customerTypeToggleGroup = new ToggleGroup();
     private ToggleGroup sortByToggleGroup = new ToggleGroup();
     private String customerTypeValue = null;
@@ -199,7 +205,7 @@ public class ViewCustomersPageController implements Initializable {
 
         return urlBuilder.build().toString();
     }
-
+/*
     private String getCustomerByIdRequest() throws Exception {
         Request request = new Request.Builder()
                 .url(getCustomerByIdGetUrl + String.format("/%s", userId))
@@ -217,7 +223,9 @@ public class ViewCustomersPageController implements Initializable {
         }
     }
 
-    public void updateCustomersToGrid() throws Exception {
+ */
+
+    public void updateCustomersToGrid() {
         gridPaneAllCustomer.getChildren().clear();
 
         int column = 0;
@@ -251,10 +259,55 @@ public class ViewCustomersPageController implements Initializable {
         updateCustomersToGrid();
     }
 
+    public void setCustomers(ArrayList<Customer> customers){
+        this.customers = customers;
+        updateCustomersToGrid();
+    }
+
+    private String getSearchUrl() {
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlConstant.searchCustomer()).newBuilder();
+
+        if (searchCustomerTextField.getText() == null) {
+            urlBuilder.addQueryParameter("search", "");
+        } else {
+            urlBuilder.addQueryParameter("search", searchCustomerTextField.getText());
+        }
+
+        return urlBuilder.build().toString();
+    }
+
+    private String searchCustomerRequest() throws IOException {
+        Request request = new Request.Builder()
+                .url(getSearchUrl())
+                .get()
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
+                .build();
+
+        try(Response response = client.newCall(request).execute()) {
+
+            if (String.valueOf(response.code()).charAt(0) != '2') {
+                return "";
+            }
+
+            return response.body().string();
+        }
+    }
+    @FXML
+    private void onSearchCustomerButtonClick() throws IOException {
+        String response = searchCustomerRequest();
+        if (response.equals("")) {
+            handleError();
+        }
+
+        // Get the item
+        customers = JsonParser.getCustomers(new JSONArray(response));
+        updateCustomersToGrid();
+    }
+
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
-            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
+            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarAdminComponent.fxml"));
             AnchorPane hbox = navigationBarFXMLLoader.load();
 
             //put navigation bar into navigationbar container at homepage
