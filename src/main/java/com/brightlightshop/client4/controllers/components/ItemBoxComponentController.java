@@ -106,12 +106,12 @@ public class ItemBoxComponentController {
 
     @FXML
     protected void itemBoxClickEntered() {
-        itemBoxClick.setStyle("-fx-text-fill: BLACK");
+        itemBoxClick.setStyle("-fx-background-color: #c3c3c3");
     }
 
     @FXML
     protected void itemBoxClickExited() {
-        itemBoxClick.setStyle("-fx-text-fill: #b05c22");
+        itemBoxClick.setStyle("-fx-background-color: #dbdbdb");
     }
 
 }

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,6 +26,9 @@ public class HomePageBoxComponentController {
 
     @FXML
     private Label itemPrice;
+
+    @FXML
+    private Button homepageComponentButton;
 
     @FXML
     void onItemBoxClick(ActionEvent event) throws IOException {
@@ -48,5 +52,15 @@ public class HomePageBoxComponentController {
         itemName.setText(item.getTitle());
         itemPrice.setText(String.valueOf(item.getRentalFee()));
 
+    }
+
+    @FXML
+    protected void itemBoxClickEntered() {
+        homepageComponentButton.setStyle("-fx-background-color: #c3c3c3");
+    }
+
+    @FXML
+    protected void itemBoxClickExited() {
+        homepageComponentButton.setStyle("-fx-background-color: #dbdbdb");
     }
 }

@@ -13,6 +13,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -24,6 +25,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
+import com.brightlightshop.client4.models.UserModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,6 +53,19 @@ public class HomePageController implements Initializable  {
     private AnchorPane carouselPanel3;
 
     @FXML
+    private AnchorPane carouselPane4;
+
+
+    @FXML
+    private AnchorPane carouselPanel5;
+
+    @FXML
+    private AnchorPane carouselPanel6;
+
+    @FXML
+    private AnchorPane carouselPanel7;
+
+    @FXML
     private HBox dvdComponentContainer;
 
     @FXML
@@ -61,6 +76,12 @@ public class HomePageController implements Initializable  {
 
     @FXML
     private HBox navigationBar;
+
+
+    @FXML
+    private Button backButton;
+    @FXML
+    private Button nextButton;
 
     @FXML
     private GridPane gridPaneRecord;
@@ -89,6 +110,10 @@ public class HomePageController implements Initializable  {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         translateAnimation(0.5,carouselPanel2,1200);
         translateAnimation(0.5,carouselPanel3,1200);
+        translateAnimation(0.5,carouselPane4,1200);
+        translateAnimation(0.5,carouselPanel5,1200);
+        translateAnimation(0.5,carouselPanel6,1200);
+        translateAnimation(0.5,carouselPanel7,1200);
 
         //Records, DVDs
 
@@ -105,9 +130,9 @@ public class HomePageController implements Initializable  {
     }
 
     private void updateItemsToGrid(){
-        gridPaneDvd.getChildren().clear();
-        gridPaneRecord.getChildren().clear();
-        gridPaneGame.getChildren().clear();
+//        gridPaneDvd.getChildren().clear();
+//        gridPaneRecord.getChildren().clear();
+//        gridPaneGame.getChildren().clear();
 
         try {
             int column = 1;
@@ -121,12 +146,13 @@ public class HomePageController implements Initializable  {
                 AnchorPane temp = fxmlLoader.load();
                 HomePageBoxComponentController itemController = fxmlLoader.getController();
                 itemController.setData(record);
-                if (row == 1){
-                    row = 0;
-                    column++;
-                }
-                gridPaneRecord.add(temp, column ,row++);
-                GridPane.setMargin(temp, new Insets(1));
+//                if (row == 1){
+//                    row = 0;
+//                    column++;
+//                }
+                recordComponentContainer.getChildren().add(temp);
+//                gridPaneRecord.add(temp, column ,row++);
+//                GridPane.setMargin(temp, new Insets(1));
             }
 
             //add dvds to homepage
@@ -137,12 +163,14 @@ public class HomePageController implements Initializable  {
                 AnchorPane temp = fxmlLoader.load();
                 HomePageBoxComponentController itemController = fxmlLoader.getController();
                 itemController.setData(dvd);
-                if (row == 1){
-                    row = 0;
-                    column++;
-                }
-                gridPaneDvd.add(temp, column ,row++);
-                GridPane.setMargin(temp, new Insets(1));
+//                if (row == 1){
+//                    row = 0;
+//                    column++;
+//                }
+//                .getChildren().add(temp);
+                dvdComponentContainer.getChildren().add(temp);
+//                gridPaneDvd.add(temp, column ,row++);
+//                GridPane.setMargin(temp, new Insets(1));
             }
 
             //add games to homepage
@@ -153,12 +181,13 @@ public class HomePageController implements Initializable  {
                 AnchorPane temp = fxmlLoader.load();
                 HomePageBoxComponentController itemController = fxmlLoader.getController();
                 itemController.setData(game);
-                if (row == 1){
-                    row = 0;
-                    column++;
-                }
-                gridPaneRecord.add(temp, column ,row++);
-                GridPane.setMargin(temp, new Insets(1));
+//                if (row == 1){
+//                    row = 0;
+//                    column++;
+//                }
+                gameComponentContainer.getChildren().add(temp);
+//                gridPaneRecord.add(temp, column ,row++);
+//                GridPane.setMargin(temp, new Insets(1));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -171,23 +200,56 @@ public class HomePageController implements Initializable  {
         if (current_banner ==1){
             translateAnimation(0.5,carouselPanel2,-1200);
             current_banner++;
-            bannerNumberCarousel.setText("2 / 3");
+            bannerNumberCarousel.setText("2 / 7");
         } else if (current_banner == 2) {
             translateAnimation(0.5,carouselPanel3,-1200);
             current_banner++;
-            bannerNumberCarousel.setText("3 / 3");
+            bannerNumberCarousel.setText("3 / 7");
+        } else if (current_banner == 3) {
+            translateAnimation(0.5,carouselPane4,-1200);
+            current_banner++;
+            bannerNumberCarousel.setText("4 / 7");
+        } else if (current_banner == 4) {
+            translateAnimation(0.5,carouselPanel5,-1200);
+            current_banner++;
+            bannerNumberCarousel.setText("5 / 7");
+        }else if (current_banner == 5) {
+            translateAnimation(0.5,carouselPanel6,-1200);
+            current_banner++;
+            bannerNumberCarousel.setText("6 / 7");
+        }else if (current_banner == 6) {
+            translateAnimation(0.5,carouselPanel7,-1200);
+            current_banner++;
+            bannerNumberCarousel.setText("7 / 7");
         }
+
     }
     @FXML
     void backBanner(ActionEvent event){
         if (current_banner == 2){
             translateAnimation(0.5,carouselPanel2, 1200);
             current_banner--;
-            bannerNumberCarousel.setText("1 / 3");
+            bannerNumberCarousel.setText("1 / 7");
         } else if (current_banner == 3) {
             translateAnimation(0.5,carouselPanel3,1200);
             current_banner--;
-            bannerNumberCarousel.setText("2 / 3");
+            bannerNumberCarousel.setText("2 / 7");
+        } else if (current_banner == 4) {
+            translateAnimation(0.5,carouselPane4,1200);
+            current_banner--;
+            bannerNumberCarousel.setText("3 / 7");
+        } else if (current_banner == 5) {
+            translateAnimation(0.5,carouselPanel5,1200);
+            current_banner--;
+            bannerNumberCarousel.setText("4 / 7");
+        } else if (current_banner == 6) {
+            translateAnimation(0.5,carouselPanel6,1200);
+            current_banner--;
+            bannerNumberCarousel.setText("5 / 7");
+        } else if (current_banner == 7) {
+            translateAnimation(0.5,carouselPanel7,1200);
+            current_banner--;
+            bannerNumberCarousel.setText("6 / 7");
         }
     }
 
@@ -201,7 +263,7 @@ public class HomePageController implements Initializable  {
         Request request = new Request.Builder()
                 .url(getUrl(rentalType))
                 .get()
-                .addHeader("user-id", "62f0b052ee88e366757bc752")
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();
 
         try(Response response = client.newCall(request).execute()) {
@@ -255,6 +317,18 @@ public class HomePageController implements Initializable  {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    protected void backButtonClickEntered() {backButton.setStyle("-fx-background-color: #c3c3c3");}
+
+    @FXML
+    protected void backBoxClickExited() {backButton.setStyle("-fx-background-color: #dbdbdb");}
+
+    @FXML
+    protected void nextButtonClickEntered() {nextButton.setStyle("-fx-background-color: #c3c3c3");}
+
+    @FXML
+    protected void nextButtonBoxClickExited() { nextButton.setStyle("-fx-background-color: #dbdbdb");}
 
 
 }
