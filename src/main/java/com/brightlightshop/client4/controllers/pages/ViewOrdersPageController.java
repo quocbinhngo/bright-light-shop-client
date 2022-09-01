@@ -1,9 +1,11 @@
 package com.brightlightshop.client4.controllers.pages;
 
+import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.OrderComponentController;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Order;
 import com.brightlightshop.client4.utils.JsonParser;
+import com.cloudinary.Url;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,8 +29,6 @@ public class ViewOrdersPageController implements Initializable {
     @FXML
     private HBox navigationBar;
 
-    private final String getOrdersUrl = "http://localhost:8000/api/orders";
-
     private final OkHttpClient client = new OkHttpClient();
 
     private ArrayList<Order> orders;
@@ -39,7 +39,7 @@ public class ViewOrdersPageController implements Initializable {
 
     private String getOrdersRequest() throws Exception {
         Request request = new Request.Builder()
-                .url(getOrdersUrl)
+                .url(UrlConstant.getOrders())
                 .get()
                 .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();

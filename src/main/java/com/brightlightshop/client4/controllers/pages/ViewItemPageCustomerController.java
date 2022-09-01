@@ -1,5 +1,6 @@
 package com.brightlightshop.client4.controllers.pages;
 
+import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.models.CartModel;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Dvd;
@@ -150,7 +151,7 @@ public class ViewItemPageCustomerController implements Initializable  {
 
     private String getItemByIdRequest() throws Exception {
         Request request = new Request.Builder()
-                .url(getItemByIdGetUrl + String.format("/%s", itemId))
+                .url(UrlConstant.getItemById(itemId))
                 .get()
                 .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();

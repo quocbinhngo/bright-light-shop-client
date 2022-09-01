@@ -35,6 +35,8 @@ public class FXMLPath {
         return root + "UpdateItemPage.fxml";
     }
 
-    public static String getHomePagePath() { return root + "HomePage.fxml";
+    public static String getHomePagePath() {
+        return root + "HomePage.fxml";
     }
 }
+

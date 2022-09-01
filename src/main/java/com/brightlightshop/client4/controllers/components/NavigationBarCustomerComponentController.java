@@ -174,12 +174,6 @@ public class NavigationBarCustomerComponentController {
 
         return urlBuilder.build().toString();
     }
-
-
-
-
-
-
     @FXML
     protected void onShopButtonEnteredNavBar() {
         shopButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");

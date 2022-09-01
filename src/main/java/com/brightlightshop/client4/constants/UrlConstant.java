@@ -23,6 +23,8 @@ public class UrlConstant {
        return endpoint + "/users/customers";
     }
 
+    public static String searchCustomer(){ return endpoint + "/users/customers/searches"; }
+
 
     public static String createItem() {
         return endpoint + "/items";
@@ -44,6 +46,10 @@ public class UrlConstant {
     }
 
     public static String createOrder() {
+        return endpoint + "/orders";
+    }
+
+    public static String getOrders() {
         return endpoint + "/orders";
     }
 

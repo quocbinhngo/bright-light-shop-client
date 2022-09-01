@@ -2,6 +2,8 @@ package com.brightlightshop.client4;
 
 import com.brightlightshop.client4.controllers.pages.UpdateItemPageController;
 import com.brightlightshop.client4.models.UserModel;
+import com.brightlightshop.client4.types.Admin;
+
 import com.brightlightshop.client4.utils.FXMLPath;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

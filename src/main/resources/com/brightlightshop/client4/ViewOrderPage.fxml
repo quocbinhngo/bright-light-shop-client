@@ -89,7 +89,7 @@
                      </font></Button>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="79.0" prefWidth="880.0">
                <children>
                   <Label alignment="CENTER" text="THANK YOU FOR USING OUR SERVICE" textFill="#0e18d1">
                      <font>
