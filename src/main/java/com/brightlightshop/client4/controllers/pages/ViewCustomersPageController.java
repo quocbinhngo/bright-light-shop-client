@@ -174,7 +174,7 @@ public class ViewCustomersPageController implements Initializable {
         Request request = new Request.Builder()
                 .url(getUrl())
                 .get()
-                .addHeader("user-id", userId)
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();
 
         try(Response response = client.newCall(request).execute()) {
