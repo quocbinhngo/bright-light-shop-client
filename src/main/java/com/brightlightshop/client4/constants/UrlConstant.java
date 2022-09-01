@@ -4,7 +4,14 @@ import okhttp3.HttpUrl;
 
 public class UrlConstant {
 
-    private static final String endpoint = "http://localhost:8000/api";
+    private static final String endpoint = "https://bright-light-shop-oop.herokuapp.com/api";
+
+    public static String createUser() {
+        return endpoint + "/users/customers";
+    }
+    public static String createSession() {
+        return endpoint + "/sessions";
+    }
 
     public static String getUser() {
         return endpoint + "/users";
@@ -15,7 +22,6 @@ public class UrlConstant {
     public static String createCustomerAccount() {
        return endpoint + "/users/customers";
     }
-
 
 
     public static String createItem() {

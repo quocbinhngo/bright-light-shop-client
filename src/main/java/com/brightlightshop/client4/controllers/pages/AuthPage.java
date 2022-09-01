@@ -1,5 +1,6 @@
 package com.brightlightshop.client4.controllers.pages;
 
+import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.User;
 import com.brightlightshop.client4.utils.FXMLPath;
@@ -23,8 +24,6 @@ import java.io.IOException;
 
 public class AuthPage {
     private final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-    private final String createUserPostUrl = "http://localhost:8000/api/users/customers";
-    private final String createSessionPostUrl = "http://localhost:8000/api/sessions/";
     private final String userId = "62ec74b4f13a1bbf8d94f560";
     private final OkHttpClient client = new OkHttpClient();
     @FXML
@@ -108,7 +107,7 @@ public class AuthPage {
     private String createUserPostRequest() throws IOException {
         RequestBody body = RequestBody.create(createUserPostJson(), JSON);
         Request request = new Request.Builder()
-                .url(createUserPostUrl)
+                .url(UrlConstant.createUser())
                 .post(body)
                 .addHeader("user-id", userId)
                 .build();
@@ -131,9 +130,10 @@ public class AuthPage {
     }
 
     private String createSessionPostRequest() throws IOException {
-        RequestBody body = RequestBody.create(createSessionPostJson(), JSON);
+        RequestBody body = RequestBody.create(createSessionPostJson()
+                , JSON);
         Request request = new Request.Builder()
-                .url(createSessionPostUrl)
+                .url(UrlConstant.createSession())
                 .post(body)
                 .build();
 
