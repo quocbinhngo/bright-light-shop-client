@@ -45,11 +45,19 @@
                 </VBox>
                 <VBox prefHeight="780.0" prefWidth="395.0" spacing="10.0">
                     <children>
+                  <Label fx:id="titleLabel1" prefHeight="62.0" prefWidth="385.0" text="Admin update quantity">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" top="10.0" />
+                     </padding>
+                  </Label>
                         <HBox spacing="20.0">
                             <children>
-                                <Label fx:id="titleLabel" prefHeight="46.0" prefWidth="454.0" text="Product Name">
+                                <Label fx:id="titleLabel" prefHeight="17.0" prefWidth="386.0" text="Product Name">
                                     <font>
-                                        <Font size="30.0" />
+                                        <Font size="25.0" />
                                     </font>
                                 </Label>
                             </children>
@@ -132,7 +140,7 @@
                                 </HBox>
                                 <VBox prefHeight="46.0" prefWidth="453.0">
                                     <children>
-                                        <Label fx:id="messageLabel" prefHeight="25.0" prefWidth="385.0" text="message">
+                                        <Label fx:id="messageLabel" prefHeight="25.0" prefWidth="385.0">
                                             <font>
                                                 <Font size="16.0" />
                                             </font></Label>
