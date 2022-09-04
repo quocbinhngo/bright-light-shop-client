@@ -1,6 +1,8 @@
 package com.brightlightshop.client4.controllers.pages;
 
+import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.OrderComponentNoDetailController;
+import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.*;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.event.ActionEvent;
@@ -29,9 +31,6 @@ import java.util.ResourceBundle;
 public class ViewCustomerPageController implements Initializable {
 
     private String userId;
-    private final String getCustomerByIdGetUrl = "http://localhost:8000/api/users/customers";
-
-    private final String getOrdersUrl = "http://localhost:8000/api/orders";
     private final OkHttpClient client = new OkHttpClient();
     private Customer customer;
 
@@ -73,9 +72,9 @@ public class ViewCustomerPageController implements Initializable {
 
     private String getUserByIdRequest() throws Exception {
         Request request = new Request.Builder()
-                .url(getCustomerByIdGetUrl + String.format("/%s", userId))
+                .url(UrlConstant.getCustomers() + String.format("/%s", userId))
                 .get()
-                .addHeader("user-id", "62ec74b4f13a1bbf8d94f560")// switch to current user id
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())// switch to current user id
                 .build();
 
         try(Response response = client.newCall(request).execute()) {
@@ -90,7 +89,7 @@ public class ViewCustomerPageController implements Initializable {
 
     private String getOrdersRequest(String userId) throws Exception {
         Request request = new Request.Builder()
-                .url(getOrdersUrl)
+                .url(UrlConstant.getOrders())
                 .get()
                 .addHeader("user-id", userId)
                 .build();
@@ -114,9 +113,6 @@ public class ViewCustomerPageController implements Initializable {
 
             JSONObject customerJsonObject = new JSONObject(customerResponse);
             customer = (Customer)JsonParser.getUser(customerJsonObject);
-
-            setLabel();
-            setPurchaseHistory();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -159,7 +155,7 @@ public class ViewCustomerPageController implements Initializable {
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
-            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
+            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarAdminComponent.fxml"));
             AnchorPane hbox = navigationBarFXMLLoader.load();
 
             //put navigation bar into navigationbar container at homepage

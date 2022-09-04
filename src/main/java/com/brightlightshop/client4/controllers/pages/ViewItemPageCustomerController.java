@@ -7,6 +7,7 @@ import com.brightlightshop.client4.types.Dvd;
 import com.brightlightshop.client4.types.Item;
 import com.brightlightshop.client4.types.Record;
 import com.brightlightshop.client4.utils.Component;
+import com.brightlightshop.client4.utils.FXMLPath;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -176,7 +177,7 @@ public class ViewItemPageCustomerController implements Initializable  {
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
-            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
+            navigationBarFXMLLoader.setLocation(getClass().getResource(FXMLPath.getNavigationBarComponentPath()));
             AnchorPane hbox = navigationBarFXMLLoader.load();
 
             //put navigation bar into navigationbar container at homepage

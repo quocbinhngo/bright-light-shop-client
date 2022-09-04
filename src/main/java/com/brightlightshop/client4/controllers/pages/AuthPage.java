@@ -169,12 +169,12 @@ public class AuthPage {
         clearAll();
         JSONObject userInfo = new JSONObject(response);
         UserModel.setCurrentUser(JsonParser.getUser(userInfo));
-        moveToViewItemsPage(e);
+        moveToHomePage(e);
         return true;
     }
 
-    private void moveToViewItemsPage(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewItemsPagePath()));
+    private void moveToHomePage(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getHomePagePath()));
         Scene scene = new Scene(fxmlLoader.load());
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -2,6 +2,7 @@ package com.brightlightshop.client4.controllers.pages;
 
 import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.HomePageBoxComponentController;
+import com.brightlightshop.client4.types.Customer;
 import com.brightlightshop.client4.types.Item;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.animation.TranslateTransition;
@@ -308,9 +309,12 @@ public class HomePageController implements Initializable  {
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
-            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
+            if (UserModel.getCurrentUser() instanceof Customer) {
+                navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
+            } else{
+                navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarAdminComponent.fxml"));
+            }
             AnchorPane hbox = navigationBarFXMLLoader.load();
-
             //put navigation bar into navigationbar container at homepage
             navigationBar.getChildren().add(hbox);
         }catch (IOException e) {
