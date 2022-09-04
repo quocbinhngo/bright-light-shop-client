@@ -112,6 +112,15 @@ public class NavigationBarCustomerComponentController {
     }
 
     @FXML
+    private void onUserInfoButtonClick(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getUserInfoPagePath()));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
     private void onSearchButtonClick(ActionEvent event) throws Exception {
         String response = searchItemRequest();
         if (response.equals("")) {

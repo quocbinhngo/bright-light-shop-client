@@ -1,10 +1,20 @@
 package com.brightlightshop.client4.utils;
 
+import com.brightlightshop.client4.models.UserModel;
+
 public class FXMLPath {
     public static String root = "/com/brightlightshop/client4/";
 
     public static String getAuthPagePath() {
         return root + "AuthPage.fxml";
+    }
+
+    public static String getNavigationBarComponentPath() {
+        if (UserModel.getCurrentUser().getAccountType().equals("admin")) {
+            return root + "NavigationBarAdminComponent.fxml";
+        }
+
+        return root + "NavigationBarCustomerComponent.fxml";
     }
 
     public static String getViewCustomersPagePath() {
@@ -23,6 +33,18 @@ public class FXMLPath {
         return root + "ViewItemsPage.fxml";
     }
 
+    public static String getViewItemCustomerPagePath() {
+        return root + "ViewItemPageCustomer.fxml";
+    }
+
+    public static String getViewItemPagePath() {
+        if (UserModel.getCurrentUser().getAccountType().equals("admin")) {
+            return getUpdateItemPagePath();
+        }
+
+        return getViewItemCustomerPagePath();
+    }
+
     public static String getViewOrdersPagePath() {
         return root + "ViewOrdersPage.fxml";
     }
@@ -37,6 +59,10 @@ public class FXMLPath {
 
     public static String getHomePagePath() {
         return root + "HomePage.fxml";
+    }
+
+    public static String getUserInfoPagePath() {
+        return root + "ViewUserInfoPage.fxml";
     }
 }
 

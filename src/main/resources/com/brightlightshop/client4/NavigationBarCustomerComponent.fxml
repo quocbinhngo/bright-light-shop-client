@@ -61,7 +61,7 @@
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor></Button>
-                <Button fx:id="userInformationButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="174.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css">
+                <Button fx:id="userInformationButton" mnemonicParsing="false" onAction="#onUserInfoButtonClick" prefHeight="46.0" prefWidth="174.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css">
                     <graphic>
                         <Label fx:id="usernameNavigationBar" onMouseEntered="#usernameButtonEnteredNavigationBar" onMouseExited="#usernameButtonExitedNavigationBar" text="Nguyễn Anh" textFill="WHITE">
                             <graphic>

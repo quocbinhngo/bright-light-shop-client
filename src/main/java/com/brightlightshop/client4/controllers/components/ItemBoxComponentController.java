@@ -1,9 +1,11 @@
 package com.brightlightshop.client4.controllers.components;
 
+import com.brightlightshop.client4.controllers.pages.UpdateItemPageController;
 import com.brightlightshop.client4.controllers.pages.ViewItemPageCustomerController;
 import com.brightlightshop.client4.models.CartModel;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Item;
+import com.brightlightshop.client4.utils.FXMLPath;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,13 +54,18 @@ public class ItemBoxComponentController {
     private Button itemBoxClick;
 
     @FXML
-    void onItemBoxClick(ActionEvent event) throws IOException {
-        String path = "/com/brightlightshop/client4/ViewItemPageCustomer.fxml";
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
+    void onItemBoxClick(ActionEvent event) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewItemPagePath()));
         Scene scene = new Scene(fxmlLoader.load());
 
-        ViewItemPageCustomerController viewItemPageCustomerController = fxmlLoader.getController();
-        viewItemPageCustomerController.setData(item.get_id());
+        if (UserModel.getCurrentUser().getAccountType().equals("admin")) {
+            UpdateItemPageController controller = fxmlLoader.getController();
+            controller.setData(item.get_id());
+        } else {
+            ViewItemPageCustomerController viewItemPageCustomerController = fxmlLoader.getController();
+            viewItemPageCustomerController.setData(item.get_id());
+        }
+
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
