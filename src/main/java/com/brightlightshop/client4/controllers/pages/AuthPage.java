@@ -110,7 +110,6 @@ public class AuthPage {
         Request request = new Request.Builder()
                 .url(UrlConstant.createUser())
                 .post(body)
-                .addHeader("user-id", userId)
                 .build();
 
         try (Response response = client.newCall(request).execute()) {

@@ -9,6 +9,7 @@ import com.brightlightshop.client4.utils.JsonParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,10 +24,12 @@ import okhttp3.Response;
 import org.json.JSONArray;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class NavigationBarCustomerComponentController {
+public class NavigationBarCustomerComponentController implements Initializable {
 
     private Stage stage;
     private Scene scene;
@@ -183,6 +186,12 @@ public class NavigationBarCustomerComponentController {
 
         return urlBuilder.build().toString();
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        usernameNavigationBar.setText(UserModel.getCurrentUser().getFirstName() + " " + UserModel.getCurrentUser().getLastName());
+    }
+
     @FXML
     protected void onShopButtonEnteredNavBar() {
         shopButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
