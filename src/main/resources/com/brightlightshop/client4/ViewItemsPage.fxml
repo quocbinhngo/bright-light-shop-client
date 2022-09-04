@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -104,21 +105,37 @@
                                                    </cursor></RadioButton>
                                              </children>
                                           </VBox>
+                                          <VBox prefHeight="109.0" prefWidth="152.0" spacing="5.0">
+                                             <children>
+                                                <HBox spacing="15.0">
+                                                   <children>
+                                                      <Label minHeight="-Infinity" minWidth="-Infinity" text="Page">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="pageTextField" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="280.0" spacing="10.0">
                                              <children>
                                                 <Button fx:id="clearButton" alignment="CENTER" mnemonicParsing="false" onAction="#onClearButtonClick" style="-fx-background-radius: 5; -fx-background-color: #f4f4f4; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Clear">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
-                                                   </cursor></Button>
+                                                   </cursor>
+                                                </Button>
                                                 <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSearchButtonClick" style="-fx-background-radius: 5; -fx-background-color: #f4f4f4; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Search">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
-                                                   </cursor></Button>
+                                                   </cursor>
+                                                </Button>
                                              </children>
                                           </HBox>
                                        </children>
                                        <padding>
-                                          <Insets bottom="10.0" left="20.0" top="15.0" />
+                                          <Insets bottom="10.0" left="20.0" right="20.0" top="15.0" />
                                        </padding>
                                     </VBox>
                                  </children>

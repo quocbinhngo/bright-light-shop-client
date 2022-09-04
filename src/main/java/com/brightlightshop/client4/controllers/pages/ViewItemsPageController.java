@@ -4,6 +4,7 @@ import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.ItemBoxComponentController;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Item;
+import com.brightlightshop.client4.utils.Component;
 import com.brightlightshop.client4.utils.FXMLPath;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.beans.value.ChangeListener;
@@ -72,6 +73,9 @@ public class ViewItemsPageController implements Initializable {
     private RadioButton nonAvaiableStatusRadioButton;
 
     @FXML
+    private TextField pageTextField;
+
+    @FXML
     private RadioButton recordRentalTypeRadioButton;
 
     @FXML
@@ -110,6 +114,9 @@ public class ViewItemsPageController implements Initializable {
         statusValue = null;
         sortByValue = null;
         descValue = false;
+
+        // Reset the page text field value to 0
+        pageTextField.setText("1");
     }
 
     private ToggleGroup rentalTypeToggleGroup = new ToggleGroup();
@@ -243,10 +250,15 @@ public class ViewItemsPageController implements Initializable {
         try {
             addNavigationBar();
             setupToggleGroup();
-
+            setupTextField();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private void setupTextField() {
+        Component.numericTextField(pageTextField);
+        pageTextField.setText("1");
     }
 
     public void getItems() throws Exception {
@@ -292,6 +304,12 @@ public class ViewItemsPageController implements Initializable {
 
         if (descValue) {
             urlBuilder.addQueryParameter("desc", String.valueOf(true));
+        }
+
+        if (pageTextField.getText() == null || pageTextField.getText().equals("")) {
+            urlBuilder.addQueryParameter("page", "1");
+        } else {
+            urlBuilder.addQueryParameter("page", pageTextField.getText());
         }
 
         return urlBuilder.build().toString();
