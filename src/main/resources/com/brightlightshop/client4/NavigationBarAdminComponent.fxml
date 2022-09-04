@@ -85,7 +85,7 @@
                   <Insets />
                </HBox.margin>
                 </Button>
-                <Button fx:id="customerButton" mnemonicParsing="false" onAction="#onCustomersButtonClick" prefHeight="46.0" prefWidth="99.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css" text="Customers" textFill="WHITE">
+                <Button fx:id="customerButton" mnemonicParsing="false" onAction="#onCustomersButtonClick" onMouseEntered="#customerButtonEnteredAdminNavBar" onMouseExited="#customerButtonExitedAdminNavBar" prefHeight="46.0" prefWidth="99.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css" text="Customers" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
