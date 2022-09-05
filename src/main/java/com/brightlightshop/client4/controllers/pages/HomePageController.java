@@ -6,6 +6,7 @@ import com.brightlightshop.client4.types.Customer;
 import com.brightlightshop.client4.types.Item;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -119,15 +120,26 @@ public class HomePageController implements Initializable  {
         //Records, DVDs
 
 
+        Thread t = new Thread(()-> {
+            try {
+                System.out.println("Thred" + Thread.currentThread().getName());
+                getItems();
+                Platform.runLater(()->{
+                    updateItemsToGrid();
+                });
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
-        try{
-            getItems();
-            addNavigationBar();
-            updateItemsToGrid();
+        t.start();
 
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+        addNavigationBar();
+
+
+    }
+    private void updateItemsToRecordBox() throws IOException {
+
     }
 
     private void updateItemsToGrid(){
@@ -136,8 +148,8 @@ public class HomePageController implements Initializable  {
 //        gridPaneGame.getChildren().clear();
 
         try {
-            int column = 1;
-            int row = 0;
+//            int column = 1;
+//            int row = 0;
 
             //add records to homepage
             for (Item record: records){
@@ -145,33 +157,26 @@ public class HomePageController implements Initializable  {
                 fxmlLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/HomePageBoxComponent.fxml"));
 
                 AnchorPane temp = fxmlLoader.load();
+
                 HomePageBoxComponentController itemController = fxmlLoader.getController();
                 itemController.setData(record);
-//                if (row == 1){
-//                    row = 0;
-//                    column++;
-//                }
+
                 recordComponentContainer.getChildren().add(temp);
-//                gridPaneRecord.add(temp, column ,row++);
-//                GridPane.setMargin(temp, new Insets(1));
+
             }
 
             //add dvds to homepage
             for (Item dvd: dvds){
+
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/HomePageBoxComponent.fxml"));
 
                 AnchorPane temp = fxmlLoader.load();
                 HomePageBoxComponentController itemController = fxmlLoader.getController();
                 itemController.setData(dvd);
-//                if (row == 1){
-//                    row = 0;
-//                    column++;
-//                }
-//                .getChildren().add(temp);
+
                 dvdComponentContainer.getChildren().add(temp);
-//                gridPaneDvd.add(temp, column ,row++);
-//                GridPane.setMargin(temp, new Insets(1));
+
             }
 
             //add games to homepage
@@ -300,8 +305,8 @@ public class HomePageController implements Initializable  {
     }
 
     private void getItems() throws IOException {
-        getDvds();
         getRecords();
+        getDvds();
         getGames();
     }
 
