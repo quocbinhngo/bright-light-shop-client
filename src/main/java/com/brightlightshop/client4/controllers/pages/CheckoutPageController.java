@@ -265,7 +265,7 @@ public class CheckoutPageController implements Initializable {
 
     @FXML
     protected void rentWithRewardPointButtonEnteredCheckoutPage() {
-        rentWithRewardPointButton.setStyle("-fx-background-color:  #f3d74b");
+        rentWithRewardPointButton.setStyle("-fx-background-color:  #e4c444");
     }
 
     @FXML
