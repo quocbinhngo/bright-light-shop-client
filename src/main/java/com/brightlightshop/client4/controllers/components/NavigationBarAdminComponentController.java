@@ -217,6 +217,14 @@ public class NavigationBarAdminComponentController implements Initializable{
         searchButton.setStyle("-fx-background-color: #f1ab2c; -fx-background-radius: 0 5 5 0");
     }
 
+    @FXML
+    void customerButtonEnteredAdminNavBar() {
+        customerButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+    }
 
+    @FXML
+    void customerButtonExitedAdminNavBar() {
+        customerButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+    }
 
 }

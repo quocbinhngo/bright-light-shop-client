@@ -307,5 +307,23 @@ public class CreateItemPageController implements Initializable {
         setupChoiceBox();
     }
 
+    @FXML
+    void submitButtonEnteredCreateItemPage() {
+        submitButton.setStyle("-fx-background-color: #e08e35");
+    }
 
+    @FXML
+    void submitButtonExitedCreateItemPage() {
+        submitButton.setStyle("-fx-background-color:  #f1ab2c");
+    }
+
+    @FXML
+    void uploadButtonEnteredCreateItemPgae() {
+        uploadButton.setStyle("-fx-background-color:  #e4c444");
+    }
+
+    @FXML
+    void uploadButtonExitedCreateItemPgae() {
+        uploadButton.setStyle("-fx-background-color: #f3d74b");
+    }
 }

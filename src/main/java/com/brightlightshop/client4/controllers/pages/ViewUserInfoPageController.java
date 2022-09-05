@@ -2,6 +2,7 @@ package com.brightlightshop.client4.controllers.pages;
 
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.*;
+import com.brightlightshop.client4.utils.Component;
 import com.brightlightshop.client4.utils.FXMLPath;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,7 +80,9 @@ public class ViewUserInfoPageController implements Initializable {
             return response.body().string();
         }
     }
-    public void setLabel() {
+    public void setLabel() throws IOException {
+        UserModel.update();
+        customer = (Customer) UserModel.getCurrentUser();
         cusInfoFirstName.setText(customer.getFirstName());
         cusInfoLastName.setText(customer.getLastName());
         cusInfoPhone.setText(customer.getPhone());
@@ -120,6 +123,7 @@ public class ViewUserInfoPageController implements Initializable {
         addBalanceRequest();
         addBalanceTextField.clear();
         addBalanceLabel.setText("Add balance successful!");
+        setLabel();
     }
 
     @Override
@@ -127,6 +131,7 @@ public class ViewUserInfoPageController implements Initializable {
         try {
             addNavigationBar();
             setLabel();
+            Component.numericTextField(addBalanceTextField);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

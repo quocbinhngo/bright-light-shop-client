@@ -61,8 +61,12 @@ public class FXMLPath {
         return root + "HomePage.fxml";
     }
 
+
     public static String getUserInfoPagePath() {
         return root + "ViewUserInfoPage.fxml";
+    }
+    public static String getCreateItemPagePath() {
+        return root + "CreateItemPage.fxml";
     }
 }
 
