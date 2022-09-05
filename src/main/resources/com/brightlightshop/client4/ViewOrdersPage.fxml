@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="880.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.ViewOrdersPageController">
    <top>
@@ -35,7 +36,7 @@
                         <Button mnemonicParsing="false" onAction="#onSearchButtonClick" text="Search" />
                      </children>
                   </VBox>
-                  <VBox fx:id="orderContainer" alignment="CENTER" prefHeight="781.0" prefWidth="843.0" spacing="30.0">
+                  <VBox fx:id="orderContainer" alignment="CENTER" prefHeight="781.0" prefWidth="843.0" spacing="20.0">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
@@ -45,6 +46,11 @@
                               <Image url="@images/hello_icon.png" />
                            </image>
                         </ImageView>
+                        <Label fx:id="messageLabel" text="THE HISTORY IS EMPTY">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </VBox>
                </children>

@@ -113,12 +113,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                         </Button>
-                  <Label fx:id="registerMessageLabel" prefHeight="27.0" prefWidth="323.0">
+                  <Label fx:id="registerMessageLabel" alignment="CENTER" prefHeight="27.0" prefWidth="323.0" textAlignment="CENTER">
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                      <font>
-                        <Font size="14.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
                     </children>

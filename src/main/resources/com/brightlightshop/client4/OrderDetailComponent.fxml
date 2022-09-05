@@ -33,7 +33,7 @@
                                                 <Font size="18.0" />
                                             </font>
                                  <HBox.margin>
-                                    <Insets bottom="15.0" />
+                                    <Insets bottom="11.0" />
                                  </HBox.margin>
                                         </Label>
                                         <Label fx:id="rentalFeeLabel" prefHeight="27.0" prefWidth="47.0" text="Price">
@@ -50,15 +50,20 @@
                                 </Label>
                                 <HBox alignment="CENTER_RIGHT" layoutX="548.0" layoutY="43.0" prefHeight="100.0" prefWidth="96.0">
                                     <children>
-                                        <Label text="\$">
+                                        <Label fx:id="totalPerItemLabel" alignment="CENTER_RIGHT" graphicTextGap="0.0" prefHeight="27.0" prefWidth="77.0" text="Price">
                                             <font>
                                                 <Font size="18.0" />
                                             </font>
-                                        </Label>
-                                        <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="40.0" text="Price">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
+                                 <graphic>
+                                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="0.0" text="\$">
+                                                  <font>
+                                                      <Font size="18.0" />
+                                                  </font>
+                                       <padding>
+                                          <Insets bottom="11.0" />
+                                       </padding>
+                                              </Label>
+                                 </graphic>
                                         </Label>
                                     </children>
                                 </HBox>

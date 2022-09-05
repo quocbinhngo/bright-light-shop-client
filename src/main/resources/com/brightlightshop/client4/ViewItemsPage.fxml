@@ -121,12 +121,12 @@
                                           </VBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="280.0" spacing="10.0">
                                              <children>
-                                                <Button fx:id="clearButton" alignment="CENTER" mnemonicParsing="false" onAction="#onClearButtonClick" style="-fx-background-radius: 5; -fx-background-color: #f4f4f4; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Clear">
+                                                <Button fx:id="clearButton" alignment="CENTER" mnemonicParsing="false" onAction="#onClearButtonClick" onMouseEntered="#clearButtonEnteredViewItemsPage" onMouseExited="#clearButtonExitedViewItemsPage" style="-fx-background-radius: 5; -fx-background-color: #f3d74b; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Clear">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </Button>
-                                                <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSearchButtonClick" style="-fx-background-radius: 5; -fx-background-color: #f4f4f4; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Search">
+                                                <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSearchButtonClick" onMouseEntered="#searchButtonEnteredViewItemsPage" onMouseExited="#searchButtonExitedViewItemsPage" style="-fx-background-radius: 5; -fx-background-color: #f3d74b; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Search">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
@@ -178,7 +178,8 @@
                   <ImageView fitHeight="540.0" fitWidth="170.0" layoutX="7.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/2.png" />
-                     </image></ImageView>
+                     </image>
+                  </ImageView>
                </children>
                <opaqueInsets>
                   <Insets />

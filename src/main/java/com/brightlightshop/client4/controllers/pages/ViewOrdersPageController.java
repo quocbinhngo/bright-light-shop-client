@@ -11,6 +11,7 @@ import com.cloudinary.Url;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -38,6 +39,9 @@ public class ViewOrdersPageController implements Initializable {
     private TextField pageTextField;
 
     @FXML
+    private Label messageLabel;
+
+    @FXML
     private void onSearchButtonClick() throws Exception {
         setOrdersFromJson(new JSONArray(getOrdersRequest()));
     }
@@ -49,6 +53,9 @@ public class ViewOrdersPageController implements Initializable {
     private void setOrdersFromJson(JSONArray ordersJson) throws IOException {
         orders = JsonParser.getOrders(ordersJson);
         for (Order order: orders) {
+            if (!order.getOrderDetails().equals("")){
+                orderContainer.getChildren().remove(messageLabel);
+            }
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/OrderComponent.fxml"));
 
