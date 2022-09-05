@@ -1,5 +1,6 @@
 package com.brightlightshop.client4.controllers.pages;
 
+import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.*;
 import com.brightlightshop.client4.utils.FXMLPath;
@@ -19,9 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ViewUserInfoPageController implements Initializable {
-    private final String getCustomerByIdGetUrl = "http://localhost:8000/api/users/customers";
 
-    private final String addBalanceUrl = "http://localhost:8000/api//users/customers/balance";
     private final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private final OkHttpClient client = new OkHttpClient();
     private Customer customer = (Customer) UserModel.getCurrentUser();
@@ -66,7 +65,7 @@ public class ViewUserInfoPageController implements Initializable {
     private String addBalanceRequest() throws Exception {
         RequestBody body = RequestBody.create(createAddBalanceJson(), JSON);
         Request request = new Request.Builder()
-                .url(addBalanceUrl)
+                .url(UrlConstant.addBalance())
                 .get()
                 .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();
