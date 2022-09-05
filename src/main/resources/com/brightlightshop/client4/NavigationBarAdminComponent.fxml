@@ -19,7 +19,7 @@
                     <graphic>
                         <ImageView fitHeight="88.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/navigationBarLogo.png" />
+                                <Image url="@images/navigationBarLogov2.png" />
                             </image>
                             <cursor>
                                 <Cursor fx:constant="CLOSED_HAND" />
@@ -41,7 +41,7 @@
                             <graphic>
                                 <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@images/4781817_brows_browsing_find_search_seo_icon.png" />
+                                        <Image url="@images/search_icon_32px.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
