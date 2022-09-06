@@ -154,7 +154,7 @@ public class NavigationBarCustomerComponentController implements Initializable {
         stage.show();
     }
 
-    private String searchItemRequest() throws IOException {
+    public String searchItemRequest() throws IOException {
         Request request = new Request.Builder()
                 .url(getUrl())
                 .get()
@@ -194,7 +194,7 @@ public class NavigationBarCustomerComponentController implements Initializable {
 
     @FXML
     protected void onShopButtonEnteredNavBar() {
-        shopButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+        shopButton.setStyle("-fx-border-radius: 5;-fx-border-color: #FFFFFF;-fx-background-color: transparent");
     }
 
     @FXML
@@ -204,7 +204,7 @@ public class NavigationBarCustomerComponentController implements Initializable {
 
     @FXML
     protected void usernameButtonEnteredNavigationBar() {
-        userInformationButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+        userInformationButton.setStyle("-fx-border-radius: 5;-fx-border-color: #FFFFFF;-fx-background-color: transparent");
     }
 
     @FXML
@@ -214,7 +214,7 @@ public class NavigationBarCustomerComponentController implements Initializable {
 
     @FXML
     protected void bookingButtonEnteredNavBar() {
-        bookingButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+        bookingButton.setStyle("-fx-border-radius: 5;-fx-border-color: #FFFFFF;-fx-background-color: transparent");
     }
 
     @FXML
@@ -225,7 +225,7 @@ public class NavigationBarCustomerComponentController implements Initializable {
 
     @FXML
     protected void cartButtonEnteredNavBar() {
-        cartButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+        cartButton.setStyle("-fx-border-radius: 5;-fx-border-color: #FFFFFF;-fx-background-color: transparent");
     }
 
     @FXML
@@ -235,7 +235,7 @@ public class NavigationBarCustomerComponentController implements Initializable {
 
     @FXML
     protected void logOutButtonEnteredNavBar() {
-        logOutButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+        logOutButton.setStyle("-fx-border-radius: 5;-fx-border-color: #FFFFFF;-fx-background-color: transparent");
     }
 
     @FXML
@@ -246,12 +246,12 @@ public class NavigationBarCustomerComponentController implements Initializable {
 
     @FXML
     protected void searchButtonEnteredNavBar() {
-        searchButton.setStyle("-fx-background-color: #f3d74b; -fx-background-radius: 0 5 5 0");
+        searchButton.setStyle("-fx-background-color: #e08e35; -fx-background-radius: 0 5 5 0");
     }
 
     @FXML
     protected void searchButtonExitedNavBar() {
-        searchButton.setStyle("-fx-background-color: #f1ab2c; -fx-background-radius: 0 5 5 0");
+        searchButton.setStyle("-fx-background-color: #ffbd73; -fx-background-radius: 0 5 5 0");
     }
 
 

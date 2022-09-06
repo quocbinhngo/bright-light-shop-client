@@ -7,6 +7,7 @@ import com.brightlightshop.client4.types.Item;
 import com.brightlightshop.client4.utils.Component;
 import com.brightlightshop.client4.utils.FXMLPath;
 import com.brightlightshop.client4.utils.JsonParser;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -18,6 +19,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -38,6 +41,16 @@ import java.util.ResourceBundle;
 public class ViewItemsPageController implements Initializable {
     @FXML
     private ScrollPane allItemContainer;
+
+    @FXML
+    public Label firstProductMessage;
+
+    @FXML
+    public Label secondProductMessage;
+
+
+    @FXML
+    public ImageView spinner;
 
     @FXML
     private RadioButton availableStatusRadioButton;
@@ -82,7 +95,7 @@ public class ViewItemsPageController implements Initializable {
     private ToggleGroup rentalType;
 
     @FXML
-    private Button searchButton;
+    private Button sortButton;
 
     @FXML
     private ToggleGroup sortBy;
@@ -97,8 +110,12 @@ public class ViewItemsPageController implements Initializable {
     private RadioButton titleDescendingRadioButton;
 
     @FXML
-    void onSearchButtonClick(ActionEvent event) throws Exception {
+    void onSortButtonClick(ActionEvent event) throws Exception {
+        firstProductMessage.setText("");
+        secondProductMessage.setText("");
+        spinner.setVisible(true);
         getItems();
+
     }
 
     @FXML
@@ -137,14 +154,6 @@ public class ViewItemsPageController implements Initializable {
 
     private final OkHttpClient client = new OkHttpClient();
 
-    public void handleImgLogo(ActionEvent event) throws IOException {
-        String path ="/com/brightlightshop/client4/images/logo-social.png";
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     private void setupRentalTypeToggleGroup() {
         dvdRentalTypeRadioButton.setToggleGroup(rentalTypeToggleGroup);
@@ -251,6 +260,7 @@ public class ViewItemsPageController implements Initializable {
             addNavigationBar();
             setupToggleGroup();
             setupTextField();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -262,10 +272,30 @@ public class ViewItemsPageController implements Initializable {
     }
 
     public void getItems() throws Exception {
-        String itemsResponse = getItemsRequest();
-        System.out.println("Item res: " + itemsResponse);
-        items = JsonParser.getItems(new JSONArray(itemsResponse));
-        updateItemsToGrid();
+        Thread t = new Thread(()->{
+            String itemsResponse = null;
+            try {
+                itemsResponse = getItemsRequest();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Item res: " + itemsResponse);
+
+            items = JsonParser.getItems(new JSONArray(itemsResponse));
+
+            String finalItemsResponse = itemsResponse;
+            Platform.runLater(()->{
+                updateItemsToGrid();
+                if (finalItemsResponse.equals("[]") ){
+                    spinner.setVisible(false);
+                    firstProductMessage.setText("No result");
+                    secondProductMessage.setText("Try checking your spelling or use more general terms");
+                }
+            });
+        });
+        t.start();
+
+
     }
 
     public void setItems(ArrayList<Item> items) {
@@ -344,4 +374,28 @@ public class ViewItemsPageController implements Initializable {
             e.printStackTrace();
         }
     }
+
+
+    @FXML
+    void clearButtonEnter(MouseEvent event) {
+        clearButton.setStyle("-fx-background-color:  #e08e35; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
+    }
+
+    @FXML
+    void clearButtonExit(MouseEvent event) {
+        clearButton.setStyle("-fx-background-color: #ffbd73; -fx-border-radius: 5; -fx-border-color: BLACK");
+    }
+
+
+    @FXML
+    void sortButtonEnter(MouseEvent event) {
+        sortButton.setStyle("-fx-background-color:  #e08e35; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
+    }
+
+    @FXML
+    void sortButtonExit(MouseEvent event) {
+        sortButton.setStyle("-fx-background-color: #ffbd73; -fx-border-radius: 5; -fx-border-color: BLACK");
+    }
+
+
 }
