@@ -105,10 +105,10 @@ public class NavigationBarCustomerComponentController implements Initializable {
 
     // Change to view order page
     @FXML
-    void onOrderButtonClick(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewOrdersPagePath()));
+    void onLogOutButtonClick(ActionEvent event) throws IOException {
+        UserModel.setCurrentUser(null);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getAuthPagePath()));
         Scene scene = new Scene(fxmlLoader.load());
-
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();

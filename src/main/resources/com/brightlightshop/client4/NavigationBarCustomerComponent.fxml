@@ -112,7 +112,7 @@
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor></Button>
-                <Button fx:id="logOutButton" mnemonicParsing="false" onMouseEntered="#logOutButtonEnteredNavBar" onMouseExited="#logOutButtonExitedNavBar" prefHeight="46.0" prefWidth="102.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css" text="Logout" textFill="WHITE">
+                <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#onLogOutButtonClick" onMouseEntered="#logOutButtonEnteredNavBar" onMouseExited="#logOutButtonExitedNavBar" prefHeight="46.0" prefWidth="102.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css" text="Logout" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                             <image>
