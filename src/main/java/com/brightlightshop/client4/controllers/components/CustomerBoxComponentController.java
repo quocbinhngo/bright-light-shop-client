@@ -36,13 +36,15 @@ public class CustomerBoxComponentController {
     private Button customerBoxClick;
 
     @FXML
-    void onCustomerBoxClick(ActionEvent event) throws IOException {
+    void onCustomerBoxClick(ActionEvent event) throws Exception {
         String path = "/com/brightlightshop/client4/ViewCustomerPage.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
         Scene scene = new Scene(fxmlLoader.load());
 
         ViewCustomerPageController viewCustomerPageController = fxmlLoader.getController();
         viewCustomerPageController.setData(customer.get_id());
+        viewCustomerPageController.setLabel();
+        viewCustomerPageController.setPurchaseHistory();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

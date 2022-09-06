@@ -31,9 +31,6 @@ import java.util.ResourceBundle;
 public class ViewCustomerPageController implements Initializable {
 
     private String userId;
-    private final String getCustomerByIdGetUrl = "http://localhost:8000/api/users/customers";
-
-    private final String getOrdersUrl = "http://localhost:8000/api/orders";
     private final OkHttpClient client = new OkHttpClient();
     private Customer customer;
 
@@ -117,9 +114,6 @@ public class ViewCustomerPageController implements Initializable {
             JSONObject customerJsonObject = new JSONObject(customerResponse);
             customer = (Customer)JsonParser.getUser(customerJsonObject);
 
-            setLabel();
-            setPurchaseHistory();
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -161,7 +155,7 @@ public class ViewCustomerPageController implements Initializable {
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
-            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
+            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarAdminComponent.fxml"));
             AnchorPane hbox = navigationBarFXMLLoader.load();
 
             //put navigation bar into navigationbar container at homepage

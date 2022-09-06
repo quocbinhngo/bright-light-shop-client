@@ -186,6 +186,12 @@ public class NavigationBarCustomerComponentController implements Initializable {
 
         return urlBuilder.build().toString();
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        usernameNavigationBar.setText(UserModel.getCurrentUser().getFirstName() + " " + UserModel.getCurrentUser().getLastName());
+    }
+
     @FXML
     protected void onShopButtonEnteredNavBar() {
         shopButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
@@ -247,10 +253,4 @@ public class NavigationBarCustomerComponentController implements Initializable {
     protected void searchButtonExitedNavBar() {
         searchButton.setStyle("-fx-background-color: #f1ab2c; -fx-background-radius: 0 5 5 0");
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        usernameNavigationBar.setText(UserModel.getCurrentUser().getFirstName());
-    }
-
 }

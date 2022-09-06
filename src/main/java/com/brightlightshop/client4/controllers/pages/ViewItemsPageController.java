@@ -4,6 +4,8 @@ import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.ItemBoxComponentController;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Item;
+import com.brightlightshop.client4.utils.Component;
+import com.brightlightshop.client4.utils.FXMLPath;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -71,6 +73,9 @@ public class ViewItemsPageController implements Initializable {
     private RadioButton nonAvaiableStatusRadioButton;
 
     @FXML
+    private TextField pageTextField;
+
+    @FXML
     private RadioButton recordRentalTypeRadioButton;
 
     @FXML
@@ -109,6 +114,9 @@ public class ViewItemsPageController implements Initializable {
         statusValue = null;
         sortByValue = null;
         descValue = false;
+
+        // Reset the page text field value to 0
+        pageTextField.setText("1");
     }
 
     private ToggleGroup rentalTypeToggleGroup = new ToggleGroup();
@@ -242,10 +250,15 @@ public class ViewItemsPageController implements Initializable {
         try {
             addNavigationBar();
             setupToggleGroup();
-
+            setupTextField();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private void setupTextField() {
+        Component.numericTextField(pageTextField);
+        pageTextField.setText("1");
     }
 
     public void getItems() throws Exception {
@@ -264,7 +277,7 @@ public class ViewItemsPageController implements Initializable {
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
-            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
+            navigationBarFXMLLoader.setLocation(getClass().getResource(FXMLPath.getNavigationBarComponentPath()));
             AnchorPane hbox = navigationBarFXMLLoader.load();
 
             //put navigation bar into navigationbar container at homepage
@@ -291,6 +304,12 @@ public class ViewItemsPageController implements Initializable {
 
         if (descValue) {
             urlBuilder.addQueryParameter("desc", String.valueOf(true));
+        }
+
+        if (pageTextField.getText() == null || pageTextField.getText().equals("")) {
+            urlBuilder.addQueryParameter("page", "1");
+        } else {
+            urlBuilder.addQueryParameter("page", pageTextField.getText());
         }
 
         return urlBuilder.build().toString();
@@ -324,5 +343,25 @@ public class ViewItemsPageController implements Initializable {
 //            System.out.println(e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void searchButtonEnteredViewItemsPage() {
+        searchButton.setStyle("-fx-background-color: #e4c444; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
+    }
+
+    @FXML
+    void searchButtonExitedViewItemsPage() {
+        searchButton.setStyle("-fx-background-color: #f3d74b; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
+    }
+
+    @FXML
+    void clearButtonEnteredViewItemsPage() {
+        clearButton.setStyle("-fx-background-color: #e4c444; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
+    }
+
+    @FXML
+    void clearButtonExitedViewItemsPage() {
+        clearButton.setStyle("-fx-background-color: #f3d74b; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
     }
 }

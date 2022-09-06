@@ -72,7 +72,7 @@
                                                       <Font name="System Bold" size="15.0" />
                                                    </font>
                                                 </Label>
-                                                <RadioButton fx:id="idAscendingSortByRadioButton" mnemonicParsing="false" text="ID asceding">
+                                                <RadioButton fx:id="idAscendingSortByRadioButton" mnemonicParsing="false" text="ID ascending">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor></RadioButton>

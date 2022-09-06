@@ -32,8 +32,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class NavigationBarAdminComponentController implements Initializable {
 
+public class NavigationBarAdminComponentController implements Initializable{
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -75,6 +75,15 @@ public class NavigationBarAdminComponentController implements Initializable {
     @FXML
     void onShopButtonClick(ActionEvent event) throws Exception {
         moveViewItemsPage(event, null);
+    }
+
+    @FXML
+    private void onUserInfoButtonClick(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getUserInfoPagePath()));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -164,6 +173,11 @@ public class NavigationBarAdminComponentController implements Initializable {
         return urlBuilder.build().toString();
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        usernameNavigationBar.setText(UserModel.getCurrentUser().getFirstName() + " " + UserModel.getCurrentUser().getLastName());
+    }
+
     @FXML
     protected void onShopButtonEnteredNavBar() {
         shopButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
@@ -212,11 +226,8 @@ public class NavigationBarAdminComponentController implements Initializable {
 
     @FXML
     void customerButtonExitedAdminNavBar() {
-        customerButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+        customerButton.setStyle("-fx-border-color: transparent;-fx-background-color: transparent");
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        usernameNavigationBar.setText(UserModel.getCurrentUser().getFirstName());
-    }
+
 }

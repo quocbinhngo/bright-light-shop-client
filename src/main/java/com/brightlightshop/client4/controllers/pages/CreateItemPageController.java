@@ -314,16 +314,16 @@ public class CreateItemPageController implements Initializable {
 
     @FXML
     void submitButtonExitedCreateItemPage() {
-        submitButton.setStyle("-fx-background-color:  #f1ab2c");
+        submitButton.setStyle("-fx-background-color: #f1ab2c");
     }
 
     @FXML
-    void uploadButtonEnteredCreateItemPgae() {
-        uploadButton.setStyle("-fx-background-color:  #e4c444");
+    void uploadButtonEnteredCreateItemPage() {
+        uploadButton.setStyle("-fx-background-color: #ececec, -fx-border-width: 1, -fx-border-color: BLACK");
     }
 
     @FXML
-    void uploadButtonExitedCreateItemPgae() {
-        uploadButton.setStyle("-fx-background-color: #f3d74b");
+    void uploadButtonExitedCreateItemPage() {
+        uploadButton.setStyle("-fx-background-color:  #d6d6d6, -fx-border-width: 1, -fx-border-color: BLACK");
     }
 }

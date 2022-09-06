@@ -1,10 +1,13 @@
 package com.brightlightshop.client4.controllers.pages;
 
 import com.brightlightshop.client4.constants.UrlConstant;
+import com.brightlightshop.client4.controllers.components.OrderComponentNoDetailController;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.*;
 import com.brightlightshop.client4.utils.Component;
+import com.brightlightshop.client4.utils.JsonParser;
 import javafx.event.ActionEvent;
+import com.brightlightshop.client4.utils.FXMLPath;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,22 +19,23 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import okhttp3.*;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ViewUserInfoPageController implements Initializable {
-    private final String getCustomerByIdGetUrl = "http://localhost:8000/api/users/customers";
-
-    private final String addBalanceUrl = "http://localhost:8000/api//users/customers/balance";
     private final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private final OkHttpClient client = new OkHttpClient();
-    private Customer customer = (Customer) UserModel.getCurrentUser();
+    private Customer customer;
+    private Admin admin;
     private Parent root;
     private Stage stage;
     private Scene scene;
@@ -69,8 +73,15 @@ public class ViewUserInfoPageController implements Initializable {
     @FXML
     private Label addBalanceLabel;
 
-    public void handleError(){
+    @FXML
+    private Label titleLabel;
 
+    @FXML
+    private VBox purchaseHistory;
+
+    private ArrayList<Order> orders;
+
+    public void handleError(){
     }
 
     private String addBalanceRequest() throws Exception {
@@ -91,28 +102,41 @@ public class ViewUserInfoPageController implements Initializable {
     }
     public void setLabel() throws IOException {
         UserModel.update();
-        customer = (Customer) UserModel.getCurrentUser();
-        cusInfoFirstName.setText(customer.getFirstName());
-        cusInfoLastName.setText(customer.getLastName());
-        cusInfoPhone.setText(customer.getPhone());
-        cusInfoAddress.setText(customer.getAddress());
-        cusInfoUsername.setText(customer.getUsername());
-        cusInfoBalance.setText(String.valueOf(customer.getBalance()));
-        if (customer instanceof Guest) {
-            cusInfoAccountType.setText("Guest");
-        }
-        if (customer instanceof Regular) {
-            cusInfoAccountType.setText("Regular");
-        }
-        if (customer instanceof Vip) {
-            cusInfoAccountType.setText("VIP");
+        if (UserModel.getCurrentUser() instanceof Customer) {
+            titleLabel.setText("Customer Information");
+            customer = (Customer) UserModel.getCurrentUser();
+            cusInfoFirstName.setText(customer.getFirstName());
+            cusInfoLastName.setText(customer.getLastName());
+            cusInfoPhone.setText(customer.getPhone());
+            cusInfoAddress.setText(customer.getAddress());
+            cusInfoUsername.setText(customer.getUsername());
+            cusInfoBalance.setText(String.valueOf(customer.getBalance()));
+            if (customer instanceof Guest) {
+                cusInfoAccountType.setText("Guest");
+            }
+            if (customer instanceof Regular) {
+                cusInfoAccountType.setText("Regular");
+            }
+            if (customer instanceof Vip) {
+                cusInfoAccountType.setText("VIP");
+            }
+        } else {
+            admin = (Admin) UserModel.getCurrentUser();
+            titleLabel.setText("Admin Information");
+            cusInfoFirstName.setText(admin.getFirstName());
+            cusInfoLastName.setText(admin.getLastName());
+            cusInfoPhone.setText(admin.getPhone());
+            cusInfoAddress.setText(admin.getAddress());
+            cusInfoUsername.setText(admin.getUsername());
+            cusInfoBalance.setText("");
+            cusInfoAccountType.setText("Admin");
         }
     }
 
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
-            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
+            navigationBarFXMLLoader.setLocation(getClass().getResource(FXMLPath.getNavigationBarComponentPath()));
             AnchorPane hbox = navigationBarFXMLLoader.load();
 
             //put navigation bar into navigationbar container at homepage
@@ -146,11 +170,51 @@ public class ViewUserInfoPageController implements Initializable {
         stage.show();
     }
 
+
+    public void setUser(){
+        if (UserModel.getCurrentUser() instanceof Admin){
+            admin = (Admin) UserModel.getCurrentUser();
+        } else {
+            customer = (Customer) UserModel.getCurrentUser();
+        }
+    }
+/*
+    private String getOrdersRequest(String userId) throws Exception {
+        Request request = new Request.Builder()
+                .url(UrlConstant.getOrders())
+                .get()
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
+                .build();
+        try(Response response = client.newCall(request).execute()) {
+            return response.body().string();
+        }
+    }
+
+    private void setOrdersFromJson(JSONArray ordersJson) {
+        orders = JsonParser.getOrders(ordersJson);
+    }
+
+    public void setPurchaseHistory() throws Exception {
+        setOrdersFromJson(new JSONArray(getOrdersRequest(UserModel.getCurrentUser().get_id())));
+        for (Order order: orders) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/OrderComponentNoDetail.fxml"));
+
+            VBox vBox = fxmlLoader.load();
+            OrderComponentNoDetailController orderComponentNoDetailController = fxmlLoader.getController();
+            orderComponentNoDetailController.setData(order);
+            purchaseHistory.getChildren().add(vBox);
+
+        }
+    }
+    */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             addNavigationBar();
+            setUser();
             setLabel();
+            //setPurchaseHistory();
             Component.numericTextField(addBalanceTextField);
         } catch (Exception e) {
             System.out.println(e.getMessage());

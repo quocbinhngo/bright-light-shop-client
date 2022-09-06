@@ -4,9 +4,11 @@ import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.models.CartModel;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Dvd;
+import com.brightlightshop.client4.types.Game;
 import com.brightlightshop.client4.types.Item;
 import com.brightlightshop.client4.types.Record;
 import com.brightlightshop.client4.utils.Component;
+import com.brightlightshop.client4.utils.FXMLPath;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +23,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import okhttp3.OkHttpClient;
@@ -44,6 +47,9 @@ public class ViewItemPageCustomerController implements Initializable  {
 
     @FXML
     private Label copiesNumberLabel;
+
+    @FXML
+    private HBox genreHbox;
 
     @FXML
     private Label genreLabel;
@@ -71,6 +77,9 @@ public class ViewItemPageCustomerController implements Initializable  {
 
     @FXML
     private Button backButton;
+
+    @FXML
+    private VBox detailVbox;
 
     @FXML
     void onAddToCartButtonClick(ActionEvent event) {
@@ -132,15 +141,20 @@ public class ViewItemPageCustomerController implements Initializable  {
             setImageFromUrl(imageView, item.getImageUrl());
 
             if (item instanceof Dvd) {
-                genreLabel.setText(((Dvd) item).getGenre());
+                genreLabel.setText(((Dvd) item).getGenre().toUpperCase());
             }
 
             if (item instanceof Record) {
-                genreLabel.setText(((Record) item).getGenre());
+                genreLabel.setText(((Record) item).getGenre().toUpperCase());
+            }
+
+            if (item instanceof Game){
+                detailVbox.getChildren().remove(genreHbox);
+                //genreLabel.setText("None");
             }
 
             titleLabel.setText(item.getTitle());
-            rentalTypeLabel.setText(item.getRentalType());
+            rentalTypeLabel.setText(item.getRentalType().toUpperCase());
             rentalFeeLabel.setText(String.valueOf(item.getRentalFee()));
             copiesNumberLabel.setText(String.valueOf(item.getCopiesNumber()));
 
@@ -176,7 +190,7 @@ public class ViewItemPageCustomerController implements Initializable  {
     public void addNavigationBar(){
         try{
             FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
-            navigationBarFXMLLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/NavigationBarCustomerComponent.fxml"));
+            navigationBarFXMLLoader.setLocation(getClass().getResource(FXMLPath.getNavigationBarComponentPath()));
             AnchorPane hbox = navigationBarFXMLLoader.load();
 
             //put navigation bar into navigationbar container at homepage

@@ -114,7 +114,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Button>
-                              <Label fx:id="messageLabel" layoutX="18.0" layoutY="99.0" prefHeight="27.0" prefWidth="340.0" style="-fx-text-fill: #589c50;" text="message">
+                              <Label fx:id="messageLabel" alignment="CENTER" layoutX="18.0" layoutY="99.0" prefHeight="27.0" prefWidth="340.0" text="message">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
