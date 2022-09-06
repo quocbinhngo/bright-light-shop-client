@@ -68,5 +68,7 @@ public class FXMLPath {
     public static String getCreateItemPagePath() {
         return root + "CreateItemPage.fxml";
     }
+
+    public  static String getLogoIcon(){return root + "images/logoIcon.png";}
 }
 

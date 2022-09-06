@@ -34,6 +34,9 @@ public class OrderDetailCheckoutComponentController {
     @FXML
     private Button removeButton;
 
+    @FXML
+    private Label totalPerProduct;
+
 
     @FXML
     void onAddButtonClick(ActionEvent event) throws IOException {
@@ -75,9 +78,11 @@ public class OrderDetailCheckoutComponentController {
     }
 
     public void setFXML() {
+        double total = orderDetail.getItem().getRentalFee() * orderDetail.getQuantity();
         Image image = new Image(orderDetail.getItem().getImageUrl());
         imageView.setImage(image);
         quantityLabel.setText(String.valueOf(orderDetail.getQuantity()));
+        totalPerProduct.setText(String.valueOf(total));
         titleLabel.setText(orderDetail.getItem().getTitle());
         rentalFeeLabel.setText(String.valueOf(orderDetail.getItem().getRentalFee()));
 
