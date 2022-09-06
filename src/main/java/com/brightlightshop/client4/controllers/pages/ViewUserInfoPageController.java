@@ -1,20 +1,28 @@
 package com.brightlightshop.client4.controllers.pages;
 
+import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.*;
+import com.brightlightshop.client4.utils.Component;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import okhttp3.*;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ViewUserInfoPageController implements Initializable {
@@ -24,6 +32,9 @@ public class ViewUserInfoPageController implements Initializable {
     private final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private final OkHttpClient client = new OkHttpClient();
     private Customer customer = (Customer) UserModel.getCurrentUser();
+    private Parent root;
+    private Stage stage;
+    private Scene scene;
 
     @FXML
     private Label cusInfoAccountType;
@@ -65,8 +76,8 @@ public class ViewUserInfoPageController implements Initializable {
     private String addBalanceRequest() throws Exception {
         RequestBody body = RequestBody.create(createAddBalanceJson(), JSON);
         Request request = new Request.Builder()
-                .url(addBalanceUrl)
-                .get()
+                .url(UrlConstant.addBalance())
+                .post(body)
                 .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();
         try(Response response = client.newCall(request).execute()){
@@ -78,7 +89,9 @@ public class ViewUserInfoPageController implements Initializable {
             return response.body().string();
         }
     }
-    public void setLabel() {
+    public void setLabel() throws IOException {
+        UserModel.update();
+        customer = (Customer) UserModel.getCurrentUser();
         cusInfoFirstName.setText(customer.getFirstName());
         cusInfoLastName.setText(customer.getLastName());
         cusInfoPhone.setText(customer.getPhone());
@@ -116,9 +129,21 @@ public class ViewUserInfoPageController implements Initializable {
     }
 
     public void onAddBalanceButtonClick() throws Exception {
-        addBalanceRequest();
+        String response = addBalanceRequest();
+        System.out.println(response);
         addBalanceTextField.clear();
         addBalanceLabel.setText("Add balance successful!");
+        setLabel();
+    }
+
+    @FXML
+    public void onBackToHomepageButtonClick(ActionEvent event) throws IOException {
+        String path ="/com/brightlightshop/client4/HomePage.fxml";
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root, 1280, 880);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override
@@ -126,6 +151,7 @@ public class ViewUserInfoPageController implements Initializable {
         try {
             addNavigationBar();
             setLabel();
+            Component.numericTextField(addBalanceTextField);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

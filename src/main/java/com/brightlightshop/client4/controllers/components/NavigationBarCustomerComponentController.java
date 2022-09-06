@@ -9,6 +9,7 @@ import com.brightlightshop.client4.utils.JsonParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,10 +24,12 @@ import okhttp3.Response;
 import org.json.JSONArray;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class NavigationBarCustomerComponentController {
+public class NavigationBarCustomerComponentController implements Initializable {
 
     private Stage stage;
     private Scene scene;
@@ -123,6 +126,15 @@ public class NavigationBarCustomerComponentController {
 
         // move to view items page
         moveViewItemsPage(event, items);
+    }
+
+    @FXML
+    private void onUserInfoButtonClick(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewUserInfoPagePath()));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void moveViewItemsPage(ActionEvent event, ArrayList<Item> items) throws Exception {
@@ -236,6 +248,9 @@ public class NavigationBarCustomerComponentController {
         searchButton.setStyle("-fx-background-color: #f1ab2c; -fx-background-radius: 0 5 5 0");
     }
 
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        usernameNavigationBar.setText(UserModel.getCurrentUser().getFirstName());
+    }
 
 }

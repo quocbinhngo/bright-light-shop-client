@@ -113,7 +113,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                         </Button>
-                  <Label fx:id="registerMessageLabel" prefHeight="27.0" prefWidth="42.0">
+                  <Label fx:id="registerMessageLabel" prefHeight="27.0" prefWidth="382.0">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>

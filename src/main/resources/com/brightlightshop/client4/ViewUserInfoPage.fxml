@@ -23,7 +23,7 @@
                   <children>
                      <VBox prefHeight="772.0" prefWidth="818.0" spacing="20.0">
                         <children>
-                           <Button mnemonicParsing="false" text="&lt; Back to customer list" />
+                           <Button mnemonicParsing="false" onAction="#onBackToHomepageButtonClick" text="&lt; Back to homepage" />
                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer information">
                               <font>
                                  <Font size="24.0" />

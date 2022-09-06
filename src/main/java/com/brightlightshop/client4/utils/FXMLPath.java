@@ -42,5 +42,7 @@ public class FXMLPath {
     public static String getCreateItemPagePath() {
         return root + "CreateItemPage.fxml";
     }
+
+    public static String getViewUserInfoPagePath(){ return root + "ViewUserInfoPage.fxml";}
 }
 

@@ -6,11 +6,13 @@ import com.brightlightshop.client4.controllers.pages.ViewItemsPageController;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Customer;
 import com.brightlightshop.client4.types.Item;
+import com.brightlightshop.client4.types.User;
 import com.brightlightshop.client4.utils.FXMLPath;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,10 +27,12 @@ import okhttp3.Response;
 import org.json.JSONArray;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class NavigationBarAdminComponentController {
+public class NavigationBarAdminComponentController implements Initializable {
 
     private Stage stage;
     private Scene scene;
@@ -91,6 +95,7 @@ public class NavigationBarAdminComponentController {
         // move to view items page
         moveViewItemsPage(event, items);
     }
+
 
     private void moveViewItemsPage(ActionEvent event, ArrayList<Item> items) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewItemsPagePath()));
@@ -210,4 +215,8 @@ public class NavigationBarAdminComponentController {
         customerButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        usernameNavigationBar.setText(UserModel.getCurrentUser().getFirstName());
+    }
 }

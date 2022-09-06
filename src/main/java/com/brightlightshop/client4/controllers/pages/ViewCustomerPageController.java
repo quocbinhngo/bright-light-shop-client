@@ -1,6 +1,8 @@
 package com.brightlightshop.client4.controllers.pages;
 
+import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.OrderComponentNoDetailController;
+import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.*;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.event.ActionEvent;
@@ -73,9 +75,9 @@ public class ViewCustomerPageController implements Initializable {
 
     private String getUserByIdRequest() throws Exception {
         Request request = new Request.Builder()
-                .url(getCustomerByIdGetUrl + String.format("/%s", userId))
+                .url(UrlConstant.getCustomers() + String.format("/%s", userId))
                 .get()
-                .addHeader("user-id", "62ec74b4f13a1bbf8d94f560")// switch to current user id
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())// switch to current user id
                 .build();
 
         try(Response response = client.newCall(request).execute()) {
@@ -90,7 +92,7 @@ public class ViewCustomerPageController implements Initializable {
 
     private String getOrdersRequest(String userId) throws Exception {
         Request request = new Request.Builder()
-                .url(getOrdersUrl)
+                .url(UrlConstant.getOrders())
                 .get()
                 .addHeader("user-id", userId)
                 .build();

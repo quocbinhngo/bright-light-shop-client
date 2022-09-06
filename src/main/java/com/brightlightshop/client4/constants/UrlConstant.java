@@ -61,4 +61,6 @@ public class UrlConstant {
         return endpoint + "/orders/" + id;
     }
 
+    public static String addBalance(){return endpoint + "/users/customers/balance";}
+
 }
