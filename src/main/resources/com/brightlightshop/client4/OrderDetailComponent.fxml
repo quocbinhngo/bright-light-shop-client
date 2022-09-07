@@ -21,7 +21,7 @@
                     <children>
                         <Pane prefHeight="155.0" prefWidth="658.0">
                             <children>
-                                <Label fx:id="titleLabel" layoutX="14.0" layoutY="80.0" prefHeight="27.0" prefWidth="175.0" text="Title">
+                                <Label fx:id="titleLabel" layoutX="12.0" layoutY="19.0" prefHeight="150.0" prefWidth="175.0" text="Title" wrapText="true">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
@@ -30,20 +30,23 @@
                                     <children>
                                         <Label text="\$">
                                             <font>
-                                                <Font size="18.0" />
+                                                <Font size="15.0" />
                                             </font>
                                  <HBox.margin>
-                                    <Insets bottom="15.0" />
+                                    <Insets bottom="15.0" top="13.0" />
                                  </HBox.margin>
                                         </Label>
-                                        <Label fx:id="rentalFeeLabel" prefHeight="27.0" prefWidth="47.0" text="Price">
+                                        <Label fx:id="rentalFeeLabel" text="Price">
                                             <font>
                                                 <Font size="18.0" />
                                             </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
                                         </Label>
                                     </children>
                                 </HBox>
-                                <Label fx:id="quantityLabel" layoutX="384.0" layoutY="79.0" text="Quantity">
+                                <Label fx:id="quantityLabel" layoutX="404.0" layoutY="79.0" text="Quantity">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
@@ -52,17 +55,20 @@
                                     <children>
                                         <Label text="\$">
                                             <font>
-                                                <Font size="18.0" />
+                                                <Font size="15.0" />
                                             </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
                                         </Label>
-                                        <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="40.0" text="Price">
+                                        <Label fx:id="totalPrice" alignment="CENTER_RIGHT" text="PRICE">
                                             <font>
                                                 <Font size="18.0" />
                                             </font>
                                         </Label>
                                     </children>
                                 </HBox>
-                                <Label layoutX="376.0" layoutY="79.0" text="x">
+                                <Label layoutX="396.0" layoutY="79.0" text="x">
                                     <font>
                                         <Font size="18.0" />
                                     </font>

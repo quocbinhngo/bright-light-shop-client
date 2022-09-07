@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class OrderDetailCheckoutComponentController {
+
+    @FXML
+    private Label totalPerProduct;
     private OrderDetail orderDetail;
 
     private CheckoutPageController subscriber;
@@ -80,7 +83,7 @@ public class OrderDetailCheckoutComponentController {
         quantityLabel.setText(String.valueOf(orderDetail.getQuantity()));
         titleLabel.setText(orderDetail.getItem().getTitle());
         rentalFeeLabel.setText(String.valueOf(orderDetail.getItem().getRentalFee()));
-
+        totalPerProduct.setText(String.valueOf(orderDetail.getItem().getRentalFee() * orderDetail.getQuantity()));
     }
 
     public void setSubscriber(CheckoutPageController checkoutPageController) {
