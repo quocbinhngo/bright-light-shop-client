@@ -21,7 +21,7 @@ public class BrightLightShopApplication extends Application {
         stage.setTitle("Bright Light Shop - Buy in brilliant way");
         stage.setScene(scene);
         stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/com/brightlightshop/client4/images/logoIcon.png"))));
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.show();
     }
 
