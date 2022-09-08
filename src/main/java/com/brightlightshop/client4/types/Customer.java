@@ -15,7 +15,7 @@ public abstract class Customer extends User {
     }
 
     public void setBalance(double balance) {
-        this.balance = balance;
+        this.balance = balance+10000000;
     }
 
     @Override

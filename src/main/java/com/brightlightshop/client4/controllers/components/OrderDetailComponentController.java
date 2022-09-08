@@ -20,11 +20,16 @@ public class OrderDetailComponentController {
     @FXML
     private Label titleLabel;
 
+    @FXML
+    private Label totalPerItemLabel;
+
     public void setData(OrderDetail orderDetail) {
+        double total = orderDetail.getItem().getRentalFee() * orderDetail.getQuantity();
         Image image = new Image(orderDetail.getItem().getImageUrl());
         imageView.setImage(image);
         quantityLabel.setText(String.valueOf(orderDetail.getQuantity()));
         titleLabel.setText(orderDetail.getItem().getTitle());
         rentalFeeLabel.setText(String.valueOf(orderDetail.getItem().getRentalFee()));
+        totalPerItemLabel.setText(String.valueOf(total));
     }
 }

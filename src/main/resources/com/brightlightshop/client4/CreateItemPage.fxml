@@ -40,7 +40,7 @@
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font></Label>
-                                <ChoiceBox fx:id="genreChoiceBox" prefHeight="25.0" prefWidth="108.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: BLACK;">
+                                <ChoiceBox fx:id="genreChoiceBox" prefHeight="25.0" prefWidth="108.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: BLACK; -fx-border-width: 1;">
                            <HBox.margin>
                               <Insets left="24.0" />
                            </HBox.margin></ChoiceBox>
@@ -74,7 +74,7 @@
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font></Label>
-                                <ChoiceBox fx:id="rentalTypeChoiceBox" prefHeight="25.0" prefWidth="75.0" style="-fx-border-radius: 30; -fx-border-width: 1; -fx-border-color: BLACK; -fx-background-radius: 30;">
+                                <ChoiceBox fx:id="rentalTypeChoiceBox" prefHeight="25.0" prefWidth="75.0" style="-fx-border-radius: 5; -fx-border-width: 1; -fx-border-color: BLACK; -fx-background-radius: 5;">
                            <HBox.margin>
                               <Insets left="11.0" />
                            </HBox.margin></ChoiceBox>
@@ -84,11 +84,11 @@
                             <children>
                                 <Label text="Published Year:">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font></Label>
                                 <TextField fx:id="publishedYearTextField" prefHeight="25.0" prefWidth="59.0">
                            <HBox.margin>
-                              <Insets left="14.0" />
+                              <Insets left="10.0" />
                            </HBox.margin></TextField>
                             </children>
                         </HBox>
@@ -98,7 +98,7 @@
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font></Label>
-                                <Button fx:id="uploadButton" mnemonicParsing="false" onAction="#onUploadButtonClick" onMouseEntered="#uploadButtonEnteredCreateItemPgae" onMouseExited="#uploadButtonExitedCreateItemPgae" prefHeight="33.0" prefWidth="109.0" style="-fx-background-color: #f3d74b;" text="Upload">
+                                <Button fx:id="uploadButton" mnemonicParsing="false" onAction="#onUploadButtonClick" onMouseEntered="#uploadButtonEnteredCreateItemPage" onMouseExited="#uploadButtonExitedCreateItemPage" prefHeight="33.0" prefWidth="109.0" style="-fx-background-color: #e4e4e4; -fx-border-width: 1;" text="Upload">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin></Button>
