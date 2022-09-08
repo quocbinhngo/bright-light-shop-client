@@ -61,7 +61,7 @@ public class ViewOrderPageController {
         accountTypeLabel.setText(UserModel.getCurrentUser().getAccountType());
 
         // Update the is returned UI
-        returnButton.setVisible(false);
+        returnButton.setDisable(false);
     }
     public void setData(Order order) throws IOException {
         this.order = order;
@@ -88,14 +88,17 @@ public class ViewOrderPageController {
         setOrderDetailUI();
         switch (UserModel.getCurrentUser().getAccountType()) {
             case "guest" -> {
+                accountTypeLabel.setText("GUEST");
                 balanceLabel.setText(String.valueOf(((Guest) UserModel.getCurrentUser()).getBalance()));
             }
 
             case "regular" -> {
+                accountTypeLabel.setText("REGULAR");
                 balanceLabel.setText(String.valueOf(((Regular) UserModel.getCurrentUser()).getBalance()));
             }
 
             case "vip" -> {
+                accountTypeLabel.setText("VIP");
                 balanceLabel.setText(String.valueOf(((Vip) UserModel.getCurrentUser()).getBalance()));
             }
         }

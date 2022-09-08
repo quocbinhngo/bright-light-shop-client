@@ -90,13 +90,13 @@
                                                    </cursor></RadioButton>
                                              </children>
                                           </VBox>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="280.0" spacing="10.0">
+                                          <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="117.0" spacing="10.0">
                                              <children>
-                                                <Button fx:id="clearButton" alignment="CENTER" mnemonicParsing="false" onAction="#onClearButtonClick" style="-fx-background-radius: 5; -fx-background-color: #f4f4f4; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Clear">
+                                                <Button fx:id="clearButton" alignment="CENTER" mnemonicParsing="false" onAction="#onClearButtonClick" onMouseEntered="#clearButtonEnter" onMouseExited="#clearButtonExit" prefHeight="27.0" prefWidth="60.0" style="-fx-background-radius: 5; -fx-background-color: #ffbd73; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Clear">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor></Button>
-                                                <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSearchButtonClick" style="-fx-background-radius: 5; -fx-background-color: #f4f4f4; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Search">
+                                                <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSearchButtonClick" onMouseEntered="#searchButtonEnter" onMouseExited="#searchButtonExit" prefHeight="27.0" prefWidth="60.0" style="-fx-background-radius: 5; -fx-background-color: #ffbd73; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Sort">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor></Button>
@@ -117,16 +117,24 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="787.0" prefWidth="850.0">
                                  <children>
-                                    <Label fx:id="genreType1" prefHeight="16.0" prefWidth="740.0" text="Dm Binh ">
+                                    <Label fx:id="genreType1" prefHeight="16.0" prefWidth="740.0" text="Customer List">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets left="10.0" top="10.0" />
+                                          <Insets bottom="5.0" left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="searchCustomerTextField" prefHeight="26.0" prefWidth="732.0" promptText="Search Customer" />
-                                    <Button fx:id="searchCustomerButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSearchCustomerButtonClick" text="Search Customer" />
+                                    <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="114.0" prefWidth="850.0">
+                                       <children>
+                                          <TextField fx:id="searchCustomerTextField" alignment="CENTER" layoutX="279.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="282.0" promptText="Search Customer" />
+                                          <Button fx:id="searchCustomerButton" alignment="CENTER" layoutX="367.0" layoutY="44.0" mnemonicParsing="false" onAction="#onSearchCustomerButtonClick" onMouseEntered="#searchCustomerEnter" onMouseExited="#searchCustomerExit" prefHeight="34.0" prefWidth="108.0" style="-fx-background-color: #ffbd73;" text="Search Customer">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                    </Pane>
                                     <GridPane fx:id="gridPaneAllCustomer" prefHeight="708.0" prefWidth="771.0">
                                        <rowConstraints>
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" />

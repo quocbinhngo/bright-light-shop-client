@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="880.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.pages.ViewItemsPageController">
@@ -119,14 +120,14 @@
                                                 </HBox>
                                              </children>
                                           </VBox>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="280.0" spacing="10.0">
+                                          <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="118.0" spacing="10.0">
                                              <children>
-                                                <Button fx:id="clearButton" alignment="CENTER" mnemonicParsing="false" onAction="#onClearButtonClick" style="-fx-background-radius: 5; -fx-background-color: #f4f4f4; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Clear">
+                                                <Button fx:id="clearButton" alignment="CENTER" mnemonicParsing="false" onAction="#onClearButtonClick" onMouseEntered="#clearButtonEnter" onMouseExited="#clearButtonExit" prefHeight="27.0" prefWidth="60.0" style="-fx-background-radius: 5; -fx-background-color: #f9b972; -fx-border-radius: 5; -fx-border-color: BLACK; -fx-border-width: 0.8;" text="Clear">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </Button>
-                                                <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSearchButtonClick" style="-fx-background-radius: 5; -fx-background-color: #f4f4f4; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Search">
+                                                <Button fx:id="sortButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSortButtonClick" onMouseEntered="#sortButtonEnter" onMouseExited="#sortButtonExit" prefHeight="27.0" prefWidth="60.0" style="-fx-background-radius: 5; -fx-background-color: #f9b972; -fx-border-radius: 5; -fx-border-color: BLACK; -fx-border-width: 0.8;" text="Sort">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
@@ -156,19 +157,43 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <GridPane fx:id="girdPaneAllIteam" prefHeight="718.0" prefWidth="690.0">
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                       </rowConstraints>
+                                    <Line endX="635.0" startX="-80.0" style="-fx-stroke-width: 0.3;">
                                        <VBox.margin>
                                           <Insets left="10.0" />
                                        </VBox.margin>
+                                    </Line>
+                                    <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="740.0" VBox.vgrow="NEVER">
+                                       <children>
+                                          <ImageView fx:id="spinner" fitHeight="64.0" fitWidth="35.0" layoutX="353.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@images/Loading_icon.gif" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="firstProductMessage" layoutX="150.0" layoutY="26.0" prefHeight="30.0" prefWidth="288.0">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="secondProductMessage" layoutX="150.0" layoutY="58.0" prefHeight="30.0" prefWidth="367.0">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <GridPane fx:id="girdPaneAllIteam">
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                       </rowConstraints>
                                     </GridPane>
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
                      </content>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
                   </ScrollPane>
                   <ImageView fitHeight="540.0" fitWidth="170.0" layoutX="1097.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -184,7 +209,7 @@
                   <Insets />
                </opaqueInsets>
                <BorderPane.margin>
-                  <Insets top="10.0" />
+                  <Insets />
                </BorderPane.margin>
             </Pane>
          </center>

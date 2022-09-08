@@ -118,7 +118,7 @@ public class HomePageController implements Initializable  {
         translateAnimation(0.5,carouselPanel7,1200);
 
         //Records, DVDs
-
+        addNavigationBar();
         Thread recordThread = new Thread(()-> {
             try {
                 getRecords();
@@ -129,8 +129,8 @@ public class HomePageController implements Initializable  {
                 throw new RuntimeException(e);
             }
         });
-
         recordThread.start();
+
         Thread dvdThread = new Thread(()-> {
             try {
                 getDvds();
@@ -155,7 +155,8 @@ public class HomePageController implements Initializable  {
         });
         gameThread.start();
 
-        addNavigationBar();
+
+
 
     }
     private void updateItemsToRecordBox() {
