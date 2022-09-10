@@ -7,6 +7,8 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -90,13 +92,27 @@
                                                    </cursor></RadioButton>
                                              </children>
                                           </VBox>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Page">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="pageTextField" prefHeight="26.0" prefWidth="80.0">
+                                                   <HBox.margin>
+                                                      <Insets left="15.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="117.0" spacing="10.0">
                                              <children>
                                                 <Button fx:id="clearButton" alignment="CENTER" mnemonicParsing="false" onAction="#onClearButtonClick" onMouseEntered="#clearButtonEnter" onMouseExited="#clearButtonExit" prefHeight="27.0" prefWidth="60.0" style="-fx-background-radius: 5; -fx-background-color: #ffbd73; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Clear">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor></Button>
-                                                <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSearchButtonClick" onMouseEntered="#searchButtonEnter" onMouseExited="#searchButtonExit" prefHeight="27.0" prefWidth="60.0" style="-fx-background-radius: 5; -fx-background-color: #ffbd73; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Sort">
+                                                <Button fx:id="sortButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSortButtonClick" onMouseEntered="#sortButtonEnter" onMouseExited="#sortButtonExit" prefHeight="27.0" prefWidth="60.0" style="-fx-background-radius: 5; -fx-background-color: #ffbd73; -fx-border-radius: 5; -fx-border-color: BLACK;" text="Sort">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor></Button>
@@ -125,7 +141,7 @@
                                           <Insets bottom="5.0" left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="114.0" prefWidth="850.0">
+                                    <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="850.0">
                                        <children>
                                           <TextField fx:id="searchCustomerTextField" alignment="CENTER" layoutX="279.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="282.0" promptText="Search Customer" />
                                           <Button fx:id="searchCustomerButton" alignment="CENTER" layoutX="367.0" layoutY="44.0" mnemonicParsing="false" onAction="#onSearchCustomerButtonClick" onMouseEntered="#searchCustomerEnter" onMouseExited="#searchCustomerExit" prefHeight="34.0" prefWidth="108.0" style="-fx-background-color: #ffbd73;" text="Search Customer">
@@ -133,6 +149,13 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </Button>
+                                          <ImageView fx:id="spinner" fitHeight="44.0" fitWidth="36.0" layoutX="402.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@images/Loading_icon.gif" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="firstMessage" layoutX="311.0" layoutY="105.0" />
+                                          <Label fx:id="secondMessage" layoutX="311.0" layoutY="122.0" />
                                        </children>
                                     </Pane>
                                     <GridPane fx:id="gridPaneAllCustomer" prefHeight="708.0" prefWidth="771.0">
