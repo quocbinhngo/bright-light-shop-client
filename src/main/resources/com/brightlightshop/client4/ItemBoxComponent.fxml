@@ -22,20 +22,24 @@
                         <Insets />
                      </HBox.margin>
                   </ImageView>
-                  <VBox prefHeight="209.0" prefWidth="538.0" spacing="5.0" stylesheets="@style/style.css">
+                  <VBox prefHeight="175.0" prefWidth="759.0" spacing="5.0" stylesheets="@style/style.css">
                      <children>
                         <HBox spacing="30.0">
                            <children>
-                              <Label fx:id="titleLabel" prefHeight="42.0" prefWidth="626.0" text="Product title">
-                                 <font>
-                                    <Font name="System Bold" size="28.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="itemIdentifierLabel" prefHeight="42.0" prefWidth="626.0" text="Product title">
-                                 <font>
-                                    <Font size="28.0" />
-                                 </font>
-                              </Label>
+                              <Pane prefHeight="54.0" prefWidth="548.0">
+                                 <children>
+                                    <Label fx:id="titleLabel" layoutY="6.0" prefHeight="42.0" prefWidth="397.0" text="Product title">
+                                       <font>
+                                          <Font name="System Bold" size="28.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="itemIdentifierLabel" layoutX="433.0" layoutY="9.0" prefHeight="36.0" prefWidth="113.0" text="Identifier">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
                            </children>
                         </HBox>
                         <Label fx:id="rentalTypeLabel" prefHeight="24.0" prefWidth="142.0" text="product type">

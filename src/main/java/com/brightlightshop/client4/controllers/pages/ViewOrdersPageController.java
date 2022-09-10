@@ -12,9 +12,11 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -45,6 +47,10 @@ public class ViewOrdersPageController implements Initializable {
 
     @FXML
     private ImageView spinnerImageView;
+
+    @FXML
+    private Button searchButton;
+
 
     @FXML
     private void onSearchButtonClick() throws Exception {
@@ -167,4 +173,16 @@ public class ViewOrdersPageController implements Initializable {
             e.printStackTrace();
         }
     }
+
+
+    @FXML
+    void searchButtonEnter(MouseEvent event) {
+        searchButton.setStyle("-fx-background-color:  #e08e35");
+    }
+
+    @FXML
+    void searchButtonExit(MouseEvent event) {
+        searchButton.setStyle("-fx-background-color: #ffbd73");
+    }
+
 }

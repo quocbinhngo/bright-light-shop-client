@@ -104,6 +104,7 @@ public class ViewItemsPageController implements Initializable {
         firstProductMessage.setText("");
         secondProductMessage.setText("");
         spinner.setVisible(true);
+        girdPaneAllIteam.getChildren().clear();
         getItems();
 
     }
@@ -414,25 +415,4 @@ public class ViewItemsPageController implements Initializable {
     }
 
 
-// =======
-//     @FXML
-//     void searchButtonEnteredViewItemsPage() {
-//         searchButton.setStyle("-fx-background-color: #e4c444; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
-//     }
-
-//     @FXML
-//     void searchButtonExitedViewItemsPage() {
-//         searchButton.setStyle("-fx-background-color: #f3d74b; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
-//     }
-
-//     @FXML
-//     void clearButtonEnteredViewItemsPage() {
-//         clearButton.setStyle("-fx-background-color: #e4c444; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
-//     }
-
-//     @FXML
-//     void clearButtonExitedViewItemsPage() {
-//         clearButton.setStyle("-fx-background-color: #f3d74b; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
-//     }
-// >>>>>>> 709dc5d8c7624a1462e8e6946a4df150ae22b484
 }

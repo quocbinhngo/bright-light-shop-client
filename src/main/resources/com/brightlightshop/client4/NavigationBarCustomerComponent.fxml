@@ -84,6 +84,9 @@
                <HBox.margin>
                   <Insets />
                </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </Button>
                 <Button fx:id="bookingButton" mnemonicParsing="false" onAction="#onBookingButtonClick" onMouseEntered="#bookingButtonEnteredNavBar" onMouseExited="#bookingButtonExitedNavBar" prefHeight="40.0" prefWidth="82.0" style="-fx-background-color: #121920;" stylesheets="@style/style.css" text="Booking" textFill="WHITE">
                     <font>

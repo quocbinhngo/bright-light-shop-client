@@ -227,4 +227,5 @@ public class NavigationBarAdminComponentController implements Initializable{
         customerButton.setStyle("-fx-border-color: transparent;-fx-background-color: transparent");
     }
 
+
 }

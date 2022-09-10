@@ -1,11 +1,9 @@
 package com.brightlightshop.client4.controllers.pages;
 
 import com.brightlightshop.client4.constants.UrlConstant;
-import com.brightlightshop.client4.controllers.components.OrderComponentNoDetailController;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.*;
 import com.brightlightshop.client4.utils.Component;
-import com.brightlightshop.client4.utils.JsonParser;
 import javafx.event.ActionEvent;
 import com.brightlightshop.client4.utils.FXMLPath;
 import javafx.fxml.FXML;
@@ -17,12 +15,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import okhttp3.*;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -71,6 +69,9 @@ public class ViewUserInfoPageController implements Initializable {
     private Button addBalanceButton;
 
     @FXML
+    private Button backToHomepageButton;
+
+    @FXML
     private Label addBalanceLabel;
 
     @FXML
@@ -113,6 +114,8 @@ public class ViewUserInfoPageController implements Initializable {
             cusInfoAddress.setText(customer.getAddress());
             cusInfoUsername.setText(customer.getUsername());
             cusInfoBalance.setText(String.valueOf(customer.getBalance()));
+            addBalanceTextField.setDisable(false);
+            addBalanceButton.setDisable(false);
             if (customer instanceof Guest) {
                 cusInfoAccountType.setText("Guest");
             }
@@ -135,6 +138,8 @@ public class ViewUserInfoPageController implements Initializable {
         cusInfoUsername.setText(admin.getUsername());
         cusInfoBalance.setText("");
         cusInfoAccountType.setText("Admin");
+        addBalanceTextField.setDisable(true);
+        addBalanceButton.setDisable(true);
     }
 
     public void addNavigationBar(){
@@ -163,6 +168,7 @@ public class ViewUserInfoPageController implements Initializable {
         addBalanceTextField.clear();
         addBalanceLabel.setVisible(true);
         addBalanceLabel.setText("Add balance successful!");
+
         setLabel();
     }
 
@@ -230,5 +236,25 @@ public class ViewUserInfoPageController implements Initializable {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @FXML
+    void addBalanceEnter(MouseEvent event) {
+        addBalanceButton.setStyle("-fx-background-color:  #e08e35");
+    }
+
+    @FXML
+    void addBalanceExit(MouseEvent event) {
+        addBalanceButton.setStyle("-fx-background-color: #ffbd73");
+    }
+
+    @FXML
+    void backToHomePageEnter(MouseEvent event) {
+        backToHomepageButton.setStyle("-fx-background-color:  #e08e35");
+    }
+
+    @FXML
+    void backToHomePageExit(MouseEvent event) {
+        backToHomepageButton.setStyle("-fx-background-color: #ffbd73");
     }
 }

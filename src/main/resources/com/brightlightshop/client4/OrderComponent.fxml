@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox minWidth="-Infinity" prefHeight="135.0" prefWidth="849.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #c3c3c3; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.OrderComponentController">
+<VBox minWidth="-Infinity" prefHeight="139.0" prefWidth="849.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #c3c3c3; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brightlightshop.client4.controllers.components.OrderComponentController">
    <children>
-      <HBox alignment="CENTER" minWidth="-Infinity" prefHeight="67.0" prefWidth="849.0" style="-fx-border-color: c3c3c3;">
+      <HBox alignment="CENTER" minWidth="-Infinity" prefHeight="59.0" prefWidth="850.0" style="-fx-border-color: c3c3c3;">
          <children>
             <Label fx:id="statusLabel" alignment="CENTER" prefHeight="51.0" prefWidth="290.0" text="Status">
                <font>
@@ -24,7 +24,7 @@
          </padding>
       </HBox>
       <VBox fx:id="orderDetailContainer" prefHeight="0.0" prefWidth="600.0" />
-      <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="849.0" style="-fx-border-color: c3c3c3;">
+      <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="78.0" prefWidth="850.0" style="-fx-border-color: c3c3c3;">
          <children>
             <HBox alignment="CENTER_RIGHT" layoutY="-2.0" prefHeight="34.0" prefWidth="850.0" spacing="20.0">
                <children>
@@ -33,15 +33,14 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="34.0" prefWidth="87.0">
+                  <HBox alignment="TOP_RIGHT" prefHeight="34.0" prefWidth="58.0">
                      <children>
-                        <Pane prefHeight="34.0" prefWidth="34.0" />
-                        <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="8.0" text="\$">
+                        <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" text="\$">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="totalValueLabel" prefHeight="34.0" prefWidth="87.0" text="Price">
+                        <Label fx:id="totalValueLabel" alignment="CENTER_RIGHT" prefHeight="34.0" text="Price">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -53,7 +52,7 @@
                   <Insets right="10.0" />
                </padding>
             </HBox>
-            <Button fx:id="viewInDetailButton" layoutX="734.0" layoutY="32.0" mnemonicParsing="false" onAction="#onViewInDetailButtonClick" onMouseEntered="#viewInDetailButtonEnteredOrderComponentPage" onMouseExited="#viewInDetailButtonExitedOrderComponentPage" prefHeight="18.0" prefWidth="108.0" style="-fx-background-color: #f1ab2c;" text="View in Detail">
+            <Button fx:id="viewInDetailButton" layoutX="732.0" layoutY="37.0" mnemonicParsing="false" onAction="#onViewInDetailButtonClick" onMouseEntered="#viewInDetailButtonEnteredOrderComponentPage" onMouseExited="#viewInDetailButtonExitedOrderComponentPage" prefHeight="18.0" prefWidth="108.0" style="-fx-background-color: #f1ab2c;" text="View in Detail">
                <font>
                   <Font size="14.0" />
                </font>
