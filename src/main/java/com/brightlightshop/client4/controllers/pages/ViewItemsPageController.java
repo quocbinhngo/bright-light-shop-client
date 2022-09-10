@@ -40,17 +40,10 @@ import java.util.ResourceBundle;
 
 public class ViewItemsPageController implements Initializable {
     @FXML
+    private Button addItemButton;
+
+    @FXML
     private ScrollPane allItemContainer;
-
-    @FXML
-    public Label firstProductMessage;
-
-    @FXML
-    public Label secondProductMessage;
-
-
-    @FXML
-    public ImageView spinner;
 
     @FXML
     private RadioButton availableStatusRadioButton;
@@ -65,10 +58,10 @@ public class ViewItemsPageController implements Initializable {
     private RadioButton dvdRentalTypeRadioButton;
 
     @FXML
-    private RadioButton gameRentalTypeRadioButton;
+    private Label firstProductMessage;
 
     @FXML
-    private Label genreType;
+    private RadioButton gameRentalTypeRadioButton;
 
     @FXML
     private GridPane girdPaneAllIteam;
@@ -92,16 +85,13 @@ public class ViewItemsPageController implements Initializable {
     private RadioButton recordRentalTypeRadioButton;
 
     @FXML
-    private ToggleGroup rentalType;
+    private Label secondProductMessage;
 
     @FXML
     private Button sortButton;
 
     @FXML
-    private ToggleGroup sortBy;
-
-    @FXML
-    private ToggleGroup status;
+    private ImageView spinner;
 
     @FXML
     private RadioButton titleAscendingRadioButton;
@@ -116,6 +106,15 @@ public class ViewItemsPageController implements Initializable {
         spinner.setVisible(true);
         getItems();
 
+    }
+
+    @FXML
+    void onAddItemButtonClick(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getCreateItemPagePath()));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -260,9 +259,16 @@ public class ViewItemsPageController implements Initializable {
             addNavigationBar();
             setupToggleGroup();
             setupTextField();
+            setupButton();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void setupButton() {
+        if (!(UserModel.getCurrentUser().getAccountType().equals("admin"))) {
+            addItemButton.setVisible(false);
         }
     }
 
@@ -272,8 +278,14 @@ public class ViewItemsPageController implements Initializable {
     }
 
     public void getItems() throws Exception {
+        girdPaneAllIteam.getChildren().clear();
+        spinner.setVisible(true);
+
         Thread t = new Thread(()->{
             String itemsResponse = null;
+
+            // Clear all item to display spinne
+
             try {
                 itemsResponse = getItemsRequest();
             } catch (Exception e) {
@@ -285,12 +297,15 @@ public class ViewItemsPageController implements Initializable {
 
             String finalItemsResponse = itemsResponse;
             Platform.runLater(()->{
-                updateItemsToGrid();
                 if (finalItemsResponse.equals("[]") ){
                     spinner.setVisible(false);
                     firstProductMessage.setText("No result");
                     secondProductMessage.setText("Try checking your spelling or use more general terms");
+                    return;
                 }
+
+                updateItemsToGrid();
+
             });
         });
         t.start();
@@ -375,6 +390,7 @@ public class ViewItemsPageController implements Initializable {
         }
     }
 
+// <<<<<<< HEAD
 
     @FXML
     void clearButtonEnter(MouseEvent event) {
@@ -398,4 +414,25 @@ public class ViewItemsPageController implements Initializable {
     }
 
 
+// =======
+//     @FXML
+//     void searchButtonEnteredViewItemsPage() {
+//         searchButton.setStyle("-fx-background-color: #e4c444; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
+//     }
+
+//     @FXML
+//     void searchButtonExitedViewItemsPage() {
+//         searchButton.setStyle("-fx-background-color: #f3d74b; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
+//     }
+
+//     @FXML
+//     void clearButtonEnteredViewItemsPage() {
+//         clearButton.setStyle("-fx-background-color: #e4c444; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
+//     }
+
+//     @FXML
+//     void clearButtonExitedViewItemsPage() {
+//         clearButton.setStyle("-fx-background-color: #f3d74b; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
+//     }
+// >>>>>>> 709dc5d8c7624a1462e8e6946a4df150ae22b484
 }

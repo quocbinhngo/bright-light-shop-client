@@ -3,17 +3,20 @@ package com.brightlightshop.client4.controllers.pages;
 import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.User;
+import com.brightlightshop.client4.utils.Component;
 import com.brightlightshop.client4.utils.FXMLPath;
 import com.brightlightshop.client4.utils.JsonParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -22,8 +25,10 @@ import okhttp3.*;
 import org.json.*;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AuthPage {
+public class AuthPage implements Initializable {
     private final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private final String userId = "62ec74b4f13a1bbf8d94f560";
     private final OkHttpClient client = new OkHttpClient();
@@ -75,6 +80,9 @@ public class AuthPage {
     @FXML
     private VBox vBoxRight;
 
+    @FXML
+    private ImageView loadingImageView;
+
     private String createUserPostJson(){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("firstName", registerFirstNameTextField.getText());
@@ -113,8 +121,9 @@ public class AuthPage {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
-            if (String.valueOf(response.code()).charAt(0) == '4') {
+            if (String.valueOf(response.code()).charAt(0) != '2') {
                 handleRegisterError(response.body().string());
+                return "";
             }
 
             return response.body().string();
@@ -139,10 +148,10 @@ public class AuthPage {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
-            if (String.valueOf(response.code()).charAt(0) == '4') {
+            if (String.valueOf(response.code()).charAt(0) != '2') {
                 handleLoginError(response.body().string());
+                return "";
             }
-
 
             return response.body().string();
         }
@@ -155,20 +164,36 @@ public class AuthPage {
             return false;
         }
 
+        loadingImageView.setVisible(true);
         String response = createUserPostRequest();
+
+        if (response.equals("")) {
+            loadingImageView.setVisible(false);
+            return false;
+        }
+
+
         clearAll();
         registerMessageLabel.setText("Successfully registered!");
         registerMessageLabel.setTextFill(Color.GREEN);
-        System.out.println(response);
+        loadingImageView.setVisible(false);
         return true;
     }
 
     public boolean signIn(ActionEvent e) throws IOException{
+        loadingImageView.setVisible(true);
         String response = createSessionPostRequest();
+
+        if (response.equals("")) {
+            loadingImageView.setVisible(false);
+            return false;
+        }
+
         clearAll();
         JSONObject userInfo = new JSONObject(response);
         UserModel.setCurrentUser(JsonParser.getUser(userInfo));
         moveToHomePage(e);
+        loadingImageView.setVisible(false);
         return true;
     }
 
@@ -199,5 +224,15 @@ public class AuthPage {
     @FXML
     protected void createAccountButtonExitedAuthPage() {
         createAccountButton.setStyle("-fx-background-color: #ffbd73");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadingImageView.setVisible(false);
+        setupTextField();
+    }
+
+    private void setupTextField() {
+        Component.numericTextField(registerPhoneNumberTextField);
     }
 }

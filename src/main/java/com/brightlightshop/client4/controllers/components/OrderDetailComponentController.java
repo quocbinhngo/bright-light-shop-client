@@ -24,6 +24,7 @@ public class OrderDetailComponentController {
     private Label totalPrice;
 
     public void setData(OrderDetail orderDetail) {
+        double total = orderDetail.getItem().getRentalFee() * orderDetail.getQuantity();
         Image image = new Image(orderDetail.getItem().getImageUrl());
         imageView.setImage(image);
         quantityLabel.setText(String.valueOf(orderDetail.getQuantity()));

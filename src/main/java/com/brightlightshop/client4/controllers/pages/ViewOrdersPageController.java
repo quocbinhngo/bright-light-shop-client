@@ -8,10 +8,13 @@ import com.brightlightshop.client4.utils.Component;
 import com.brightlightshop.client4.utils.FXMLPath;
 import com.brightlightshop.client4.utils.JsonParser;
 import com.cloudinary.Url;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,17 +32,44 @@ import java.util.ResourceBundle;
 
 public class ViewOrdersPageController implements Initializable {
     @FXML
-    private VBox orderContainer;
+    private Label messageLabel;
 
     @FXML
     private HBox navigationBar;
 
     @FXML
+    private VBox orderContainer;
+
+    @FXML
     private TextField pageTextField;
+
+    @FXML
+    private ImageView spinnerImageView;
 
     @FXML
     private void onSearchButtonClick() throws Exception {
         setOrdersFromJson(new JSONArray(getOrdersRequest()));
+
+        spinnerImageView.setVisible(true);
+        messageLabel.setVisible(false);
+
+        Thread setOrdersThread = new Thread(()-> {
+            try {
+                String response = getOrdersRequest();
+                Platform.runLater(()->{
+                    try {
+                        setOrdersFromJson(new JSONArray(response));
+                        spinnerImageView.setVisible(false);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        setOrdersThread.start();
     }
 
     private final OkHttpClient client = new OkHttpClient();
@@ -47,10 +77,16 @@ public class ViewOrdersPageController implements Initializable {
     private ArrayList<Order> orders;
 
     private void setOrdersFromJson(JSONArray ordersJson) throws IOException {
+        orderContainer.getChildren().clear();
         orders = JsonParser.getOrders(ordersJson);
         for (Order order: orders) {
+            if (order.getOrderDetails().isEmpty()){
+                messageLabel.setVisible(true);
+                return;
+            }
+
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/OrderComponent.fxml"));
+            fxmlLoader.setLocation(getClass().getResource(FXMLPath.getOrderComponentPath()));
 
             VBox vBox = fxmlLoader.load();
             OrderComponentController orderComponentController = fxmlLoader.getController();
@@ -90,9 +126,28 @@ public class ViewOrdersPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            setOrdersFromJson(new JSONArray(getOrdersRequest()));
             addNavigationBar();
             setupTextField();
+            spinnerImageView.setVisible(true);
+            messageLabel.setVisible(false);
+
+            Thread setOrdersThread = new Thread(()-> {
+                try {
+                    String response = getOrdersRequest();
+                    Platform.runLater(()->{
+                        try {
+                            setOrdersFromJson(new JSONArray(response));
+                            spinnerImageView.setVisible(false);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+            setOrdersThread.start();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

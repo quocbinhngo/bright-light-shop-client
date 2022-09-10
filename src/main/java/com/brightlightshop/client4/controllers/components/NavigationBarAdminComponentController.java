@@ -224,7 +224,7 @@ public class NavigationBarAdminComponentController implements Initializable{
 
     @FXML
     void customerButtonExitedAdminNavBar() {
-        customerButton.setStyle("-fx-border-color: #FFFFFF;-fx-background-color: transparent");
+        customerButton.setStyle("-fx-border-color: transparent;-fx-background-color: transparent");
     }
 
 }

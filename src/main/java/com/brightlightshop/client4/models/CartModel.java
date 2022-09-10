@@ -38,4 +38,8 @@ public class CartModel {
         orderDetails.add(orderDetail);
         return true;
     }
+
+    public static void clearAllItems() {
+        orderDetails.clear();
+    }
 }

@@ -1,6 +1,7 @@
 package com.brightlightshop.client4.types;
 
 import com.brightlightshop.client4.utils.JsonParser;
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 
 import java.util.Date;
@@ -112,6 +113,10 @@ public abstract class Item {
         this.availableNumber = availableNumber;
     }
 
+    public String getItemIdentifier() {
+        return String.format("I%s-%d", StringUtils.leftPad(String.valueOf(itemCode), 3, "0"), publishedYear);
+    }
+
     @Override
     public String toString() {
         return "Item{" +
@@ -138,5 +143,10 @@ public abstract class Item {
     @Override
     public int hashCode() {
         return Objects.hash(_id);
+    }
+
+    public String capitalizeFistLetter(String str){
+        String cap = str.substring(0, 1).toUpperCase() + str.substring(1);
+        return cap;
     }
 }

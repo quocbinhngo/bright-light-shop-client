@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -51,6 +52,9 @@ public class CheckoutPageController implements Initializable {
     private HBox navigationBar;
 
     @FXML
+    private ImageView spinnerImageView;
+
+    @FXML
     private Label rewardPointLabel;
 
     @FXML
@@ -70,6 +74,14 @@ public class CheckoutPageController implements Initializable {
 
     @FXML
     void onRentButtonClick(ActionEvent event) throws IOException {
+        if (CartModel.getOrderDetails().isEmpty()) {
+            notifySubscriber("There must at least one item.");
+            return;
+        }
+
+        // Show the spinner
+        spinnerImageView.setVisible(true);
+
         // Create request for order
         String response = createOrderRequest();
 
@@ -79,6 +91,15 @@ public class CheckoutPageController implements Initializable {
 
     @FXML
     void onRentWithRewardPointButtonClick(ActionEvent event) throws IOException {
+        if (CartModel.getOrderDetails().isEmpty()) {
+            notifySubscriber("There must at least one item.");
+            return;
+        }
+
+        // Show the spinner
+        spinnerImageView.setVisible(true);
+
+        // Call request
         String response = createOrderWithRewardPointRequest();
 
         // Notify subscriber
@@ -95,6 +116,9 @@ public class CheckoutPageController implements Initializable {
 
         // Update label
         setupLabel(true);
+
+        // Turn of the label
+        spinnerImageView.setVisible(false);
     }
 
     private String createOrderRequest() {
@@ -106,6 +130,11 @@ public class CheckoutPageController implements Initializable {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
+            if (String.valueOf(response.code()).charAt(0) == '2') {
+                CartModel.clearAllItems();
+                update();
+            }
+
             return response.body().string();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -120,6 +149,11 @@ public class CheckoutPageController implements Initializable {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
+            if (String.valueOf(response.code()).charAt(0) == '2') {
+                CartModel.clearAllItems();
+                update();
+            }
+
             return response.body().string();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -160,6 +194,10 @@ public class CheckoutPageController implements Initializable {
             setupToggleGroup();
             setupLabel(false);
             setupButton();
+
+            // Hide the spinner
+            spinnerImageView.setVisible(false);
+
             update();
 
         } catch (IOException e) {

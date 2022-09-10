@@ -54,6 +54,9 @@ public class ItemBoxComponentController {
     private Button itemBoxClick;
 
     @FXML
+    private Label itemIdentifierLabel;
+
+    @FXML
     void onItemBoxClick(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewItemPagePath()));
         Scene scene = new Scene(fxmlLoader.load());
@@ -99,6 +102,7 @@ public class ItemBoxComponentController {
 
 
         titleLabel.setText(item.getTitle());
+        itemIdentifierLabel.setText(item.getItemIdentifier());
         rentalTypeLabel.setText(StringUtils.capitalize(item.getRentalType()));
         rentalFeeLabel.setText(String.valueOf(item.getRentalFee()));
         statusLabel.setText(item.getAvailableNumber() > 0 ? "Available" : "Out of stock");

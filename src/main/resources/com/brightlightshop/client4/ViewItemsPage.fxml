@@ -149,15 +149,21 @@
                               </VBox>
                               <VBox prefHeight="787.0" prefWidth="740.0">
                                  <children>
-                                    <Label fx:id="genreType1" prefHeight="10.0" prefWidth="730.0" text="Results">
-                                       <font>
-                                          <Font size="25.0" />
-                                       </font>
+                                    <HBox alignment="CENTER_LEFT">
                                        <VBox.margin>
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
-                                    </Label>
-                                    <Line endX="635.0" startX="-80.0" style="-fx-stroke-width: 0.3;">
+                                       <children>
+                                          <Label prefHeight="36.0" text="Results">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Pane HBox.hgrow="ALWAYS" />
+                                          <Button fx:id="addItemButton" mnemonicParsing="false" onAction="#onAddItemButtonClick" text="Add Item" />
+                                       </children>
+                                    </HBox>
+                                    <Line endX="649.2929077148438" endY="-1.9142136573791504" startX="-80.0" style="-fx-stroke-width: 0.3;" VBox.vgrow="ALWAYS">
                                        <VBox.margin>
                                           <Insets left="10.0" />
                                        </VBox.margin>

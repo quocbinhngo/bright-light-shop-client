@@ -3,6 +3,7 @@ package com.brightlightshop.client4.controllers.pages;
 
 import com.brightlightshop.client4.constants.ItemConstant;
 import com.brightlightshop.client4.constants.UrlConstant;
+import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.Item;
 import com.brightlightshop.client4.utils.*;
 import javafx.animation.KeyFrame;
@@ -45,6 +46,8 @@ public class CreateItemPageController implements Initializable {
     private final OkHttpClient client = new OkHttpClient();
     private final FileChooser fileChooser = new FileChooser();
     private CloudinaryUploader cloudinaryUploader = new CloudinaryUploader();
+
+    private boolean createItemSuccess = false;
 
     private File imageFile;
     private String imageUrl;
@@ -89,8 +92,12 @@ public class CreateItemPageController implements Initializable {
 
         setMessageLabel("Adding item");
         imageUrl = cloudinaryUploader.uploadImage(imageFile, "item/" + getRentalTypeValue() + "/" + Generator.id());
-
         String response = createItemPostRequest();
+
+        if (!createItemSuccess) {
+            return;
+        }
+
         item = JsonParser.getItem(new JSONObject(response));
 
         moveToUpdateItemPageAdmin(event);
@@ -185,12 +192,22 @@ public class CreateItemPageController implements Initializable {
         Request request = new Request.Builder()
                 .url(UrlConstant.createItem())
                 .post(body)
-                .addHeader("user-id", userId)
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
+            if (String.valueOf(response.code()).charAt(0) != '2') {
+                handleError(response.body().string());
+            }
+
+            createItemSuccess = true;
             return response.body().string();
         }
+    }
+
+    private void handleError(String message) {
+        setMessageLabel(message);
+        createItemSuccess = false;
     }
 
     private void clearInput() {

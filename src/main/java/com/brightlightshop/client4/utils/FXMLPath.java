@@ -25,6 +25,10 @@ public class FXMLPath {
         return root + "OrderDetailCheckoutComponent.fxml";
     }
 
+    public static String getOrderComponentPath() {
+        return root + "OrderComponent.fxml";
+    }
+
     public static String getOrderDetailComponentPath() {
         return root + "OrderDetailComponent.fxml";
     }
@@ -68,5 +72,7 @@ public class FXMLPath {
     public static String getCreateItemPagePath() {
         return root + "CreateItemPage.fxml";
     }
+
+    public  static String getLogoIcon(){return root + "images/logoIcon.png";}
 }
 

@@ -58,6 +58,9 @@ public class UpdateItemPageController implements Initializable {
     private ImageView imageView;
 
     @FXML
+    private ImageView loadingImageView;
+
+    @FXML
     private Label messageLabel;
 
     @FXML
@@ -115,7 +118,7 @@ public class UpdateItemPageController implements Initializable {
         Request request = new Request.Builder()
                 .url(UrlConstant.getItemById(itemId))
                 .get()
-                .addHeader("user-id", "62ec74b4f13a1bbf8d94f560")
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();
 
         try(Response response = client.newCall(request).execute()) {
@@ -138,7 +141,7 @@ public class UpdateItemPageController implements Initializable {
         Request request = new Request.Builder()
                 .url(UrlConstant.addItemQuantity(item.get_id()))
                 .post(getAddItemQuantityBody())
-                .addHeader("user-id", "62ec74b4f13a1bbf8d94f560")
+                .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();
 
         try(Response response = client.newCall(request).execute()) {
@@ -189,6 +192,9 @@ public class UpdateItemPageController implements Initializable {
             }
 
         }
+
+        // Set the image view
+        imageView.setImage(new Image(item.getImageUrl()));
     }
 
     public void setData(String itemId) throws Exception {
@@ -201,6 +207,7 @@ public class UpdateItemPageController implements Initializable {
     private void setupTextField() {
         Component.numericTextField(quantityTextField);
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
