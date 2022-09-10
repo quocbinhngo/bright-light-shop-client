@@ -23,6 +23,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -82,6 +84,9 @@ public class CreateItemPageController implements Initializable {
 
     @FXML
     private Button uploadButton;
+
+    @FXML
+    private HBox navigationBar;
 
     @FXML
     void onSubmitButtonClick(ActionEvent event) throws Exception {
@@ -316,12 +321,25 @@ public class CreateItemPageController implements Initializable {
         rentalFeeTextField.setDisable(true);
     }
 
+    public void addNavigationBar() {
+        try {
+            FXMLLoader navigationBarFXMLLoader = new FXMLLoader();
+            navigationBarFXMLLoader.setLocation(getClass().getResource(FXMLPath.getNavigationBarComponentPath()));
+            AnchorPane hbox = navigationBarFXMLLoader.load();
+
+            //put navigation bar into navigationbar container at CreateItemPage
+            navigationBar.getChildren().add(hbox);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         clearLabel();
         setupTextField();
         setupChoiceBox();
+        addNavigationBar();
     }
 
     @FXML

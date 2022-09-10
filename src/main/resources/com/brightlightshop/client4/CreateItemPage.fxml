@@ -111,7 +111,7 @@
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font></Button>
-                        <Label fx:id="messageLabel" style="-fx-text-fill: #589c50;" text="Label">
+                        <Label fx:id="messageLabel" text="Label">
                      <font>
                         <Font size="16.0" />
                      </font></Label>

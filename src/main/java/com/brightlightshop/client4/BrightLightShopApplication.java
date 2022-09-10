@@ -20,7 +20,6 @@ public class BrightLightShopApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Bright Light Shop - Buy in brilliant way");
         stage.setScene(scene);
-        stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/com/brightlightshop/client4/images/logoIcon.png"))));
         stage.getIcons().add(new Image(String.valueOf(getClass().getResource(FXMLPath.getLogoIcon()))));
         stage.setResizable(false);
         stage.show();

@@ -175,7 +175,7 @@ public class AuthPage implements Initializable {
 
         clearAll();
         registerMessageLabel.setText("Successfully registered!");
-        registerMessageLabel.setTextFill(Color.GREEN);
+        registerMessageLabel.setTextFill(Color.BLACK);
         loadingImageView.setVisible(false);
         return true;
     }
@@ -188,7 +188,6 @@ public class AuthPage implements Initializable {
             loadingImageView.setVisible(false);
             return false;
         }
-
         clearAll();
         JSONObject userInfo = new JSONObject(response);
         UserModel.setCurrentUser(JsonParser.getUser(userInfo));

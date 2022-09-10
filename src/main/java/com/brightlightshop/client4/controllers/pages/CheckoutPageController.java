@@ -5,7 +5,10 @@ import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.OrderDetailCheckoutComponentController;
 import com.brightlightshop.client4.models.CartModel;
 import com.brightlightshop.client4.models.UserModel;
-import com.brightlightshop.client4.types.*;
+import com.brightlightshop.client4.types.Guest;
+import com.brightlightshop.client4.types.OrderDetail;
+import com.brightlightshop.client4.types.Regular;
+import com.brightlightshop.client4.types.Vip;
 import com.brightlightshop.client4.utils.FXMLPath;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -108,6 +111,7 @@ public class CheckoutPageController implements Initializable {
 
     private void notifySubscriber(String message) throws IOException {
         // Set the message label
+        messageLabel.setWrapText(true);
         messageLabel.setVisible(true);
         messageLabel.setText(message);
 

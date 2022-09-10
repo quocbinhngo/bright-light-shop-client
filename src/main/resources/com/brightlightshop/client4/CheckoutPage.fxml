@@ -127,7 +127,7 @@
                                           </ImageView>
                                        </children>
                                     </HBox>
-                                    <Label fx:id="messageLabel" alignment="CENTER" prefHeight="27.0" prefWidth="340.0" text="message">
+                                    <Label fx:id="messageLabel" alignment="CENTER" prefHeight="59.0" prefWidth="340.0" text="message">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -163,12 +163,12 @@
                         <Line endX="233.0" layoutX="124.0" layoutY="144.0" startX="-100.0" strokeWidth="0.3" />
                         <Pane fx:id="rewardPointLabelContainer" layoutX="16.0" layoutY="189.0" prefHeight="29.0" prefWidth="352.0">
                            <children>
-                              <Label layoutX="6.0" layoutY="2.0" text="Your reward point">
+                              <Label layoutX="6.0" layoutY="2.0" text="Your reward point:">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="rewardPointLabel" alignment="CENTER_RIGHT" layoutX="304.0" layoutY="1.0" text="Label">
+                              <Label fx:id="rewardPointLabel" layoutX="290.0" layoutY="1.0" prefHeight="25.0" prefWidth="51.0" text="Label">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -177,7 +177,7 @@
                         </Pane>
                         <Pane layoutX="8.0" layoutY="158.0" prefHeight="31.0" prefWidth="362.0">
                            <children>
-                              <Label layoutX="14.0" layoutY="5.0" text="Current balance">
+                              <Label layoutX="14.0" layoutY="5.0" text="Current balance:">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
