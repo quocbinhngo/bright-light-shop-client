@@ -43,8 +43,6 @@ public class CustomerBoxComponentController {
 
         ViewCustomerPageController viewCustomerPageController = fxmlLoader.getController();
         viewCustomerPageController.setData(customer.get_id());
-        viewCustomerPageController.setLabel();
-        viewCustomerPageController.setPurchaseHistory();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

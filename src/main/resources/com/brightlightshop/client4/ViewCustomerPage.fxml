@@ -4,6 +4,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -41,11 +44,14 @@
                               <children>
                                  <Label fx:id="cusInfoUsername1" text="Username:" textFill="#0000005a">
                                     <HBox.margin>
-                                       <Insets bottom="20.0" right="2.0" />
+                                       <Insets />
                                     </HBox.margin>
                                     <font>
-                                       <Font name="System Bold" size="12.0" />
+                                       <Font name="System Bold" size="24.0" />
                                     </font>
+                                    <padding>
+                                       <Insets right="20.0" />
+                                    </padding>
                                  </Label>
                                  <Label fx:id="cusInfoUsername" text="username" textFill="#9c5044c7">
                                     <font>
@@ -164,6 +170,21 @@
                                  <Insets bottom="20.0" top="20.0" />
                               </VBox.margin>
                            </Text>
+                           <HBox prefHeight="100.0" prefWidth="200.0">
+                              <children>
+                                 <Label text="Page: ">
+                                    <font>
+                                       <Font name="System Bold" size="15.0" />
+                                    </font>
+                                 </Label>
+                                 <TextField fx:id="pageTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="100.0" />
+                                 <Button fx:id="goButton" mnemonicParsing="false" onAction="#onGoButtonClick" text="Go">
+                                    <HBox.margin>
+                                       <Insets left="10.0" />
+                                    </HBox.margin>
+                                 </Button>
+                              </children>
+                           </HBox>
                            <Line endX="750.0" startX="-100.0" stroke="#c3c3c3">
                               <VBox.margin>
                                  <Insets bottom="20.0" />
@@ -171,7 +192,19 @@
                            <VBox fx:id="purchaseHistory" alignment="CENTER" prefHeight="490.0" prefWidth="818.0" spacing="10.0">
                               <VBox.margin>
                                  <Insets top="20.0" />
-                              </VBox.margin></VBox>
+                              </VBox.margin>
+                              <children>
+                                 <Label fx:id="messageLabel">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </Label>
+                                 <ImageView fx:id="spinner" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@images/Loading_icon.gif" />
+                                    </image>
+                                 </ImageView>
+                              </children></VBox>
                         </children>
                         <padding>
                            <Insets left="10.0" right="10.0" />
