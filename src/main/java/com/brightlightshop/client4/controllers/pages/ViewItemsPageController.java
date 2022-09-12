@@ -304,9 +304,7 @@ public class ViewItemsPageController implements Initializable {
                     secondProductMessage.setText("Try checking your spelling or use more general terms");
                     return;
                 }
-
                 updateItemsToGrid();
-
             });
         });
         t.start();

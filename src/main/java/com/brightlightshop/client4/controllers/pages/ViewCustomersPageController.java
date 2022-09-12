@@ -4,8 +4,10 @@ import com.brightlightshop.client4.constants.UrlConstant;
 import com.brightlightshop.client4.controllers.components.CustomerBoxComponentController;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.*;
+import com.brightlightshop.client4.utils.Component;
 import com.brightlightshop.client4.utils.FXMLPath;
 import com.brightlightshop.client4.utils.JsonParser;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -17,6 +19,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.layout.AnchorPane;
@@ -77,7 +80,7 @@ public class ViewCustomersPageController implements Initializable {
     private RadioButton regularCustomerTypeRadioButton;
 
     @FXML
-    private Button searchButton;
+    private Button sortButton;
 
     @FXML
     private RadioButton nameAscendingRadioButton;
@@ -90,6 +93,18 @@ public class ViewCustomersPageController implements Initializable {
 
     @FXML
     private Button searchCustomerButton;
+
+    @FXML
+    private TextField pageTextField;
+
+    @FXML
+    private ImageView spinner;
+
+    @FXML
+    private Label firstMessage;
+
+    @FXML
+    private Label secondMessage;
 
     private ToggleGroup customerTypeToggleGroup = new ToggleGroup();
     private ToggleGroup sortByToggleGroup = new ToggleGroup();
@@ -170,6 +185,10 @@ public class ViewCustomersPageController implements Initializable {
         setupSortByToggleGroup();
     }
 
+    private void setupTextField() {
+        Component.numericTextField(pageTextField);
+        pageTextField.setText("1");
+    }
     private void handleError() {
     }
 
@@ -204,6 +223,12 @@ public class ViewCustomersPageController implements Initializable {
 
         if (descValue) {
             urlBuilder.addQueryParameter("desc", String.valueOf(true));
+        }
+
+        if (pageTextField.getText() == null || pageTextField.getText().equals("")) {
+            urlBuilder.addQueryParameter("page", "1");
+        } else {
+            urlBuilder.addQueryParameter("page", pageTextField.getText());
         }
 
         return urlBuilder.build().toString();
@@ -257,9 +282,33 @@ public class ViewCustomersPageController implements Initializable {
     }
 
     public void getCustomers() throws Exception {
-        String customersResponse = getCustomersRequest();
-        customers = JsonParser.getCustomers(new JSONArray(customersResponse));
-        updateCustomersToGrid();
+        gridPaneAllCustomer.getChildren().clear();
+        spinner.setVisible(true);
+
+        Thread t = new Thread(()->{
+            String customersResponse = null;
+            try
+            {
+                customersResponse = getCustomersRequest();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Cus res: " + customersResponse);
+
+            customers = JsonParser.getCustomers(new JSONArray(customersResponse));
+
+            String finalCustomersResponse = customersResponse;
+            Platform.runLater(()->{
+                spinner.setVisible(false);
+                if (finalCustomersResponse.equals("[]") ){
+                    firstMessage.setText("No result");
+                    secondMessage.setText("Try checking your spelling or use more general terms");
+                    return;
+                }
+                updateCustomersToGrid();
+            });
+        });
+        t.start();
     }
 
     public void setCustomers(ArrayList<Customer> customers) {
@@ -326,14 +375,17 @@ public class ViewCustomersPageController implements Initializable {
         try {
             addNavigationBar();
             setupToggleGroup();
-
+            setupTextField();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
     @FXML
-    void onSearchButtonClick(ActionEvent event) throws Exception {
+    void onSortButtonClick(ActionEvent event) throws Exception {
+        firstMessage.setText("");
+        secondMessage.setText("");
+        spinner.setVisible(true);
         getCustomers();
     }
 
@@ -348,16 +400,19 @@ public class ViewCustomersPageController implements Initializable {
         customerTypeValue = null;
         sortByValue = null;
         descValue = false;
+
+        //Set page to 1
+        pageTextField.setText("1");
     }
 
     @FXML
-    void searchButtonEnter() {
-        searchButton.setStyle("-fx-background-color:  #e08e35; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
+    void sortButtonEnter() {
+        sortButton.setStyle("-fx-background-color:  #e08e35; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
     }
 
     @FXML
-    void searchButtonExit() {
-        searchButton.setStyle("-fx-background-color:  #ffbd73; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
+    void sortButtonExit() {
+        sortButton.setStyle("-fx-background-color:  #ffbd73; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: BLACK");
     }
 
     @FXML

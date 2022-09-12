@@ -137,6 +137,16 @@ public class NavigationBarCustomerComponentController implements Initializable {
         moveViewItemsPage(event, items);
     }
 
+    @FXML
+    private void onLogOutButtonClick(ActionEvent event) throws IOException {
+        UserModel.setCurrentUser(null);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getAuthPagePath()));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
     private void moveViewItemsPage(ActionEvent event, ArrayList<Item> items) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewItemsPagePath()));
         Scene scene = new Scene(fxmlLoader.load());

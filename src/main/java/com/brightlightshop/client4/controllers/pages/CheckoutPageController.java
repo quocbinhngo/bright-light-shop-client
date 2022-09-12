@@ -194,6 +194,7 @@ public class CheckoutPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            UserModel.update();
             addNavigationBar();
             setupToggleGroup();
             setupLabel(false);

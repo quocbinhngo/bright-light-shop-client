@@ -1,10 +1,14 @@
 package com.brightlightshop.client4.controllers.pages;
 
 import com.brightlightshop.client4.constants.UrlConstant;
+import com.brightlightshop.client4.controllers.components.OrderComponentController;
 import com.brightlightshop.client4.controllers.components.OrderComponentNoDetailController;
 import com.brightlightshop.client4.models.UserModel;
 import com.brightlightshop.client4.types.*;
+import com.brightlightshop.client4.utils.Component;
+import com.brightlightshop.client4.utils.FXMLPath;
 import com.brightlightshop.client4.utils.JsonParser;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,10 +17,13 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -26,6 +33,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ViewCustomerPageController implements Initializable {
@@ -64,6 +72,18 @@ public class ViewCustomerPageController implements Initializable {
     @FXML
     private Button backCustomerListButton;
 
+    @FXML
+    private TextField pageTextField;
+
+    @FXML
+    private ImageView spinner;
+
+    @FXML
+    private Label messageLabel;
+
+    @FXML
+    private Button goButton;
+
     private ArrayList<Order> orders;
 
     public void handleError(){
@@ -89,7 +109,7 @@ public class ViewCustomerPageController implements Initializable {
 
     private String getOrdersRequest(String userId) throws Exception {
         Request request = new Request.Builder()
-                .url(UrlConstant.getOrders())
+                .url(getUrl())
                 .get()
                 .addHeader("user-id", userId)
                 .build();
@@ -98,8 +118,35 @@ public class ViewCustomerPageController implements Initializable {
         }
     }
 
-    private void setOrdersFromJson(JSONArray ordersJson) {
+    private String getUrl(){
+        HttpUrl.Builder urlBuilder = Objects.requireNonNull(HttpUrl.parse(UrlConstant.getOrders())).newBuilder();
+
+        if (pageTextField.getText() == null || pageTextField.getText().equals("")) {
+            urlBuilder.addQueryParameter("page", "1");
+        } else {
+            urlBuilder.addQueryParameter("page", pageTextField.getText());
+        }
+
+        return urlBuilder.build().toString();
+    }
+
+    private void setOrdersFromJson(JSONArray ordersJson) throws IOException {
+        purchaseHistory.getChildren().clear();
         orders = JsonParser.getOrders(ordersJson);
+        for (Order order: orders) {
+            if (order.getOrderDetails().isEmpty()){
+                messageLabel.setVisible(true);
+                return;
+            }
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource(FXMLPath.getOrderComponentPath()));
+
+            VBox vBox = fxmlLoader.load();
+            OrderComponentController orderComponentController = fxmlLoader.getController();
+            orderComponentController.setData(order);
+            purchaseHistory.getChildren().add(vBox);
+        }
     }
 
     public void setData(String _id) {
@@ -113,6 +160,9 @@ public class ViewCustomerPageController implements Initializable {
 
             JSONObject customerJsonObject = new JSONObject(customerResponse);
             customer = (Customer)JsonParser.getUser(customerJsonObject);
+
+            setLabel();
+            setPurchaseHistory();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -139,17 +189,29 @@ public class ViewCustomerPageController implements Initializable {
     }
 
     public void setPurchaseHistory() throws Exception {
-        setOrdersFromJson(new JSONArray(getOrdersRequest(userId)));
-        for (Order order: orders) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/com/brightlightshop/client4/OrderComponentNoDetail.fxml"));
+        Thread setOrdersThread = new Thread(()-> {
+            try {
+                String response = getOrdersRequest(userId);
+                Platform.runLater(()->{
+                    try {
+                        setOrdersFromJson(new JSONArray(response));
+                        spinner.setVisible(false);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+        setOrdersThread.start();
+    }
 
-            VBox vBox = fxmlLoader.load();
-            OrderComponentNoDetailController orderComponentNoDetailController = fxmlLoader.getController();
-            orderComponentNoDetailController.setData(order);
-            purchaseHistory.getChildren().add(vBox);
-
-        }
+    @FXML
+    private void onGoButtonClick(ActionEvent event) throws Exception {
+        spinner.setVisible(true);
+        messageLabel.setVisible(false);
+        setPurchaseHistory();
     }
 
     public void addNavigationBar(){
@@ -169,6 +231,11 @@ public class ViewCustomerPageController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             addNavigationBar();
+            Component.numericTextField(pageTextField);
+            pageTextField.setText("1");
+            spinner.setVisible(true);
+            messageLabel.setText("No orders");
+            messageLabel.setVisible(false);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

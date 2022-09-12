@@ -88,17 +88,17 @@ public class ViewOrderPageController {
         setOrderDetailUI();
         switch (UserModel.getCurrentUser().getAccountType()) {
             case "guest" -> {
-                accountTypeLabel.setText("GUEST");
+                accountTypeLabel.setText("Guest");
                 balanceLabel.setText(String.valueOf(((Guest) UserModel.getCurrentUser()).getBalance()));
             }
 
             case "regular" -> {
-                accountTypeLabel.setText("REGULAR");
+                accountTypeLabel.setText("Regular");
                 balanceLabel.setText(String.valueOf(((Regular) UserModel.getCurrentUser()).getBalance()));
             }
 
             case "vip" -> {
-                accountTypeLabel.setText("VIP");
+                accountTypeLabel.setText("Vip");
                 balanceLabel.setText(String.valueOf(((Vip) UserModel.getCurrentUser()).getBalance()));
             }
         }

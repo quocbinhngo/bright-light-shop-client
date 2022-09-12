@@ -125,7 +125,8 @@ public class ViewUserInfoPageController implements Initializable {
             if (customer instanceof Vip) {
                 cusInfoAccountType.setText("VIP");
             }
-
+            addBalanceTextField.setVisible(true);
+            addBalanceButton.setVisible(true);
             return;
         }
 
@@ -138,8 +139,8 @@ public class ViewUserInfoPageController implements Initializable {
         cusInfoUsername.setText(admin.getUsername());
         cusInfoBalance.setText("");
         cusInfoAccountType.setText("Admin");
-        addBalanceTextField.setDisable(true);
-        addBalanceButton.setDisable(true);
+        addBalanceTextField.setVisible(false);
+        addBalanceButton.setVisible(false);
     }
 
     public void addNavigationBar(){
