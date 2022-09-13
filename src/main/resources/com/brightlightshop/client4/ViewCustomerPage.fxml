@@ -64,6 +64,11 @@
                               <children>
                                  <VBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="219.0" prefWidth="122.0" spacing="5.0">
                                     <children>
+                                       <Label layoutX="15.0" layoutY="26.0" text=" ID">
+                                          <font>
+                                             <Font name="System Bold" size="18.0" />
+                                          </font>
+                                       </Label>
                                        <Label fx:id="cusInfoFirstName1" text="First Name:">
                                           <font>
                                              <Font name="System Bold" size="18.0" />
@@ -116,6 +121,11 @@
                                  </VBox>
                                  <VBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="219.0" prefWidth="554.0" spacing="5.0">
                                     <children>
+                                       <Label fx:id="cusInfoIDLabel" layoutX="10.0" layoutY="26.0" text="firstName">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
                                        <Label fx:id="cusInfoFirstName" text="firstName">
                                           <font>
                                              <Font size="18.0" />

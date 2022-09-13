@@ -1,5 +1,7 @@
 package com.brightlightshop.client4.types;
 
+import org.apache.commons.lang3.StringUtils;
+
 public abstract class Customer extends User {
     protected double balance;
     protected int customerCode;
@@ -16,6 +18,10 @@ public abstract class Customer extends User {
 
     public void setBalance(double balance) {
         this.balance = balance+10000000;
+    }
+
+    public String getCustomerIdentifier() {
+        return String.format("C%s", StringUtils.leftPad(String.valueOf(customerCode), 3, "0"));
     }
 
     @Override

@@ -108,6 +108,11 @@ public class ViewOrdersPageController implements Initializable {
                 .addHeader("user-id", UserModel.getCurrentUser().get_id())
                 .build();
         try(Response response = client.newCall(request).execute()) {
+            if (String.valueOf(response.code()).charAt(0) != '2') {
+                System.out.println(response.body().string());
+                return "";
+            }
+
             return response.body().string();
         }
     }
@@ -129,6 +134,8 @@ public class ViewOrdersPageController implements Initializable {
         pageTextField.setText("1");
     }
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -142,6 +149,10 @@ public class ViewOrdersPageController implements Initializable {
                     String response = getOrdersRequest();
                     Platform.runLater(()->{
                         try {
+                            if (response.equals("")) {
+                                handleError();
+                                return;
+                            }
                             setOrdersFromJson(new JSONArray(response));
                             spinnerImageView.setVisible(false);
                         } catch (IOException e) {
@@ -172,6 +183,14 @@ public class ViewOrdersPageController implements Initializable {
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void handleError() {
+        spinnerImageView.setVisible(false);
+        messageLabel.setVisible(true);
+        messageLabel.setVisible(true);
+        messageLabel.setText("Cannot load orders");
+
     }
 
 

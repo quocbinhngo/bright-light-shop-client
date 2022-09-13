@@ -253,6 +253,8 @@ public class CheckoutPageController implements Initializable {
         // Vip user - have the reward point label
         balanceLabel.setText(String.valueOf(((Vip) UserModel.getCurrentUser()).getBalance()));
         rewardPointLabel.setText(String.valueOf(((Vip) UserModel.getCurrentUser()).getRewardPoint()));
+        System.out.println(((Vip) UserModel.getCurrentUser()));
+        System.out.println(((Vip) UserModel.getCurrentUser()).getRewardPoint());
     }
 
     private void setupButton() {

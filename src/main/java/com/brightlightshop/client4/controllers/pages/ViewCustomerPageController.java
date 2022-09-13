@@ -46,6 +46,9 @@ public class ViewCustomerPageController implements Initializable {
     private Label cusInfoAccountType;
 
     @FXML
+    private Label cusInfoIDLabel;
+
+    @FXML
     private Label cusInfoAddress;
 
     @FXML
@@ -169,6 +172,7 @@ public class ViewCustomerPageController implements Initializable {
         }
     }
     public void setLabel() {
+        cusInfoIDLabel.setText(customer.getCustomerIdentifier());
         cusInfoFirstName.setText(customer.getFirstName());
         cusInfoLastName.setText(customer.getLastName());
         cusInfoPhone.setText(customer.getPhone());

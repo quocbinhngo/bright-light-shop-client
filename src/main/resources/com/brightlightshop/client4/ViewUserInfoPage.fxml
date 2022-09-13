@@ -80,6 +80,11 @@
                                              <Font size="18.0" />
                                           </font>
                                        </Label>
+                                       <Label fx:id="rewardPointLabel1" layoutX="79.0" layoutY="214.0" text="Reward Point">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
                                     </children>
                                  </VBox>
                                  <VBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="243.0" prefWidth="328.0" spacing="5.0">
@@ -124,6 +129,11 @@
                                           </children>
                                        </HBox>
                                        <Label fx:id="cusInfoAccountType" text="accountType">
+                                          <font>
+                                             <Font size="18.0" />
+                                          </font>
+                                       </Label>
+                                       <Label fx:id="rewardPointLabel" layoutX="10.0" layoutY="214.0" text="rewardPoint">
                                           <font>
                                              <Font size="18.0" />
                                           </font>

@@ -41,7 +41,7 @@ public class JsonParser {
             case "vip" -> {
                 double balance = json.getDouble("balance");
                 int rewardPoint = json.getInt("rewardPoint");
-                return new Vip(_id, firstName, lastName, username, address, phone, password, accountType, balance,rewardPoint, customerCode);
+                return new Vip(_id, firstName, lastName, username, address, phone, password, accountType, balance, customerCode, rewardPoint);
             }
             default -> {
                 return null;

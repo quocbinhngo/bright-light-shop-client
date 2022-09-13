@@ -55,8 +55,7 @@ public class CustomerBoxComponentController {
         // Set data for JFX
         nameLabel.setText(customer.getFirstName() + " " + customer.getLastName());
         customerTypeLabel.setText(customer.getAccountType());
-        customerIdLabel.setText(customer.get_id());
-
+        customerIdLabel.setText(customer.getCustomerIdentifier());
     }
 
     @FXML

@@ -80,6 +80,12 @@ public class ViewUserInfoPageController implements Initializable {
     @FXML
     private VBox purchaseHistory;
 
+    @FXML
+    private Label rewardPointLabel;
+
+    @FXML
+    private Label rewardPointLabel1;
+
     private ArrayList<Order> orders;
 
     public void handleError(){
@@ -104,6 +110,9 @@ public class ViewUserInfoPageController implements Initializable {
     }
     public void setLabel() throws IOException {
         UserModel.update();
+        rewardPointLabel.setVisible(false);
+        rewardPointLabel1.setVisible(false);
+
         if (UserModel.getCurrentUser() instanceof Customer) {
             customer = (Customer) UserModel.getCurrentUser();
             titleLabel.setText("Customer Information");
@@ -124,6 +133,10 @@ public class ViewUserInfoPageController implements Initializable {
             }
             if (customer instanceof Vip) {
                 cusInfoAccountType.setText("VIP");
+                rewardPointLabel.setVisible(true);
+                rewardPointLabel1.setVisible(true);
+                rewardPointLabel.setText(String.valueOf(((Vip) UserModel.getCurrentUser()).getRewardPoint()));
+
             }
             addBalanceTextField.setVisible(true);
             addBalanceButton.setVisible(true);
