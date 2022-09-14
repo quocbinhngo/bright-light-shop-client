@@ -30,6 +30,9 @@ public class ViewOrderPageController {
     private Label accountTypeLabel;
 
     @FXML
+    private VBox infoContainer;
+
+    @FXML
     private Label balanceLabel;
 
     @FXML
@@ -63,6 +66,7 @@ public class ViewOrderPageController {
         // Update the is returned UI
         returnButton.setDisable(false);
     }
+
     public void setData(Order order) throws IOException {
         this.order = order;
 
@@ -77,9 +81,7 @@ public class ViewOrderPageController {
     private void setIsReturnedUI() throws IOException {
         setOrderDetailUI();
         addNavigationBar();
-        accountTypeLabel.setVisible(false);
-        returnButton.setVisible(false);
-        messageLabel.setVisible(false);
+        infoContainer.setVisible(false);
     }
 
     public void setUI() throws IOException {

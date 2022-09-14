@@ -152,7 +152,7 @@
                               <children>
                                  <TextField fx:id="addBalanceTextField" layoutX="71.0" layoutY="11.0" prefHeight="29.0" prefWidth="102.0" promptText="\$" />
                                  <Button fx:id="addBalanceButton" layoutX="195.0" layoutY="11.0" mnemonicParsing="false" onAction="#onAddBalanceButtonClick" onMouseEntered="#addBalanceEnter" onMouseExited="#addBalanceExit" prefHeight="29.0" prefWidth="88.0" style="-fx-background-color: #ffbd73;" text="Add Balance" />
-                                 <Label fx:id="addBalanceLabel" layoutX="110.0" layoutY="54.0" prefHeight="17.0" prefWidth="20.0" />
+                                 <Label fx:id="addBalanceLabel" layoutX="110.0" layoutY="54.0" prefHeight="17.0" />
                               </children>
                            </Pane>
                         </children>

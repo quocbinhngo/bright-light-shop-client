@@ -83,8 +83,16 @@ public class ViewOrdersPageController implements Initializable {
     private ArrayList<Order> orders;
 
     private void setOrdersFromJson(JSONArray ordersJson) throws IOException {
-        orderContainer.getChildren().clear();
         orders = JsonParser.getOrders(ordersJson);
+
+        if (orders.size() == 0) {
+            spinnerImageView.setVisible(false);
+            messageLabel.setVisible(true);
+            messageLabel.setText("Can't find your order");
+            return;
+        }
+
+        orderContainer.getChildren().clear();
         for (Order order: orders) {
             if (order.getOrderDetails().isEmpty()){
                 messageLabel.setVisible(true);

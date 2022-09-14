@@ -31,76 +31,82 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                   </VBox>
-                  <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="100.0" prefWidth="830.0">
+                  <VBox fx:id="infoContainer">
                      <children>
-                        <Label text="Account Type:  ">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="accountTypeLabel" text="Label">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                        </Label>
+                        <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="100.0" prefWidth="830.0">
+                           <children>
+                              <Label text="Account Type:  ">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="accountTypeLabel" text="Label">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefHeight="100.0" prefWidth="830.0">
+                           <children>
+                              <Label text="Your Balance:  ">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="22.0" prefWidth="10.0" text="\$">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="balanceLabel" text="Label">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefHeight="100.0" prefWidth="830.0">
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="79.0" prefWidth="880.0">
                      <children>
-                        <Label text="Your Balance:  ">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="22.0" prefWidth="10.0" text="\$">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets bottom="15.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label fx:id="balanceLabel" text="Label">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefHeight="100.0" prefWidth="845.0">
-                     <children>
-                        <Label fx:id="messageLabel" alignment="CENTER_RIGHT">
-                           <HBox.margin>
-                              <Insets right="280.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="10.0" text="\$" textFill="#9c5044c7">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets bottom="15.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label fx:id="totalValueLabel" text="Label" textFill="#9c5043c7">
-                           <font>
-                              <Font size="27.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Button fx:id="returnButton" mnemonicParsing="false" onAction="#onReturnButtonClick" onMouseEntered="#returnButtonEnteredViewOrderPage" onMouseExited="#returnButtonExitedViewOrderPage" style="-fx-background-color: #f1ab2c;" text="Return">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="79.0" prefWidth="880.0" />
+                        <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefHeight="100.0" prefWidth="845.0">
+                           <children>
+                              <Label fx:id="messageLabel" alignment="CENTER_RIGHT">
+                                 <HBox.margin>
+                                    <Insets right="280.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="10.0" text="\$" textFill="#9c5044c7">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="totalValueLabel" text="Label" textFill="#9c5043c7">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Button fx:id="returnButton" mnemonicParsing="false" onAction="#onReturnButtonClick" onMouseEntered="#returnButtonEnteredViewOrderPage" onMouseExited="#returnButtonExitedViewOrderPage" style="-fx-background-color: #f1ab2c;" text="Return">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children></HBox>
                </children>
             </VBox>
          </center>
