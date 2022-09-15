@@ -82,6 +82,8 @@ public class ViewOrderPageController {
         setOrderDetailUI();
         addNavigationBar();
         infoContainer.setVisible(false);
+        returnButton.setDisable(true);
+        totalValueLabel.setText(String.valueOf(getTotalValue()));
     }
 
     public void setUI() throws IOException {
