@@ -88,7 +88,7 @@ public class ViewOrdersPageController implements Initializable {
         if (orders.size() == 0) {
             spinnerImageView.setVisible(false);
             messageLabel.setVisible(true);
-            messageLabel.setText("Can't find your order");
+            messageLabel.setText("Can't find the orders match your requirement");
             return;
         }
 
@@ -195,7 +195,6 @@ public class ViewOrdersPageController implements Initializable {
 
     private void handleError() {
         spinnerImageView.setVisible(false);
-        messageLabel.setVisible(true);
         messageLabel.setVisible(true);
         messageLabel.setText("Cannot load orders");
 

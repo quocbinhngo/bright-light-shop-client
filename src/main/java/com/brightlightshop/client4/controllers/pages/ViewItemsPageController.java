@@ -285,23 +285,19 @@ public class ViewItemsPageController implements Initializable {
         Thread t = new Thread(()->{
             String itemsResponse = null;
 
-            // Clear all item to display spinne
-
+            // Clear all item to display spinner
             try {
                 itemsResponse = getItemsRequest();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("Item res: " + itemsResponse);
 
             items = JsonParser.getItems(new JSONArray(itemsResponse));
 
             String finalItemsResponse = itemsResponse;
             Platform.runLater(()->{
                 if (finalItemsResponse.equals("[]") ){
-                    spinner.setVisible(false);
-                    firstProductMessage.setText("No result");
-                    secondProductMessage.setText("Try checking your spelling or use more general terms");
+                    showNoResult();
                     return;
                 }
                 updateItemsToGrid();
@@ -363,6 +359,10 @@ public class ViewItemsPageController implements Initializable {
     public void updateItemsToGrid() {
         girdPaneAllIteam.getChildren().clear();
 
+        if (items.isEmpty()) {
+            showNoResult();
+        }
+
         int column = 0;
         int row =1;
 
@@ -389,6 +389,12 @@ public class ViewItemsPageController implements Initializable {
         }
     }
 
+    public void showNoResult() {
+        spinner.setVisible(false);
+        firstProductMessage.setText("No result");
+        secondProductMessage.setText("Try checking your spelling or use more general terms");
+    }
+
 // <<<<<<< HEAD
 
     @FXML
@@ -411,6 +417,7 @@ public class ViewItemsPageController implements Initializable {
     void sortButtonExit(MouseEvent event) {
         sortButton.setStyle("-fx-background-color: #ffbd73; -fx-border-radius: 5; -fx-border-color: BLACK");
     }
+
 
 
 }

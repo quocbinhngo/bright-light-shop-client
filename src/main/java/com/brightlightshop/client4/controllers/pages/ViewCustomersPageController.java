@@ -259,6 +259,11 @@ public class ViewCustomersPageController implements Initializable {
         int column = 0;
         int row = 1;
 
+        if (customers.isEmpty()) {
+            showNoResult();
+            return;
+        }
+
         try {
             for (Customer customer : customers) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -301,8 +306,7 @@ public class ViewCustomersPageController implements Initializable {
             Platform.runLater(()->{
                 spinner.setVisible(false);
                 if (finalCustomersResponse.equals("[]") ){
-                    firstMessage.setText("No result");
-                    secondMessage.setText("Try checking your spelling or use more general terms");
+                    showNoResult();
                     return;
                 }
                 updateCustomersToGrid();
@@ -403,6 +407,12 @@ public class ViewCustomersPageController implements Initializable {
 
         //Set page to 1
         pageTextField.setText("1");
+    }
+
+    private void showNoResult() {
+        firstMessage.setText("No Results");
+        secondMessage.setText("Please try again");
+        spinner.setVisible(false);
     }
 
     @FXML

@@ -100,7 +100,7 @@ public class NavigationBarCustomerComponentController implements Initializable {
     //change scene to ViewItemsPage
     @FXML
     void onShopButtonClick(ActionEvent event) throws Exception {
-        moveViewItemsPage(event, null);
+        moveViewItemsPage(event, false, null);
     }
 
     // Change to view order page
@@ -127,14 +127,15 @@ public class NavigationBarCustomerComponentController implements Initializable {
     private void onSearchButtonClick(ActionEvent event) throws Exception {
         String response = searchItemRequest();
         if (response.equals("")) {
-            handleError();
+            moveViewItemsPage(event, true, null);
+            return;
         }
 
         // Get the item
         ArrayList<Item> items = JsonParser.getItems(new JSONArray(response));
 
         // move to view items page
-        moveViewItemsPage(event, items);
+        moveViewItemsPage(event, true, items);
     }
 
     @FXML
@@ -147,7 +148,7 @@ public class NavigationBarCustomerComponentController implements Initializable {
         stage.show();
     }
 
-    private void moveViewItemsPage(ActionEvent event, ArrayList<Item> items) throws Exception {
+    private void moveViewItemsPage(ActionEvent event, boolean isSearch, ArrayList<Item> items) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FXMLPath.getViewItemsPagePath()));
         Scene scene = new Scene(fxmlLoader.load());
 
@@ -156,7 +157,11 @@ public class NavigationBarCustomerComponentController implements Initializable {
         if (items != null) {
             controller.setItems(items);
         } else {
-            controller.getItems();
+            if (isSearch) {
+                controller.showNoResult();
+            } else {
+                controller.getItems();
+            }
         }
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
