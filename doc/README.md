@@ -35,6 +35,13 @@ Admin:
 - Username: admin
 - Password: 123456789
 
+## The Technology We Used 
+
+- Frontend: [JavaFX](https://openjfx.io/)
+- Backend: [Express JS](https://expressjs.com/)
+- Application Database: [MongoDB](https://www.mongodb.com/)
+- Image Database: [Cloudinary](https://cloudinary.com/)
+ 
 ## Some Note during Using the Application
 
 - You have to click on the search button for searching. 
@@ -44,6 +51,7 @@ Admin:
 - The rental fee for each time the user rent will be the same regardless of their rental duration. 
 
 - We do not record whether or not an order is returned late.
+
 
 And finally,
 ## Thank you for reading !!!
