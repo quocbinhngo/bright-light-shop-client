@@ -11,7 +11,9 @@
 
 ## Github Repo
 
-[BrighLightShopGithub](https://github.com/quocbinhngo/bright-light-shop-client "Github")
+- Frontend: [Brigh Light Shop Frontend (Java)](https://github.com/quocbinhngo/bright-light-shop-client "Github")
+
+- Backend: [Bright Light SHop Backend (NodeJS)](https://github.com/quocbinhngo/bright-light-shop-server) (Just for references)
 
 ## Demonstration Video Link
 
